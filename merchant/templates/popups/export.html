@@ -1,0 +1,16 @@
+{% load static %}
+<div id="exportPopup" class="popup">
+    <div class="popup-content">
+        <div class="popup-icon">
+            <img src="{% static 'icons/export.png' %}" alt="">
+        </div>
+        <button class="popup-close">&times;</button>
+        <h2>تصدير الطلبات المحددة</h2>
+        <p>سيتم إرسال الطلبات عبر البريد الإلكتروني</p>
+        <input type="email" placeholder="youremail@email.com" class="popup-email">
+        <div class="popup-buttons">
+            <button class="popup-confirm">تأكيد</button>
+            <button class="popup-cancel">إلغاء</button>
+        </div>
+    </div>
+</div>

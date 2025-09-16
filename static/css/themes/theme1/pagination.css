@@ -1,0 +1,301 @@
+/* 📄 Pagination Styles for Theme1 */
+
+.pagination-section {
+  margin-top: var(--spacing-3xl);
+  padding: var(--spacing-xl) 0;
+  border-top: 1px solid var(--border-light);
+}
+
+.pagination-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: var(--spacing-lg);
+}
+
+/* 📊 Pagination Info */
+.pagination-info {
+  flex: 1;
+  min-width: 200px;
+}
+
+.pagination-text {
+  color: var(--text-secondary);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+}
+
+/* 🧭 Pagination Navigation */
+.pagination-nav {
+  flex: 2;
+  display: flex;
+  justify-content: center;
+}
+
+.pagination {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.pagination-item {
+  display: flex;
+  align-items: center;
+}
+
+.pagination-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 44px;
+  height: 44px;
+  padding: var(--spacing-sm) var(--spacing-md);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  color: var(--text-primary);
+  background-color: var(--card-background);
+  border: 1px solid var(--border-light);
+  border-radius: var(--border-radius-md);
+  text-decoration: none;
+  transition: all var(--transition-fast);
+  gap: var(--spacing-xs);
+}
+
+.pagination-link:hover {
+  color: var(--accent-orange);
+  background-color: var(--background-light);
+  border-color: var(--accent-orange);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-light);
+}
+
+.pagination-link:focus {
+  outline: 2px solid var(--accent-orange);
+  outline-offset: 2px;
+}
+
+/* 🎯 Active State */
+.pagination-active {
+  color: var(--primary-white) !important;
+  background-color: var(--accent-orange) !important;
+  border-color: var(--accent-orange) !important;
+}
+
+.pagination-active:hover {
+  background-color: var(--accent-orange-hover) !important;
+  border-color: var(--accent-orange-hover) !important;
+  transform: none;
+}
+
+/* 🔄 Previous/Next Buttons */
+.pagination-prev,
+.pagination-next {
+  padding: var(--spacing-sm) var(--spacing-lg);
+  font-weight: var(--font-weight-semibold);
+}
+
+.pagination-prev svg,
+.pagination-next svg {
+  width: 16px;
+  height: 16px;
+  stroke-width: 2;
+}
+
+/* 🔢 Ellipsis */
+.pagination-dots {
+  padding: 0 var(--spacing-sm);
+}
+
+.pagination-ellipsis {
+  color: var(--text-muted);
+  font-weight: var(--font-weight-bold);
+  letter-spacing: 2px;
+}
+
+/* 📝 Items Per Page */
+.pagination-per-page {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: var(--spacing-sm);
+  min-width: 200px;
+}
+
+.pagination-label {
+  color: var(--text-secondary);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  white-space: nowrap;
+}
+
+.pagination-select {
+  padding: var(--spacing-sm) var(--spacing-md);
+  font-size: var(--font-size-sm);
+  color: var(--text-primary);
+  background-color: var(--input-background);
+  border: 1px solid var(--input-border);
+  border-radius: var(--border-radius-md);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  min-width: 80px;
+}
+
+.pagination-select:hover {
+  border-color: var(--accent-orange);
+}
+
+.pagination-select:focus {
+  outline: none;
+  border-color: var(--input-focus);
+  box-shadow: 0 0 0 2px rgba(255, 107, 53, 0.1);
+}
+
+/* 📱 Mobile Responsive */
+@media (max-width: 768px) {
+  .pagination-container {
+    flex-direction: column;
+    align-items: stretch;
+    gap: var(--spacing-md);
+  }
+
+  .pagination-info,
+  .pagination-per-page {
+    justify-content: center;
+    text-align: center;
+    min-width: auto;
+  }
+
+  .pagination-nav {
+    order: -1;
+  }
+
+  .pagination {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .pagination-link {
+    min-width: 40px;
+    height: 40px;
+    padding: var(--spacing-xs) var(--spacing-sm);
+    font-size: var(--font-size-xs);
+  }
+
+  .pagination-prev,
+  .pagination-next {
+    padding: var(--spacing-xs) var(--spacing-md);
+  }
+
+  /* Hide text on mobile for prev/next, show only icons */
+  .pagination-prev span:not(svg),
+  .pagination-next span:not(svg) {
+    display: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .pagination-section {
+    margin-top: var(--spacing-xl);
+    padding: var(--spacing-lg) 0;
+  }
+
+  .pagination-container {
+    gap: var(--spacing-sm);
+  }
+
+  .pagination {
+    gap: 2px;
+  }
+
+  .pagination-link {
+    min-width: 36px;
+    height: 36px;
+    padding: var(--spacing-xs);
+    font-size: var(--font-size-xs);
+  }
+
+  /* Hide some page numbers on very small screens */
+  .pagination-item:nth-child(n+4):nth-child(-n+6) {
+    display: none;
+  }
+}
+
+/* 🌙 Dark Theme Support */
+[data-theme="dark"] .pagination-link {
+  background-color: var(--card-background);
+  border-color: var(--border-light);
+  color: var(--text-primary);
+}
+
+[data-theme="dark"] .pagination-link:hover {
+  background-color: var(--background-light);
+  border-color: var(--accent-orange);
+}
+
+[data-theme="dark"] .pagination-select {
+  background-color: var(--input-background);
+  border-color: var(--input-border);
+  color: var(--text-primary);
+}
+
+/* 🎨 Animation Enhancements */
+.pagination-link {
+  position: relative;
+  overflow: hidden;
+}
+
+.pagination-link::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 107, 53, 0.1),
+    transparent
+  );
+  transition: left var(--transition-normal);
+}
+
+.pagination-link:hover::before {
+  left: 100%;
+}
+
+/* 🔄 Loading State */
+.pagination-loading .pagination-link {
+  pointer-events: none;
+  opacity: 0.6;
+}
+
+.pagination-loading .pagination-active {
+  opacity: 1;
+}
+
+/* ♿ Accessibility Enhancements */
+.pagination-link:focus-visible {
+  outline: 2px solid var(--accent-orange);
+  outline-offset: 2px;
+  border-color: var(--accent-orange);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pagination-link {
+    transition: none;
+  }
+  
+  .pagination-link:hover {
+    transform: none;
+  }
+  
+  .pagination-link::before {
+    transition: none;
+  }
+}

@@ -1,0 +1,128 @@
+{% extends "themes/theme2/base.html" %}
+
+{% block content %}
+<div class="wishlist-page">
+    <div class="wishlist-container">
+        <!-- Wishlist Header -->
+        <div class="wishlist-header">
+            <h1 class="wishlist-title">My Wishlist</h1>
+            <div class="wishlist-breadcrumb">
+                <a href="/" class="breadcrumb-link">Home</a>
+                <span class="breadcrumb-separator">/</span>
+                <span class="breadcrumb-current">Wishlist</span>
+            </div>
+        </div>
+
+        <!-- Wishlist Content -->
+        <div class="wishlist-content">
+            <!-- Wishlist Items -->
+            <div class="wishlist-items">
+                <div class="wishlist-items-header">
+                    <h2>Saved Items (4)</h2>
+                    <button class="clear-wishlist-btn">Clear All</button>
+                </div>
+
+                <div class="wishlist-grid">
+                    <!-- Wishlist Item 1 -->
+                    <div class="wishlist-item">
+                        <div class="item-image">
+                            <img src="https://images.unsplash.com/photo-1596755094514-f87e34085b2c?w=200&h=200&fit=crop" alt="Premium Denim Shirt">
+                            <button class="remove-wishlist-btn" title="Remove from wishlist">
+                                <i class="fas fa-times"></i>
+                            </button>
+                        </div>
+                        <div class="item-info">
+                            <h3 class="item-name">Premium Denim Shirt</h3>
+                            <p class="item-price">$29.99</p>
+                        </div>
+                        <div class="item-actions">
+                            <button class="add-to-cart-btn">
+                                <i class="fas fa-shopping-cart"></i>
+                                Add to Cart
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Wishlist Item 2 -->
+                    <div class="wishlist-item">
+                        <div class="item-image">
+                            <img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=200&h=200&fit=crop" alt="Casual Wear">
+                            <button class="remove-wishlist-btn" title="Remove from wishlist">
+                                <i class="fas fa-times"></i>
+                            </button>
+                        </div>
+                        <div class="item-info">
+                            <h3 class="item-name">Casual Wear</h3>
+                            <p class="item-price">$19.99</p>
+                        </div>
+                        <div class="item-actions">
+                            <button class="add-to-cart-btn">
+                                <i class="fas fa-shopping-cart"></i>
+                                Add to Cart
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Wishlist Item 3 -->
+                    <div class="wishlist-item">
+                        <div class="item-image">
+                            <img src="https://images.unsplash.com/photo-1503341504253-dff4815485f1?w=200&h=200&fit=crop" alt="Street Style">
+                            <button class="remove-wishlist-btn" title="Remove from wishlist">
+                                <i class="fas fa-times"></i>
+                            </button>
+                        </div>
+                        <div class="item-info">
+                            <h3 class="item-name">Street Style</h3>
+                            <p class="item-price">$39.99</p>
+                        </div>
+                        <div class="item-actions">
+                            <button class="add-to-cart-btn">
+                                <i class="fas fa-shopping-cart"></i>
+                                Add to Cart
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Wishlist Item 4 -->
+                    <div class="wishlist-item">
+                        <div class="item-image">
+                            <img src="https://images.unsplash.com/photo-1551698618-1dfe5d97d256?w=200&h=200&fit=crop" alt="Designer Jacket">
+                            <button class="remove-wishlist-btn" title="Remove from wishlist">
+                                <i class="fas fa-times"></i>
+                            </button>
+                        </div>
+                        <div class="item-info">
+                            <h3 class="item-name">Designer Jacket</h3>
+                            <p class="item-price">$89.99</p>
+                        </div>
+                        <div class="item-actions">
+                            <button class="add-to-cart-btn">
+                                <i class="fas fa-shopping-cart"></i>
+                                Add to Cart
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Continue Shopping -->
+                <div class="continue-shopping">
+                    <a href="/" class="continue-shopping-btn">
+                        <i class="fas fa-arrow-left"></i>
+                        Continue Shopping
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Empty Wishlist State (Hidden by default) -->
+        <div class="empty-wishlist" style="display: none;">
+            <div class="empty-wishlist-content">
+                <i class="fas fa-heart empty-wishlist-icon"></i>
+                <h2 class="empty-wishlist-title">Your wishlist is empty</h2>
+                <p class="empty-wishlist-message">Save items you love to view them here later.</p>
+                <a href="/" class="shop-now-btn">Start Shopping</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

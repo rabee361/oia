@@ -1,0 +1,204 @@
+{% extends 'layout/base.html' %}
+{% load static %}
+
+{% block title %}تخصيص المظهر - متجرك{% endblock %}
+
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/main.css' %}">
+<link rel="stylesheet" href="{% static 'css/color-picker.css' %}">
+<link rel="stylesheet" href="{% static 'css/skeleton-preview.css' %}">
+<div class="theme-container">
+    <!-- Header -->
+    <div class="theme-header">
+        <h1 class="theme-title">🎨 تخصيص مظهر متجرك</h1>
+        <p class="theme-subtitle">اختر الألوان والصور التي تعبر عن هوية متجرك</p>
+    </div>
+
+    <!-- Images & Logo Section -->
+    <div class="customization-section">
+        <div class="section-header">
+            <h2 class="section-title">🖼️ الصور والشعار</h2>
+            <p class="section-description">ارفع شعار متجرك وصورة الخلفية</p>
+        </div>
+
+        <div class="images-grid">
+            <!-- Logo Upload -->
+            <div class="upload-card">
+                <div class="upload-header">
+                    <h3>📱 شعار المتجر</h3>
+                    <span class="upload-hint">PNG, JPG (مربع مفضل)</span>
+                </div>
+                <div class="upload-area" id="logo-upload">
+                    <input type="file" id="logo-input" accept="image/*" hidden>
+                    <div class="upload-placeholder">
+                        <div class="upload-icon">📷</div>
+                        <p>اضغط لرفع الشعار</p>
+                    </div>
+                    <div class="upload-preview" id="logo-preview" style="display: none;">
+                        <img id="logo-img" src="" alt="Logo Preview">
+                        <button class="remove-btn" id="remove-logo">❌</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Favicon Upload -->
+            <div class="upload-card">
+                <div class="upload-header">
+                    <h3>🔖 أيقونة المتجر (Favicon)</h3>
+                    <span class="upload-hint">ICO, PNG (32x32px)</span>
+                </div>
+                <div class="upload-area" id="favicon-upload">
+                    <input type="file" id="favicon-input" accept="image/*,.ico" hidden>
+                    <div class="upload-placeholder">
+                        <div class="upload-icon">🔖</div>
+                        <p>اضغط لرفع الأيقونة</p>
+                    </div>
+                    <div class="upload-preview" id="favicon-preview" style="display: none;">
+                        <img id="favicon-img" src="" alt="Favicon Preview">
+                        <button class="remove-btn" id="remove-favicon">❌</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Hero Background Upload -->
+            <div class="upload-card">
+                <div class="upload-header">
+                    <h3>🌅 صورة الخلفية الرئيسية</h3>
+                    <span class="upload-hint">JPG, PNG (1920x1080px مفضل)</span>
+                </div>
+                <div class="upload-area" id="hero-upload">
+                    <input type="file" id="hero-input" accept="image/*" hidden>
+                    <div class="upload-placeholder">
+                        <div class="upload-icon">🌅</div>
+                        <p>اضغط لرفع صورة الخلفية</p>
+                    </div>
+                    <div class="upload-preview" id="hero-preview" style="display: none;">
+                        <img id="hero-img" src="" alt="Hero Preview">
+                        <button class="remove-btn" id="remove-hero">❌</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Website Skeleton Preview -->
+        <div class="skeleton-container">
+            <h3 class="skeleton-title">👁️ معاينة الموقع</h3>
+            <div class="website-skeleton" id="images-skeleton">
+                <div class="skeleton-header">
+                    <div class="skeleton-favicon" id="skeleton-favicon">🔖</div>
+                    <div class="skeleton-logo" id="skeleton-logo">
+                        <div class="logo-placeholder">شعار المتجر</div>
+                    </div>
+                    <div class="skeleton-nav">
+                        <div class="nav-item"></div>
+                        <div class="nav-item"></div>
+                        <div class="nav-item"></div>
+                    </div>
+                </div>
+                <div class="skeleton-hero" id="skeleton-hero">
+                    <div class="hero-content">
+                        <h2>مرحباً بك في متجرنا</h2>
+                        <p>اكتشف منتجاتنا المميزة</p>
+                        <button class="hero-btn">تسوق الآن</button>
+                    </div>
+                </div>
+                <div class="skeleton-content">
+                    <div class="content-section"></div>
+                    <div class="content-section"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Colors Section -->
+    <div class="customization-section">
+        <div class="section-header">
+            <h2 class="section-title">🎨 ألوان المتجر</h2>
+            <p class="section-description">اختر الألوان الأساسية لمتجرك</p>
+        </div>
+
+        <div class="colors-grid">
+            <!-- Primary Color -->
+            <div class="color-picker-card">
+                <h3>🔵 اللون الأساسي</h3>
+                <p>لون الأزرار والروابط المهمة</p>
+                <div class="color-picker-container">
+                    <input type="color" id="primary-color" value="#6366f1" class="color-input">
+                    <div class="color-display" id="primary-display">#6366f1</div>
+                </div>
+            </div>
+
+            <!-- Secondary Color -->
+            <div class="color-picker-card">
+                <h3>🟢 اللون الثانوي</h3>
+                <p>للعناصر المساعدة والتفاصيل</p>
+                <div class="color-picker-container">
+                    <input type="color" id="secondary-color" value="#10b981" class="color-input">
+                    <div class="color-display" id="secondary-display">#10b981</div>
+                </div>
+            </div>
+
+            <!-- Tertiary Color -->
+            <div class="color-picker-card">
+                <h3>🟡 اللون الثالث</h3>
+                <p>للتمييز والتنبيهات</p>
+                <div class="color-picker-container">
+                    <input type="color" id="tertiary-color" value="#f59e0b" class="color-input">
+                    <div class="color-display" id="tertiary-display">#f59e0b</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Colors Skeleton Preview -->
+        <div class="skeleton-container">
+            <h3 class="skeleton-title">🎨 معاينة الألوان</h3>
+            <div class="website-skeleton" id="colors-skeleton">
+                <div class="skeleton-header">
+                    <div class="skeleton-logo">متجرك</div>
+                    <div class="skeleton-nav">
+                        <div class="nav-item primary-bg">الرئيسية</div>
+                        <div class="nav-item">المنتجات</div>
+                        <div class="nav-item">اتصل بنا</div>
+                    </div>
+                </div>
+                <div class="skeleton-hero">
+                    <div class="hero-content">
+                        <h2>عروض خاصة</h2>
+                        <p>اكتشف أحدث المنتجات</p>
+                        <button class="hero-btn primary-bg">تسوق الآن</button>
+                        <button class="hero-btn-secondary secondary-bg">المزيد</button>
+                    </div>
+                </div>
+                <div class="skeleton-products">
+                    <div class="product-card">
+                        <div class="product-image"></div>
+                        <div class="product-info">
+                            <h4>منتج مميز</h4>
+                            <p class="price tertiary-color">299 ريال</p>
+                            <button class="add-to-cart primary-bg">أضف للسلة</button>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <div class="product-image"></div>
+                        <div class="product-info">
+                            <h4>منتج آخر</h4>
+                            <p class="price tertiary-color">199 ريال</p>
+                            <button class="add-to-cart secondary-bg">أضف للسلة</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Action Buttons -->
+    <div class="theme-actions">
+        <button class="btn-secondary" id="reset-theme">🔄 إعادة تعيين</button>
+        <button class="btn-primary" id="save-theme">💾 حفظ المظهر</button>
+    </div>
+</div>
+
+<script src="{% static 'js/color-picker.js' %}"></script>
+<script src="{% static 'js/skeleton-preview.js' %}"></script>
+{% endblock %}

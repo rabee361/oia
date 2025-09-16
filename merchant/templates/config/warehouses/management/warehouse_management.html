@@ -1,0 +1,167 @@
+{% extends 'layout/base.html' %}
+{% load static %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/main.css' %}">
+<link rel="stylesheet" href="{% static 'css/tables.css' %}">
+
+    <!-- Breadcrumb Navigation -->
+    <nav class="breadcrumb">
+        <a href="#" class="breadcrumb-item">الرئيسية</a>
+        <span class="breadcrumb-separator">
+            <i class="fas fa-chevron-right"></i>
+        </span>
+        <a href="{% url 'configuration' %}" class="breadcrumb-item">الإعدادات</a>
+        <span class="breadcrumb-separator">
+            <i class="fas fa-chevron-right"></i>
+        </span>
+        <span class="breadcrumb-item active">المستودعات</span>
+    </nav>
+
+    <!-- Section: Warehouses Management -->
+    <section class="config-section">
+        <div class="section-title">
+            <h2>إدارة المستودعات</h2>
+            <a href="{% url 'add-warehouse' %}" class="btn-primary">
+                <i class="fas fa-plus"></i>
+                إضافة مستودع
+            </a>
+        </div>
+        <!-- Search and Filter Container -->
+        <div class="table-controls">
+            <!-- Search Bar -->
+            <div class="search-container">
+                <div class="search-bar">
+                    <input type="text" class="search-input" placeholder="ابحث عن اسم المستودع أو الموقع...">
+                    <button type="button" class="search-btn">
+                        <i class="fas fa-search"></i>
+                        بحث
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Warehouses Table -->
+        <div class="table-container">
+            <form id="warehousesForm" class="products-form">
+                <!-- Bulk Actions -->
+                <div class="bulk-actions" id="bulkActions" style="display: none;">
+                    <div class="selected-count">
+                        <span id="selectedCount">0</span> مستودع محدد
+                    </div>
+                    <div class="bulk-buttons">
+                        <button type="button" class="btn-bulk btn-bulk-edit">
+                            <i class="fas fa-edit"></i>
+                            تعديل
+                        </button>
+                        <button type="button" class="btn-bulk btn-bulk-delete">
+                            <i class="fas fa-trash"></i>
+                            حذف
+                        </button>
+                        <button type="button" class="btn-bulk btn-bulk-export">
+                            <i class="fas fa-download"></i>
+                            تصدير
+                        </button>
+                    </div>
+                </div>
+
+                <table class="products-table">
+                    <thead>
+                        <tr>
+                            <th class="checkbox-column">
+                                <input type="checkbox" id="selectAll" class="table-checkbox">
+                            </th>
+                            <th class="name-column">اسم المستودع</th>
+                            <th class="code-column">الدولة</th>
+                            <th class="price-column">المدينة</th>
+                            <th class="stock-column">الحي</th>
+                            <th class="status-column">نقطة البيع</th>
+                            <th class="actions-column">الإجراءات</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for warehouse in warehouses %}
+                        <tr class="table-row">
+                            <td class="checkbox-column">
+                                <input type="checkbox" name="selected_warehouses[]" value="2" class="row-checkbox">
+                            </td>
+                            <td class="name-column">
+                                <div class="product-name">
+                                    <h4>مستودع جدة</h4>
+                                    <p class="product-description">مستودع فرعي في منطقة جدة</p>
+                                </div>
+                            </td>
+                            <td class="code-column">
+                                <span class="product-code">السعودية</span>
+                            </td>
+                            <td class="price-column">
+                                <span class="product-price">جدة</span>
+                            </td>
+                            <td class="stock-column">
+                                <span class="stock-count">الروضة</span>
+                            </td>
+                            <td class="status-column">
+                                <span class="status-badge status-active">فرع جدة</span>
+                            </td>
+                            <td class="actions-column">
+                                <div class="dropdown">
+                                    <button type="button" class="dropdown-toggle" data-toggle="dropdown">
+                                        <i class="fas fa-ellipsis-v"></i>
+                                    </button>
+                                    <div class="dropdown-menu">
+                                        <a href="#" class="dropdown-item">
+                                            <i class="fas fa-eye"></i>
+                                            عرض
+                                        </a>
+                                        <a href="#" class="dropdown-item">
+                                            <i class="fas fa-edit"></i>
+                                            تعديل
+                                        </a>
+                                        <a href="#" class="dropdown-item">
+                                            <i class="fas fa-map-marker-alt"></i>
+                                            الموقع
+                                        </a>
+                                        <div class="dropdown-divider"></div>
+                                        <a href="#" class="dropdown-item text-danger">
+                                            <i class="fas fa-trash"></i>
+                                            حذف
+                                        </a>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        {% empty %}
+                        <tr>
+                            <td colspan="8" class="empty-state">
+                                <div class="empty-state-content">
+                                    <img src="{% static 'images/placeholders/empty.jpg' %}" alt="لا يوجد مستودعات">
+                                    <p class="empty-state-text">لا يوجد مستودعات</p>
+                                </div>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </form>
+        </div>
+    </section>
+
+    <!-- JavaScript Files -->
+    <script src="{% static 'js/selectable_rows.js' %}"></script>
+    <script>
+        // Filter Toggle Functionality
+        document.getElementById('filterToggleBtn').addEventListener('click', function() {
+            const filtersContainer = document.getElementById('filtersContainer');
+            const toggleArrow = this.querySelector('.toggle-arrow');
+            
+            if (filtersContainer.style.display === 'none') {
+                filtersContainer.style.display = 'block';
+                toggleArrow.style.transform = 'rotate(180deg)';
+            } else {
+                filtersContainer.style.display = 'none';
+                toggleArrow.style.transform = 'rotate(0deg)';
+            }
+        });
+    </script>
+
+{% endblock %}

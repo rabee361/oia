@@ -1,0 +1,89 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>إنشاء حساب جديد - OIA Store</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="{% static 'css/auth.css' %}">
+    <script src="{% static 'js/auth.js' %}" defer></script>
+</head>
+<body>
+    <div class="auth-container">
+        {% include 'auth/navbar.html' %}
+
+        <!-- Signup Card -->
+        <div class="auth-card">
+            <h1 class="auth-card-title">إنشاء حساب جديد</h1>
+
+            <form class="auth-form" method="post" id="signupForm">
+                {% csrf_token %}
+
+                <!-- Display Non-Field Errors -->
+                {% if form.non_field_errors %}
+                    <div class="form-errors">
+                        <ul>
+                            {% for error in form.non_field_errors %}
+                                <li>{{ error }}</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                {% endif %}
+
+                <!-- Email Field -->
+                <div class="input-group {% if form.email.errors %}error{% endif %}">
+                    {{ form.email }}
+                    {% if form.email.errors %}
+                        {% for error in form.email.errors %}
+                            <div class="field-error">{{ error }}</div>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+
+                <!-- Password Field -->
+                <div class="input-group {% if form.password.errors %}error{% endif %}">
+                    <div class="password-field">
+                        {{ form.password }}
+                        <button type="button" class="password-toggle" data-target="id_password">
+                            <i class="fas fa-eye eye-icon"></i>
+                        </button>
+                    </div>
+                    {% if form.password.errors %}
+                        {% for error in form.password.errors %}
+                            <div class="field-error">{{ error }}</div>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+
+                <!-- Confirm Password Field -->
+                <div class="input-group {% if form.confirm_password.errors %}error{% endif %}">
+                    <div class="password-field">
+                        {{ form.confirm_password }}
+                        <button type="button" class="password-toggle" data-target="id_confirm_password">
+                            <i class="fas fa-eye eye-icon"></i>
+                        </button>
+                    </div>
+                    {% if form.confirm_password.errors %}
+                        {% for error in form.confirm_password.errors %}
+                            <div class="field-error">{{ error }}</div>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+
+                <p class="auth-text">لدي حساب بالفعل ؟ <a href="{% url 'login' %}" class="auth-link">تسجيل الدخول</a></p>
+
+                <button type="submit" class="auth-button" id="signupBtn">
+                    إنشاء الحساب
+                </button>
+
+                <button type="button" class="google-signup-btn" id="googleSignupBtn">
+                    <img src="{% static 'images/placeholders/google.png' }" alt="">
+                    التسجيل باستخدام Google
+                </button> 
+                     
+            </form>
+        </div>
+    </div>
+</body>
+</html>

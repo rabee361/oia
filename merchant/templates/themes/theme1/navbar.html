@@ -1,0 +1,114 @@
+{% load static %}
+    <!-- 🧭 Navigation Bar -->
+    <nav class="navbar" id="navbar">
+        <div class="navbar-container">
+            <!-- 🏷️ Logo -->
+            <a href="#" class="navbar-logo">ecomus</a>
+
+            <!-- 🔗 Desktop Navigation -->
+            <ul class="navbar-nav">
+                <li class="navbar-nav-item">
+                    <a href="{% url 'theme' theme.slug %}" class="navbar-nav-link">Home</a>
+                </li>
+                <li class="navbar-nav-item">
+                    <a href="#" class="navbar-nav-link">Shop</a>
+                </li>
+                <li class="navbar-nav-item">
+                    <a href="{% url 'theme-products' theme.slug %}" class="navbar-nav-link">Products</a>
+                </li>
+                <li class="navbar-nav-item">
+                    <a href="$" class="navbar-nav-link">Buy Now</a>
+                </li>
+            </ul>
+
+            <!-- 🎯 Action Icons -->
+            <div class="navbar-actions">
+                <!-- 🔍 Search -->
+                <button class="navbar-action-btn" id="searchToggle" aria-label="Search">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="11" cy="11" r="8"/>
+                        <path d="m21 21-4.35-4.35"/>
+                    </svg>
+                </button>
+
+
+                <!-- 🛒 Cart -->
+                <button class="navbar-action-btn" aria-label="Shopping Cart">
+                    <a href="{% url 'cart' theme.slug %}">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="8" cy="21" r="1"/>
+                            <circle cx="19" cy="21" r="1"/>
+                            <path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57L23 6H6"/>
+                        </svg>
+                        <span class="navbar-badge">2</span>
+                    </a>
+                </button>
+
+
+                <!-- ❤️ Wishlist -->
+                <button class="navbar-action-btn" aria-label="Wishlist">
+                    <a href="{% url 'wishlist' theme.slug %}">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+                        </svg>
+                        <span class="navbar-badge">2</span>
+                    </a>
+                </button>
+
+                <!-- 🌐 Language Toggle -->
+                <button class="navbar-action-btn language-toggle-btn" id="languageToggle" aria-label="Toggle Language" data-lang="en">
+                    <!-- 🇺🇸 English Text -->
+                    <span class="language-text en-text">EN</span>
+                    <!-- 🇸🇦 Arabic Text -->
+                    <span class="language-text ar-text">AR</span>
+                </button>
+
+                <!-- 🌙 Theme Toggle -->
+                <button class="navbar-action-btn theme-toggle-btn" id="themeToggle" aria-label="Toggle theme">
+                    <!-- 🌞 Light Mode Icon -->
+                    <svg class="theme-icon light-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path>
+                    </svg>
+                    <!-- 🌙 Dark Mode Icon -->
+                    <svg class="theme-icon dark-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path>
+                    </svg>
+                </button>
+
+                <!-- 🍔 Mobile Menu Toggle -->
+                <button class="navbar-toggle" id="mobileMenuToggle" aria-label="Toggle Menu">
+                    <div class="navbar-toggle-icon">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                </button>
+            </div>
+        </div>
+
+        <!-- 📱 Mobile Menu -->
+        <div class="navbar-mobile-menu" id="mobileMenu">
+            <ul class="navbar-mobile-nav">
+                <li class="navbar-mobile-nav-item">
+                    <a href="{% url 'theme' theme.slug %}" class="navbar-mobile-nav-link">Home</a>
+                </li>
+                <li class="navbar-mobile-nav-item">
+                    <a href="#" class="navbar-mobile-nav-link">Shop</a>
+                </li>
+                <li class="navbar-mobile-nav-item">
+                    <a href="{% url 'theme-products' theme.slug %}" class="navbar-mobile-nav-link">Products</a>
+                </li>
+                <li class="navbar-mobile-nav-item">
+                    <a href="#" class="navbar-mobile-nav-link">Buy Now</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+
+    <!-- 🔍 Search Overlay -->
+    <div class="search-overlay" id="searchOverlay">
+        <div class="container">
+            <input type="text" class="search-input" placeholder="Search products..." id="searchInput">
+        </div>
+    </div>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}ecomus - Fashion Store{% endblock %}</title>
+
+    <!-- 🎨 CSS Files -->
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/themes/theme1/variables.css' %}">
+    <link rel="stylesheet" href="{% static 'css/themes/theme1/navbar.css' %}">
+    <link rel="stylesheet" href="{% static 'css/themes/theme1/main.css' %}">
+    <link rel="stylesheet" href="{% static 'css/themes/theme1/gallery.css' %}">
+    <link rel="stylesheet" href="{% static 'css/themes/theme1/pagination.css' %}">
+    {% block extra_css %}{% endblock %}
+    
+    <script src="{% static 'js/theme/theme1/main.js' %}"></script>
+    <script src="{% static 'js/theme/theme1/theme_toggle.js' %}"></script>
+    
+    <!-- 🔤 Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- 📱 Meta Tags -->
+    <meta name="description" content="Shop through our latest selection of Fashion">
+    <meta name="keywords" content="fashion, clothing, ecommerce, store">
+    <meta name="author" content="ecomus">
+
+    <!-- 🎯 Favicon -->
+    <link rel="icon" type="image/x-icon" href="{% static 'images/favicon.ico' %}">
+</head>
+<body>
+
+    {% include 'themes/theme1/navbar.html' %}
+
+    <div class="main-container">
+        {% block content %}
+        
+        {% endblock  %}
+    </div>
+
+    {% include 'themes/theme1/footer.html' %}
+
+</body>
+</html>

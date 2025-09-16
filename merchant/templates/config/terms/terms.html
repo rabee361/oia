@@ -1,0 +1,63 @@
+{% extends 'layout/base.html' %}
+{% block content %}
+
+<nav class="breadcrumb">
+    <a href="#" class="breadcrumb-item">الرئيسية</a>
+    <span class="breadcrumb-separator">
+        <i class="fas fa-chevron-right"></i>
+    </span>
+    <a href="{% url 'configuration' %}" class="breadcrumb-item">الإعدادات</a>
+    <span class="breadcrumb-separator">
+        <i class="fas fa-chevron-right"></i>
+    </span>
+    <span class="breadcrumb-item active">شروط وأحكام المتجر</span>
+</nav>
+
+<section class="config-section">
+        <div class="section-title">
+            <h2>شروط وأحكام المتجر</h2>
+        </div>
+        <div class="config-grid">
+        <a href="{% url 'privacy' %}" class="config-item">
+            <div class="config-content">
+                <h3>سياسة الخصوصية</h3>
+                <p>استعراض وتعديل بيانات الخصوصية</p>
+            </div>
+            <i class="fas fa-shield-alt"></i>
+        </a>
+
+        <a href="{% url 'complaints' %}" class="config-item">
+            <div class="config-content">
+                <h3>الشكاوى والاقتراحات</h3>
+                <p>استعراض وتعديل بيانات الشكاوى والاقتراحات</p>
+            </div>
+            <i class="fas fa-exclamation-triangle"></i>
+        </a>
+
+        <a href="{% url 'return-policy' %}" class="config-item">
+            <div class="config-content">
+                <h3>سياسة الاستبدال والاسترداد</h3>
+                <p>استعراض وتعديل بيانات الاستبدال والاسترداد</p>
+            </div>
+            <i class="fas fa-file-contract"></i>
+        </a>
+
+        <a href="{% url 'license' %}" class="config-item">
+            <div class="config-content">
+                <h3>التراخيص</h3>
+                <p>استعراض وتعديل بيانات التراخيص</p>
+            </div>
+            <i class="fas fa-file-contract"></i>
+        </a>
+
+        <a href="{% url 'conditions' %}" class="config-item">
+            <div class="config-content">
+                <h3>الشروط والأحكام</h3>
+                <p>سياسات الشروط والأحكام خاصة بالمتجر وقوانينها في متجرك</p>
+            </div>
+            <i class="fas fa-gavel"></i>
+        </a>
+    </div>
+</section>
+
+{% endblock %}

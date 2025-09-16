@@ -1,0 +1,110 @@
+{% extends 'layout/base.html' %}
+{% load static %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/main.css' %}">
+<link rel="stylesheet" href="{% static 'css/form_fields.css' %}">
+
+    <!-- Breadcrumb Navigation -->
+    <nav class="breadcrumb">
+        <a href="{% url 'configuration' %}" class="breadcrumb-item">الرئيسية</a>
+        <span class="breadcrumb-separator">
+            <i class="fas fa-chevron-right"></i>
+        </span>
+        <a href="{% url 'plan-config' %}" class="breadcrumb-item">ادارة الاشتراك</a>
+        <span class="breadcrumb-separator">
+            <i class="fas fa-chevron-right"></i>
+        </span>
+        <span class="breadcrumb-item active">الباقات</span>
+    </nav>
+
+    <section class="config-section">
+        <div class="section-title">
+            <h2>الباقات</h2>
+        </div>
+
+        <!-- Filter buttons for monthly/yearly plans -->
+        <div class="form-actions plan-filters">
+            <button class="btn-secondary filter-btn active" data-filter="all">جميع الباقات</button>
+            <button class="btn-secondary filter-btn" data-filter="monthly">الشهرية</button>
+            <button class="btn-secondary filter-btn" data-filter="annual">السنوية</button>
+        </div>
+
+        <!-- Plans grid -->
+        <div class="config-grid" id="plans-container">
+            {% for plan in plans %}
+            <div class="config-item plan-card" data-type="{{ plan.type }}">
+                <div class="config-content plan-content">
+                    <h3 class="plan-title">{{ plan.name }}</h3>
+                    <div class="plan-price-container">
+                        <span class="plan-price">{{ plan.price }}</span>
+                        <span class="plan-currency">{{ plan.currnency }}</span>
+                    </div>
+                    <ul class="plan-features">
+                        {% if plan.feature1 %}
+                        <li class="plan-feature">
+                            <i class="fas fa-check plan-feature-icon"></i>
+                            {{ plan.feature1 }}
+                        </li>
+                        {% endif %}
+                        {% if plan.feature2 %}
+                        <li class="plan-feature">
+                            <i class="fas fa-check plan-feature-icon"></i>
+                            {{ plan.feature2 }}
+                        </li>
+                        {% endif %}
+                        {% if plan.feature3 %}
+                        <li class="plan-feature">
+                            <i class="fas fa-check plan-feature-icon"></i>
+                            {{ plan.feature3 }}
+                        </li>
+                        {% endif %}
+                        {% if plan.feature4 %}
+                        <li class="plan-feature">
+                            <i class="fas fa-check plan-feature-icon"></i>
+                            {{ plan.feature4 }}
+                        </li>
+                        {% endif %}
+                    </ul>
+                    <div class="plan-button-container">
+                        <button class="btn-primary plan-button">
+                            اختر الباقة
+                        </button>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </section>
+
+    <script>
+        // Filter functionality for monthly/yearly plans
+        document.addEventListener('DOMContentLoaded', function() {
+            const filterButtons = document.querySelectorAll('.filter-btn');
+            const planCards = document.querySelectorAll('.plan-card');
+            
+            filterButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    // Remove active class from all buttons
+                    filterButtons.forEach(btn => btn.classList.remove('active'));
+                    // Add active class to clicked button
+                    button.classList.add('active');
+                    
+                    const filterType = button.getAttribute('data-filter');
+                    
+                    planCards.forEach(card => {
+                        if (filterType === 'all') {
+                            card.style.display = 'flex';
+                        } else {
+                            if (card.getAttribute('data-type') === filterType) {
+                                card.style.display = 'flex';
+                            } else {
+                                card.style.display = 'none';
+                            }
+                        }
+                    });
+                });
+            });
+        });
+    </script>
+{% endblock %}

@@ -1,0 +1,319 @@
+{% extends 'main/theme1/base.html' %}
+{% load static %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/themes/theme1/product_info.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="product-container">
+    <!-- Product Image and Info Section -->
+    <div class="product-main">
+        <!-- Product Image (Left) -->
+        <div class="product-image-section">
+            <img src="https://images.unsplash.com/photo-1523381210434-271e8be1f52b?w=800&h=1000&fit=crop" 
+                 alt="Product Image" 
+                 class="main-product-image">
+        </div>
+        
+        <!-- Product Info (Right) -->
+        <div class="product-info-section">
+            <h1 class="product-title">Premium Cotton T-Shirt</h1>
+            <div class="product-rating">
+                <div class="stars">
+                    <span>★★★★★</span>
+                </div>
+                <span class="rating-text">(128) Reviews</span>
+            </div>
+            <div class="product-price">
+                <span class="current-price">$29.99</span>
+                <span class="original-price">$39.99</span>
+                <span class="discount-badge">-25%</span>
+            </div>
+            <p class="product-description">
+                Premium quality cotton t-shirt with a modern fit. Made from 100% organic cotton for maximum comfort and sustainability.
+            </p>
+            
+            <div class="product-options">
+                <div class="option">
+                    <label>Size:</label>
+                    <select class="size-select">
+                        <option>S</option>
+                        <option>M</option>
+                        <option>L</option>
+                        <option>XL</option>
+                    </select>
+                </div>
+                
+                <div class="option">
+                    <label>Color:</label>
+                    <div class="color-options">
+                        <div class="color-option active"></div>
+                        <div class="color-option"></div>
+                        <div class="color-option"></div>
+                    </div>
+                </div>
+                
+                <div class="option">
+                    <label>Quantity:</label>
+                    <div class="quantity-selector">
+                        <button class="quantity-btn">-</button>
+                        <input type="number" min="1" value="1" class="quantity-input">
+                        <button class="quantity-btn">+</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="product-actions">
+                <button class="add-to-cart-btn">Add to Cart</button>
+                <button class="buy-now-btn">Buy Now</button>
+                <button class="wishlist-btn">
+                    <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Description and Reviews Section -->
+    <div class="product-details-section">
+        <div class="details-tabs">
+            <button class="tab-btn active" data-tab="description">Description</button>
+            <button class="tab-btn" data-tab="reviews">Reviews (128)</button>
+        </div>
+        
+        <div class="tab-content">
+            <div class="tab-pane active" id="description">
+                <h3>Product Details</h3>
+                <p>
+                    Our premium cotton t-shirt combines comfort with style. Made from 100% organic cotton, 
+                    this t-shirt offers a soft feel and breathable fabric perfect for everyday wear. 
+                    The modern fit flatters all body types while maintaining comfort.
+                </p>
+                <ul>
+                    <li>100% Organic Cotton</li>
+                    <li>Pre-shrunk fabric</li>
+                    <li>Reinforced seams for durability</li>
+                    <li>Machine washable</li>
+                    <li>Eco-friendly production</li>
+                </ul>
+            </div>
+            
+            <div class="tab-pane" id="reviews">
+                <div class="review-summary">
+                    <div class="average-rating">
+                        <span class="rating-value">4.8</span>
+                        <div class="stars">
+                            <span>★★★★★</span>
+                        </div>
+                        <span>Based on 128 reviews</span>
+                    </div>
+                </div>
+                
+                <div class="reviews-list">
+                    <div class="review-item">
+                        <div class="review-header">
+                            <strong>John D.</strong>
+                            <div class="stars">
+                                <span>★★★★★</span>
+                            </div>
+                        </div>
+                        <p class="review-date">2023-10-15</p>
+                        <p>Great quality t-shirt! Comfortable and fits perfectly. Will definitely buy again.</p>
+                    </div>
+                    
+                    <div class="review-item">
+                        <div class="review-header">
+                            <strong>Sarah M.</strong>
+                            <div class="stars">
+                                <span>★★★★★</span>
+                            </div>
+                        </div>
+                        <p class="review-date">2023-10-10</p>
+                        <p>Love the fabric and the fit. The color hasn't faded after multiple washes.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Similar Products Section -->
+    <div class="similar-products-section">
+        <h2>You May Also Like</h2>
+        <div class="product-grid">
+            <!-- Similar Product 1 -->
+            <div class="product-card">
+                <div class="product-image-container">
+                    <img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=400&h=600&fit=crop" 
+                         alt="Similar Product 1" 
+                         class="product-image">
+                    <span class="product-badge">Sale</span>
+                    <div class="product-actions">
+                        <button class="product-action-btn" aria-label="Add to Wishlist">
+                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
+                            </svg>
+                        </button>
+                        <button class="product-action-btn" aria-label="Quick View">
+                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+                <div class="product-info">
+                    <h3 class="product-title">Casual T-Shirt</h3>
+                    <div class="product-price">
+                        <span class="product-price-current">$24.99</span>
+                        <span class="product-price-original">$29.99</span>
+                    </div>
+                    <div class="product-colors">
+                        <div class="color-option active"></div>
+                        <div class="color-option"></div>
+                    </div>
+                    <button class="add-to-cart-btn">Add to Cart</button>
+                </div>
+            </div>
+            
+            <!-- Similar Product 2 -->
+            <div class="product-card">
+                <div class="product-image-container">
+                    <img src="https://images.unsplash.com/photo-1581044777550-4cfa60707c03?w=400&h=600&fit=crop" 
+                         alt="Similar Product 2" 
+                         class="product-image">
+                    <div class="product-actions">
+                        <button class="product-action-btn" aria-label="Add to Wishlist">
+                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
+                            </svg>
+                        </button>
+                        <button class="product-action-btn" aria-label="Quick View">
+                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+                <div class="product-info">
+                    <h3 class="product-title">V-Neck T-Shirt</h3>
+                    <div class="product-price">
+                        <span class="product-price-current">$27.99</span>
+                    </div>
+                    <div class="product-colors">
+                        <div class="color-option active"></div>
+                        <div class="color-option"></div>
+                    </div>
+                    <button class="add-to-cart-btn">Add to Cart</button>
+                </div>
+            </div>
+            
+            <!-- Similar Product 3 -->
+            <div class="product-card">
+                <div class="product-image-container">
+                    <img src="https://images.unsplash.com/photo-1576566588028-4147f3842f27?w=400&h=600&fit=crop" 
+                         alt="Similar Product 3" 
+                         class="product-image">
+                    <span class="product-badge">New</span>
+                    <div class="product-actions">
+                        <button class="product-action-btn" aria-label="Add to Wishlist">
+                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
+                            </svg>
+                        </button>
+                        <button class="product-action-btn" aria-label="Quick View">
+                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+                <div class="product-info">
+                    <h3 class="product-title">Polo Shirt</h3>
+                    <div class="product-price">
+                        <span class="product-price-current">$34.99</span>
+                    </div>
+                    <div class="product-colors">
+                        <div class="color-option active"></div>
+                        <div class="color-option"></div>
+                    </div>
+                    <button class="add-to-cart-btn">Add to Cart</button>
+                </div>
+            </div>
+            
+            <!-- Similar Product 4 -->
+            <div class="product-card">
+                <div class="product-image-container">
+                    <img src="https://images.unsplash.com/photo-1593030103066-0093718efeb9?w=400&h=600&fit=crop" 
+                         alt="Similar Product 4" 
+                         class="product-image">
+                    <div class="product-actions">
+                        <button class="product-action-btn" aria-label="Add to Wishlist">
+                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
+                            </svg>
+                        </button>
+                        <button class="product-action-btn" aria-label="Quick View">
+                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+                <div class="product-info">
+                    <h3 class="product-title">Long Sleeve Tee</h3>
+                    <div class="product-price">
+                        <span class="product-price-current">$32.99</span>
+                        <span class="product-price-original">$39.99</span>
+                    </div>
+                    <div class="product-colors">
+                        <div class="color-option active"></div>
+                        <div class="color-option"></div>
+                    </div>
+                    <button class="add-to-cart-btn">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script>
+    // Tab switching functionality
+    document.querySelectorAll('.tab-btn').forEach(button => {
+        button.addEventListener('click', () => {
+            // Remove active class from all tabs and buttons
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+            document.querySelectorAll('.tab-pane').forEach(pane => pane.classList.remove('active'));
+            
+            // Add active class to clicked tab button
+            button.classList.add('active');
+            
+            // Show the corresponding tab pane
+            const tabId = button.getAttribute('data-tab');
+            document.getElementById(tabId).classList.add('active');
+        });
+    });
+    
+    // Quantity selector functionality
+    document.querySelectorAll('.quantity-btn').forEach(button => {
+        button.addEventListener('click', (e) => {
+            const container = e.target.closest('.quantity-selector');
+            const input = container.querySelector('.quantity-input');
+            let value = parseInt(input.value);
+            
+            if (e.target.textContent === '+') {
+                value++;
+            } else if (e.target.textContent === '-' && value > 1) {
+                value--;
+            }
+            
+            input.value = value;
+        });
+    });
+</script>
+{% endblock %}

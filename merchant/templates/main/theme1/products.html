@@ -1,0 +1,351 @@
+
+{% extends 'main/theme1/base.html' %}
+
+{% block content %}
+
+        <!-- 🛍️ Products Section -->
+        <section class="products-section">
+            <div class="container">
+                <!-- 🔧 Gallery Controls -->
+                <div class="gallery-controls">
+                    <div class="gallery-filter">
+                        {% for category in categories %}
+                            <button class="filter-btn active">{{ category.name }}</button>
+                        {% endfor %}
+                        <button class="filter-btn active">All</button>
+                        <button class="filter-btn">Women</button>
+                        <button class="filter-btn">Men</button>
+                        <button class="filter-btn">Accessories</button>
+                    </div>
+
+                    <div class="gallery-view-toggle">
+                        <button class="view-toggle-btn active" data-view="grid">
+                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"></path>
+                            </svg>
+                        </button>
+                        <button class="view-toggle-btn" data-view="list">
+                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 10h16M4 14h16M4 18h16"></path>
+                            </svg>
+                        </button>
+                    </div>
+
+                    <div class="gallery-sort">
+                        <select class="sort-select">
+                            <option value="newest">Sort by latest</option>
+                            <option value="price-low">Price: Low to High</option>
+                            <option value="price-high">Price: High to Low</option>
+                            <option value="name">Name: A to Z</option>
+                            <option value="popularity">Most Popular</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- 🖼️ Product Grid -->
+                <div class="product-grid" id="productGrid">
+
+                    {% for product in  feature_products %}
+                        <!-- Product 1 -->
+                        <a href="#">
+                            <div class="product-card">
+                                <div class="product-image-container">
+                                    <img src="https://images.unsplash.com/photo-1515372039744-b8f02a3ae446?w=400&h=600&fit=crop" alt="Ribbed Tank Top" class="product-image">
+                                    <span class="product-badge">Sale</span>
+                                    <div class="product-actions">
+                                        <button class="product-action-btn" aria-label="Add to Wishlist">
+                                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
+                                            </svg>
+                                        </button>
+                                        <button class="product-action-btn" aria-label="Quick View">
+                                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
+                                            </svg>
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="product-info">
+                                    <h3 class="product-title">{{product.ar_name}}</h3>
+                                    <div class="product-price">
+                                        <span class="product-price-current">{{product.price}}</span>
+                                        <span class="product-price-original">{{product.price}}</span>
+                                    </div>
+                                    <div class="product-colors">
+                                        <div class="color-option active" style="background-color: #D2B48C;"></div>
+                                        <div class="color-option" style="background-color: #000000;"></div>
+                                    </div>
+                                    <button class="add-to-cart-btn">Add to Cart</button>
+                                </div>
+                            </div>
+                        </a>
+                    {% endfor %}
+
+
+
+                    <!-- Product 1 -->
+
+                    <a href="#">
+                        <div class="product-card">
+                            <div class="product-image-container">
+                                <img src="https://images.unsplash.com/photo-1515372039744-b8f02a3ae446?w=400&h=600&fit=crop" alt="Ribbed Tank Top" class="product-image">
+                                <span class="product-badge">Sale</span>
+                                <div class="product-actions">
+                                    <button class="product-action-btn" aria-label="Add to Wishlist">
+                                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
+                                        </svg>
+                                    </button>
+                                    <button class="product-action-btn" aria-label="Quick View">
+                                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
+                                        </svg>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="product-info">
+                                <h3 class="product-title">Ribbed Tank Top</h3>
+                                <div class="product-price">
+                                    <span class="product-price-current">$16.95</span>
+                                    <span class="product-price-original">$18.95</span>
+                                </div>
+                                <div class="product-colors">
+                                    <div class="color-option active" style="background-color: #D2B48C;"></div>
+                                    <div class="color-option" style="background-color: #000000;"></div>
+                                </div>
+                                <button class="add-to-cart-btn">Add to Cart</button>
+                            </div>
+                        </div>
+                    </a>
+
+                    <!-- Product 2 -->
+                    <div class="product-card">
+                        <div class="product-image-container">
+                            <img src="https://images.unsplash.com/photo-1594633312681-425c7b97ccd1?w=400&h=600&fit=crop" alt="Ribbed Tank Top" class="product-image">
+                            <span class="product-badge">Sale</span>
+                            <div class="product-actions">
+                                <button class="product-action-btn" aria-label="Add to Wishlist">
+                                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
+                                    </svg>
+                                </button>
+                                <button class="product-action-btn" aria-label="Quick View">
+                                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="product-info">
+                            <h3 class="product-title">Ribbed Tank Top</h3>
+                            <div class="product-price">
+                                <span class="product-price-current">$18.95</span>
+                            </div>
+                            <div class="product-colors">
+                                <div class="color-option active" style="background-color: #FF8C00;"></div>
+                                <div class="color-option" style="background-color: #000000;"></div>
+                            </div>
+                            <button class="add-to-cart-btn">Add to Cart</button>
+                        </div>
+                    </div>
+
+                    <!-- Product 3 -->
+                    <div class="product-card">
+                        <div class="product-image-container">
+                            <img src="https://images.unsplash.com/photo-1583743814966-8936f37f4678?w=400&h=600&fit=crop" alt="Oversized Printed T-shirt" class="product-image">
+                            <div class="product-actions">
+                                <button class="product-action-btn" aria-label="Add to Wishlist">
+                                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
+                                    </svg>
+                                </button>
+                                <button class="product-action-btn" aria-label="Quick View">
+                                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="product-info">
+                            <h3 class="product-title">Oversized Printed T-shirt</h3>
+                            <div class="product-price">
+                                <span class="product-price-current">$10.00</span>
+                                <span class="product-price-original">$15.00</span>
+                            </div>
+                            <div class="product-colors">
+                                <div class="color-option active" style="background-color: #FFFFFF; border-color: #ddd;"></div>
+                                <div class="color-option" style="background-color: #000000;"></div>
+                            </div>
+                            <button class="add-to-cart-btn">Add to Cart</button>
+                        </div>
+                    </div>
+
+                    <!-- Product 4 -->
+                    <div class="product-card">
+                        <div class="product-image-container">
+                            <img src="https://images.unsplash.com/photo-1583743814966-8936f37f4678?w=400&h=600&fit=crop" alt="Oversized Printed T-shirt" class="product-image">
+                            <div class="product-actions">
+                                <button class="product-action-btn" aria-label="Add to Wishlist">
+                                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
+                                    </svg>
+                                </button>
+                                <button class="product-action-btn" aria-label="Quick View">
+                                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="product-info">
+                            <h3 class="product-title">Oversized Printed T-shirt</h3>
+                            <div class="product-price">
+                                <span class="product-price-current">$16.95</span>
+                            </div>
+                            <div class="product-colors">
+                                <div class="color-option active" style="background-color: #FFFFFF; border-color: #ddd;"></div>
+                                <div class="color-option" style="background-color: #000000;"></div>
+                            </div>
+                            <button class="add-to-cart-btn">Add to Cart</button>
+                        </div>
+                    </div>
+
+                    <!-- Product 5 -->
+                    <div class="product-card">
+                        <div class="product-image-container">
+                            <img src="https://images.unsplash.com/photo-1596755094514-f87e34085b2c?w=400&h=600&fit=crop" alt="Cotton Sweatshirt" class="product-image">
+                            <span class="product-badge">Sale</span>
+                            <div class="product-actions">
+                                <button class="product-action-btn" aria-label="Add to Wishlist">
+                                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
+                                    </svg>
+                                </button>
+                                <button class="product-action-btn" aria-label="Quick View">
+                                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="product-info">
+                            <h3 class="product-title">Cotton Sweatshirt</h3>
+                            <div class="product-price">
+                                <span class="product-price-current">$10.00</span>
+                                <span class="product-price-original">$15.00</span>
+                            </div>
+                            <div class="product-colors">
+                                <div class="color-option active" style="background-color: #FF6B6B;"></div>
+                                <div class="color-option" style="background-color: #4ECDC4;"></div>
+                            </div>
+                            <button class="add-to-cart-btn">Add to Cart</button>
+                        </div>
+                    </div>
+
+                    <!-- Product 6 -->
+                    <div class="product-card">
+                        <div class="product-image-container">
+                            <img src="https://images.unsplash.com/photo-1503341504253-dff4815485f1?w=400&h=600&fit=crop" alt="Textured Sweater" class="product-image">
+                            <span class="product-badge">Sale</span>
+                            <div class="product-actions">
+                                <button class="product-action-btn" aria-label="Add to Wishlist">
+                                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
+                                    </svg>
+                                </button>
+                                <button class="product-action-btn" aria-label="Quick View">
+                                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="product-info">
+                            <h3 class="product-title">Textured Sweater</h3>
+                            <div class="product-price">
+                                <span class="product-price-current">$10.00</span>
+                                <span class="product-price-original">$15.00</span>
+                            </div>
+                            <div class="product-colors">
+                                <div class="color-option active" style="background-color: #8B4513;"></div>
+                                <div class="color-option" style="background-color: #2F4F4F;"></div>
+                            </div>
+                            <button class="add-to-cart-btn">Add to Cart</button>
+                        </div>
+                    </div>
+
+                    <!-- Product 7 -->
+                    <div class="product-card">
+                        <div class="product-image-container">
+                            <img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=400&h=600&fit=crop" alt="Polo Shirt" class="product-image">
+                            <span class="product-badge">Sale</span>
+                            <div class="product-actions">
+                                <button class="product-action-btn" aria-label="Add to Wishlist">
+                                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
+                                    </svg>
+                                </button>
+                                <button class="product-action-btn" aria-label="Quick View">
+                                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="product-info">
+                            <h3 class="product-title">Polo Shirt</h3>
+                            <div class="product-price">
+                                <span class="product-price-current">$10.00</span>
+                                <span class="product-price-original">$15.00</span>
+                            </div>
+                            <div class="product-colors">
+                                <div class="color-option active" style="background-color: #000080;"></div>
+                                <div class="color-option" style="background-color: #000000;"></div>
+                            </div>
+                            <button class="add-to-cart-btn">Add to Cart</button>
+                        </div>
+                    </div>
+
+                    <!-- Product 8 -->
+                    <div class="product-card">
+                        <div class="product-image-container">
+                            <img src="https://images.unsplash.com/photo-1618354691373-d851c5c3a990?w=400&h=600&fit=crop" alt="Turtleneck Sweater" class="product-image">
+                            <div class="product-actions">
+                                <button class="product-action-btn" aria-label="Add to Wishlist">
+                                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
+                                    </svg>
+                                </button>
+                                <button class="product-action-btn" aria-label="Quick View">
+                                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="product-info">
+                            <h3 class="product-title">Turtleneck Sweater</h3>
+                            <div class="product-price">
+                                <span class="product-price-current">$16.95</span>
+                            </div>
+                            <div class="product-colors">
+                                <div class="color-option active" style="background-color: #000000;"></div>
+                                <div class="color-option" style="background-color: #8B4513;"></div>
+                            </div>
+                            <button class="add-to-cart-btn">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+{% endblock %}

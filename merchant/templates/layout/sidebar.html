@@ -1,0 +1,153 @@
+{% load static %}
+{% load i18n %}
+
+<aside class="sidebar">
+    <nav class="sidebar-nav">
+        <div class="nav-section">
+
+            <div class="nav-item">
+                <a href="{% url 'merchant-dasboard' %}">
+                    <div class="nav-header">
+                        <div class="icon-text-group">
+                            <span>{% trans "main" %}</span>
+                            <i class="fas fa-home"></i>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <div class="nav-item collapsible">
+                <div class="nav-header">
+                    <div class="icon-text-group">
+                        <span>الطلبات</span>
+                        <i class="fas fa-cog"></i>
+                    </div>
+                    <i class="fas fa-chevron-down arrow"></i>
+                </div>
+                <div class="nav-content">
+                    <a href="{% url 'orders' %}" class="sub-item">الطلبات اليدوية</a>
+                    <a href="{% url 'abandoned-carts' %}" class="sub-item">السلات المتروكة</a>
+                </div>
+            </div>
+
+            <div class="nav-item collapsible">
+                <div class="nav-header">
+                    <div class="icon-text-group">
+                        <span>المنتجات</span>
+                        <i class="fas fa-box"></i>
+                    </div>
+                    <i class="fas fa-chevron-down arrow"></i>
+                </div>
+                <div class="nav-content">
+                    <a href="{% url 'products' %}" class="sub-item">المنتجات</a>
+                    <a href="{% url 'product-options' %}" class="sub-item">مكتبة الخيارات</a>
+                    <a href="{% url 'product-categories' %}" class="sub-item">فئات منتج</a>
+                    <a href="{% url 'product-filters' %}" class="sub-item">معاييرالتصفية</a>
+                    <a href="{% url 'deleted-products' %}" class="sub-item">سلة المحذوفات</a>
+                </div>
+            </div>
+
+            <div class="nav-item collapsible">
+                <div class="nav-header">
+                    <div class="icon-text-group">
+                        <span>التسويق</span>
+                        <i class="fas fa-box"></i>
+                    </div>
+                    <i class="fas fa-chevron-down arrow"></i>
+                </div>
+                <div class="nav-content">
+                    <a href="{% url 'coupons' %}" class="sub-item">قسائم التخفيض</a>
+                    <a href="{% url 'offers' %}" class="sub-item">العروض</a>
+                    <a href="{% url 'discounts' %}" class="sub-item">الخصومات</a>
+                    <a href="{% url 'auto-discounts' %}" class="sub-item">الخصومات التلقائية</a>
+                    <a href="{% url 'sales-campaigns' %}" class="sub-item">الحملات التسويقية</a>
+                    <a href="{% url 'sales-packages' %}" class="sub-item">الحزم التسويقية</a>
+                </div>
+            </div>
+
+            <div class="nav-item collapsible">
+                <div class="nav-header">
+                    <div class="icon-text-group">
+                        <span>التحليلات</span>
+                        <i class="fas fa-cog"></i>
+                    </div>
+                    <i class="fas fa-chevron-down arrow"></i>
+                </div>
+                <div class="nav-content">
+                    <a href="{% url 'analytics' %}" class="sub-item">التحليلات</a>
+                    <a href="{% url 'reports' %}" class="sub-item">تقارير</a>
+                </div>
+            </div>
+
+            <div class="nav-item collapsible">
+                <div class="nav-header">
+                    <div class="icon-text-group">
+                        <span>المالية</span>
+                        <i class="fas fa-wallet"></i>
+                    </div>
+                    <i class="fas fa-chevron-down arrow"></i>
+                </div>
+            </div>
+
+            <div class="nav-item collapsible">
+                <div class="nav-header">
+                    <div class="icon-text-group">
+                        <span>تصميم المتجر</span>
+                        <i class="fas fa-cog"></i>
+                    </div>
+                    <i class="fas fa-chevron-down arrow"></i>
+                </div>
+                <div class="nav-content">
+                    <a href="{% url 'themes' %}" class="sub-item">الثيمات</a>
+                    <a href="#" class="sub-item">هوية المتجر</a>
+                    <a href="#" class="sub-item">الصفحات الإضافية</a>
+                    <a href="#" class="sub-item">القائمة الرئيسية</a>
+                </div>
+            </div>
+
+            <div class="nav-item collapsible">
+                <div class="nav-header">
+                    <div class="icon-text-group">
+                        <span>الحسابات</span>
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <i class="fas fa-chevron-down arrow"></i>
+                </div>
+            </div>
+
+            <div class="nav-item">
+                <a href="{% url 'customers' %}">
+                    <div class="nav-header">
+                        <div class="icon-text-group">
+                            <span>العملاء</span>
+                            <i class="fas fa-user-friends"></i>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <div class="nav-item">
+                <a href="{% url 'configuration' %}">
+                    <div class="nav-header">
+                        <div class="icon-text-group">
+                            <span>الإعدادات</span>
+                            <i class="fas fa-cogs"></i>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <div class="nav-item">
+                <a href="{% url 'merchant-logout' %}">
+                    <div class="nav-header">
+                        <div class="icon-text-group">
+                            <span>تسجيل الخروج</span>
+                            <i class="fas fa-sign-out-alt"></i>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+        </div>
+    </nav>
+</aside>

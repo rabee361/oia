@@ -1,0 +1,434 @@
+{% extends 'layout/base.html' %}
+
+{% block content %}
+    <!-- 🧭 Breadcrumbs -->
+    <nav class="breadcrumb">
+        <a href="#" class="breadcrumb-item">الرئيسية</a>
+        <span class="breadcrumb-separator"><i class="fas fa-chevron-right"></i></span>
+        <a href="#" class="breadcrumb-item">المنتجات</a>
+        <span class="breadcrumb-separator"><i class="fas fa-chevron-right"></i></span>
+        <span class="breadcrumb-item active">إضافة منتج جديد</span>
+    </nav>
+
+    <!-- 📦 Product Form Container -->
+    <div class="product-form-container">
+        <div class="product-form-layout">
+            <!-- 📋 Main Product Form -->
+            <div class="main-form-section">
+                <div class="form-container">
+                    <form class="product-form" id="productForm">
+                        <!-- 🖼️ Product Images Section -->
+                        <div class="form-group full-width">
+                            <label class="form-label">صور المنتج</label>
+                            <div class="image-upload-container">
+                                <div class="image-slider" id="imageSlider">
+                                    <div class="image-slide active">
+                                        <div class="image-placeholder">
+                                            <i class="fas fa-camera"></i>
+                                            <span>اضغط لإضافة صورة</span>
+                                            <input type="file" class="image-input" accept="image/*" multiple>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="image-controls">
+                                    <button type="button" class="image-nav-btn prev-btn" disabled>
+                                        <i class="fas fa-chevron-right"></i>
+                                    </button>
+                                    <div class="image-indicators" id="imageIndicators">
+                                        <span class="indicator active"></span>
+                                    </div>
+                                    <button type="button" class="image-nav-btn next-btn" disabled>
+                                        <i class="fas fa-chevron-right"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 📝 Basic Product Information -->
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label class="form-label">اسم المنتج (عربي) *</label>
+                                <input type="text" class="form-input" name="ar_name" required placeholder="أدخل اسم المنتج بالعربية">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">اسم المنتج (إنجليزي) *</label>
+                                <input type="text" class="form-input" name="en_name" required placeholder="Enter product name in English" style="text-align: left;">
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label class="form-label">السعر *</label>
+                                <input type="number" class="form-input" name="price" required placeholder="0.00" step="0.01" min="0">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">كود المنتج *</label>
+                                <input type="text" class="form-input" name="code" required placeholder="PRD-001">
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label class="form-label">الباركود</label>
+                                <input type="text" class="form-input" name="barcode" placeholder="1234567890123">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">الفئة *</label>
+                                <select class="form-select" name="category" required>
+                                    <option value="">اختر الفئة</option>
+                                    <option value="electronics">إلكترونيات</option>
+                                    <option value="clothing">ملابس</option>
+                                    <option value="books">كتب</option>
+                                    <option value="home">منزل وحديقة</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- 🏪 Warehouse & Inventory Section -->
+                        <div class="form-group full-width">
+                            <label class="form-label">المخازن والكميات</label>
+                            <div class="warehouse-section" id="warehouseSection">
+                                <div class="warehouse-item">
+                                    <div class="warehouse-row">
+                                        <div class="warehouse-select-group">
+                                            <select class="form-select warehouse-select" name="warehouse[]" required>
+                                                <option value="">اختر المخزن</option>
+                                                <option value="main">المخزن الرئيسي</option>
+                                                <option value="branch1">فرع 1</option>
+                                                <option value="branch2">فرع 2</option>
+                                                <option value="online">المتجر الإلكتروني</option>
+                                            </select>
+                                        </div>
+                                        <div class="quantity-group">
+                                            <input type="number" class="form-input quantity-input" name="quantity[]" placeholder="الكمية" min="0" required>
+                                        </div>
+                                        <button type="button" class="remove-warehouse-btn" style="display: none;">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <button type="button" class="add-warehouse-btn" id="addWarehouseBtn">
+                                <i class="fas fa-plus"></i>
+                                إضافة مخزن آخر
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- 📊 Additional Fields Sidebar -->
+            <div class="sidebar-form-section">
+                <!-- 📈 Product Status -->
+                <div class="collapsible-container" data-collapsed="false">
+                    <div class="collapsible-header">
+                        <h3 class="collapsible-title">حالة المنتج</h3>
+                        <button class="collapsible-toggle" type="button" aria-label="Toggle section">
+                            <i class="fas fa-chevron-up"></i>
+                        </button>
+                    </div>
+                    <div class="collapsible-content">
+                        <div class="form-group">
+                            <label class="form-label">الحالة</label>
+                            <select class="form-select" name="status">
+                                <option value="active">نشط</option>
+                                <option value="inactive">غير نشط</option>
+                                <option value="draft">مسودة</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">مميز</label>
+                            <div class="security-setting">
+                                <div class="setting-info">
+                                    <span>عرض في المنتجات المميزة</span>
+                                </div>
+                                <div class="toggle-switch">
+                                    <input type="checkbox" class="toggle-input" id="featured" name="featured">
+                                    <label for="featured" class="toggle-label">
+                                        <span class="toggle-slider"></span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 🏷️ Product Tags -->
+                <div class="collapsible-container" data-collapsed="true">
+                    <div class="collapsible-header">
+                        <h3 class="collapsible-title">تصنيف المنتج</h3>
+                        <button class="collapsible-toggle" type="button" aria-label="Toggle section">
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                    </div>
+                    <div class="collapsible-content">
+                        <div class="form-group">
+                            <label class="form-label">العلامات</label>
+                            <input type="text" class="form-input" name="tags" placeholder="علامة1، علامة2، علامة3">
+                            <small class="form-help">افصل العلامات بفاصلة</small>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">الكلمات المفتاحية</label>
+                            <textarea class="form-textarea" name="keywords" placeholder="كلمات مفتاحية لتحسين محركات البحث"></textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 🏷️ Product Tags -->
+                <div class="collapsible-container" data-collapsed="true">
+                    <div class="collapsible-header">
+                        <h3 class="collapsible-title">ملصق المنتج</h3>
+                        <button class="collapsible-toggle" type="button" aria-label="Toggle section">
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                    </div>
+                    <div class="collapsible-content">
+                        <div class="form-group">
+                            <label class="form-label">العلامات</label>
+                            <input type="text" class="form-input" name="tags" placeholder="علامة1، علامة2، علامة3">
+                            <small class="form-help">افصل العلامات بفاصلة</small>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">الكلمات المفتاحية</label>
+                            <textarea class="form-textarea" name="keywords" placeholder="كلمات مفتاحية لتحسين محركات البحث"></textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 🏷️ Product Tags -->
+                <div class="collapsible-container" data-collapsed="true">
+                    <div class="collapsible-header">
+                        <h3 class="collapsible-title">إضافة خصم</h3>
+                        <button class="collapsible-toggle" type="button" aria-label="Toggle section">
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                    </div>
+                    <div class="collapsible-content">
+                        <div class="form-group">
+                            <label class="form-label">العلامات</label>
+                            <input type="text" class="form-input" name="tags" placeholder="علامة1، علامة2، علامة3">
+                            <small class="form-help">افصل العلامات بفاصلة</small>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">الكلمات المفتاحية</label>
+                            <textarea class="form-textarea" name="keywords" placeholder="كلمات مفتاحية لتحسين محركات البحث"></textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 🏷️ Product Tags -->
+                <div class="collapsible-container" data-collapsed="true">
+                    <div class="collapsible-header">
+                        <h3 class="collapsible-title">المنتجات المشابهة</h3>
+                        <button class="collapsible-toggle" type="button" aria-label="Toggle section">
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                    </div>
+                    <div class="collapsible-content">
+                        <div class="form-group">
+                            <label class="form-label">العلامات</label>
+                            <input type="text" class="form-input" name="tags" placeholder="علامة1، علامة2، علامة3">
+                            <small class="form-help">افصل العلامات بفاصلة</small>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">الكلمات المفتاحية</label>
+                            <textarea class="form-textarea" name="keywords" placeholder="كلمات مفتاحية لتحسين محركات البحث"></textarea>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- 📝 Additional Product Details -->
+        <div class="collapsible-container" data-collapsed="true">
+            <div class="collapsible-header">
+                <h2 class="collapsible-title">تفاصيل إضافية للمنتج</h2>
+                <button class="collapsible-toggle" type="button" aria-label="Toggle section">
+                    <i class="fas fa-chevron-down"></i>
+                </button>
+            </div>
+            <div class="collapsible-content">
+                <div class="form-container">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">الوزن (كجم)</label>
+                            <input type="number" class="form-input" name="weight" placeholder="0.0" step="0.1" min="0">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">الأبعاد (سم)</label>
+                            <input type="text" class="form-input" name="dimensions" placeholder="الطول × العرض × الارتفاع">
+                        </div>
+                    </div>
+                    <div class="form-group full-width">
+                        <label class="form-label">وصف المنتج</label>
+                        <textarea class="form-textarea" name="description" rows="4" placeholder="وصف تفصيلي للمنتج..."></textarea>
+                    </div>
+                    <div class="form-group full-width">
+                        <label class="form-label">وصف قصير</label>
+                        <textarea class="form-textarea" name="short_description" rows="2" placeholder="وصف مختصر للمنتج..."></textarea>
+                    </div>
+                    <div class="form-group full-width">
+                        <label class="form-label">شحن مجاني</label>
+                        <div class="security-setting">
+                            <div class="setting-info">
+                                <span>تفعيل الشحن المجاني لهذا المنتج</span>
+                            </div>
+                            <div class="toggle-switch">
+                                <input type="checkbox" class="toggle-input" id="free_shipping" name="free_shipping">
+                                <label for="free_shipping" class="toggle-label">
+                                    <span class="toggle-slider"></span>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="security-setting">
+                            <div class="setting-info">
+                                <span>تفعيل الشحن المجاني لهذا المنتج</span>
+                            </div>
+                            <div class="toggle-switch">
+                                <input type="checkbox" class="toggle-input" id="free_shipping" name="free_shipping">
+                                <label for="free_shipping" class="toggle-label">
+                                    <span class="toggle-slider"></span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">سعر التكلفة</label>
+                            <input type="number" class="form-input" name="cost_price" placeholder="0.00" step="0.01" min="0">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">سعر الخصم</label>
+                            <input type="number" class="form-input" name="sale_price" placeholder="0.00" step="0.01" min="0">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">نسبة الخصم (%)</label>
+                            <input type="number" class="form-input" name="discount_percentage" placeholder="0" min="0" max="100">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">الضريبة (%)</label>
+                            <input type="number" class="form-input" name="tax_rate" placeholder="0" min="0" max="100">
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- 🚚 Shipping & Delivery -->
+        <div class="collapsible-container" data-collapsed="true">
+            <div class="collapsible-header">
+                <h2 class="collapsible-title">خيارات المنتج</h2>
+                <button class="collapsible-toggle" type="button" aria-label="Toggle section">
+                    <i class="fas fa-chevron-down"></i>
+                </button>
+            </div>
+            <div class="collapsible-content">
+                <div class="form-container">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">تكلفة الشحن</label>
+                            <input type="number" class="form-input" name="shipping_cost" placeholder="0.00" step="0.01" min="0">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">مدة التوصيل (أيام)</label>
+                            <input type="number" class="form-input" name="delivery_time" placeholder="1-3" min="1">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 🔧 Advanced Settings -->
+        <div class="collapsible-container" data-collapsed="true">
+            <div class="collapsible-header">
+                <h2 class="collapsible-title">تخصيص طلبات المنتج</h2>
+                <button class="collapsible-toggle" type="button" aria-label="Toggle section">
+                    <i class="fas fa-chevron-down"></i>
+                </button>
+            </div>
+            <div class="collapsible-content">
+                <div class="form-container">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">الحد الأدنى للكمية</label>
+                            <input type="number" class="form-input" name="min_quantity" placeholder="1" min="1" value="1">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">الحد الأقصى للكمية</label>
+                            <input type="number" class="form-input" name="max_quantity" placeholder="100" min="1">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">تتبع المخزون</label>
+                        <div class="security-setting">
+                            <div class="setting-info">
+                                <span>تفعيل تتبع كمية المخزون</span>
+                            </div>
+                            <div class="toggle-switch">
+                                <input type="checkbox" class="toggle-input" id="track_inventory" name="track_inventory" checked>
+                                <label for="track_inventory" class="toggle-label">
+                                    <span class="toggle-slider"></span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 🔧 Advanced Settings -->
+        <div class="collapsible-container" data-collapsed="true">
+            <div class="collapsible-header">
+                <h2 class="collapsible-title">الحقول المخصصة</h2>
+                <button class="collapsible-toggle" type="button" aria-label="Toggle section">
+                    <i class="fas fa-chevron-down"></i>
+                </button>
+            </div>
+            <div class="collapsible-content">
+                <div class="form-container">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">الحد الأدنى للكمية</label>
+                            <input type="number" class="form-input" name="min_quantity" placeholder="1" min="1" value="1">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">الحد الأقصى للكمية</label>
+                            <input type="number" class="form-input" name="max_quantity" placeholder="100" min="1">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">تتبع المخزون</label>
+                        <div class="security-setting">
+                            <div class="setting-info">
+                                <span>تفعيل تتبع كمية المخزون</span>
+                            </div>
+                            <div class="toggle-switch">
+                                <input type="checkbox" class="toggle-input" id="track_inventory" name="track_inventory" checked>
+                                <label for="track_inventory" class="toggle-label">
+                                    <span class="toggle-slider"></span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 💾 Form Actions -->
+        <div class="form-actions">
+            <button type="submit" class="btn-primary" form="productForm">
+                <i class="fas fa-save"></i>
+                حفظ المنتج
+            </button>
+            <button type="button" class="btn-secondary" onclick="history.back()">
+                <i class="fas fa-times"></i>
+                إلغاء
+            </button>
+        </div>
+    </div>
+{% endblock %}

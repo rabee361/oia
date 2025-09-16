@@ -1,0 +1,10 @@
+.env
+.venv/
+.augment/
+__pycache__/
+.pyc
+media/
+staticfiles/
+.lingma/
+.qoder/
+.vscode/

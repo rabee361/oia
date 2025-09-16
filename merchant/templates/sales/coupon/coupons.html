@@ -1,0 +1,193 @@
+{% extends 'layout/base.html' %}
+{% load static %}
+
+
+{% block content %}
+    <link rel="stylesheet" href="{% static 'css/tables.css' %}">
+
+    <!-- 🧭 Breadcrumbs -->
+    <nav class="breadcrumb">
+        <a href="#" class="breadcrumb-item">الرئيسية</a>
+        <span class="breadcrumb-separator"><i class="fas fa-chevron-right"></i></span>
+        <a href="#" class="breadcrumb-item">التسويق</a>
+        <span class="breadcrumb-separator"><i class="fas fa-chevron-right"></i></span>
+        <span class="breadcrumb-item active">قسائم التخفيض</span>
+    </nav>
+
+    <!-- Section: Products Management -->
+    <section class="config-section">
+        <div class="section-title">
+            <h2>إدارة قسائم التخفيض </h2>
+            <a href="{% url 'add-coupon' %}" class="btn-primary">
+                <i class="fas fa-plus"></i>
+                إضافة قسيمة
+            </a>
+        </div>
+        <!-- Search and Filter Container -->
+        <div class="table-controls">
+            <!-- Stats Container -->
+            <div class="stats-container">
+                <ul class="stats-list">
+                    <li class="stats-item">
+                        <a href="#" class="stats-link active">الكل (200)</a>
+                    </li>
+                    <li class="stats-item">
+                        <a href="#" class="stats-link">مفعل (150)</a>
+                    </li>
+                    <li class="stats-item">
+                        <a href="#" class="stats-link"> معطل (25)</a>
+                    </li>
+                    <li class="stats-item">
+                        <a href="#" class="stats-link"> منتهي (25)</a>
+                    </li>
+                </ul>
+            </div>
+            
+            <!-- Search Bar -->
+            <div class="search-container">
+                <div class="search-bar">
+                    <input type="text" class="search-input" placeholder="ابحث برقم الطلب, أو باسم العميل أو رقم هاتفه.....">
+                    <button type="button" class="search-btn">
+                        <i class="fas fa-search"></i>
+                        بحث
+                    </button>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Products Table -->
+        <div class="table-container">
+            <form id="productsForm" class="products-form">
+                <!-- Bulk Actions -->
+                <div class="bulk-actions" id="bulkActions" style="display: none;">
+                    <div class="selected-count">
+                        <span id="selectedCount">0</span> منتج محدد
+                    </div>
+                    <div class="bulk-buttons">
+                        <button type="button" class="btn-bulk btn-bulk-edit">
+                            <i class="fas fa-edit"></i>
+                            تعديل
+                        </button>
+                        <button type="button" class="btn-bulk btn-bulk-delete">
+                            <i class="fas fa-trash"></i>
+                            حذف
+                        </button>
+                        <button type="button" class="btn-bulk btn-bulk-export">
+                            <i class="fas fa-download"></i>
+                            تصدير
+                        </button>
+                    </div>
+                </div>
+
+                <div class="table-date-filter">
+
+                </div>
+
+                <table class="products-table">
+                    <thead>
+                        <tr>
+                            <th class="checkbox-column">
+                                <input type="checkbox" id="selectAll" class="table-checkbox">
+                            </th>
+                            <th class="code-column">العميل/الرمز</th>
+                            <th class="code-column">طريقة التطبيق</th>
+                            <th class="code-column">قيمة الخصم</th>
+                            <th class="price-column">عدد مرات استخدام الكود</th>
+                            <th class="code-column">تاريخ البدء</th>
+                            <th class="code-column">تاريخ الانتهاء</th>
+                            <th class="actions-column">حالة التفعيل</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for coupon in coupons %}
+                            <tr class="table-row">
+                                <td class="checkbox-column">
+                                    <input type="checkbox" name="selected_products[]" value="1" class="row-checkbox">
+                                </td>
+                                <td class="code-column">
+                                    <div class="product-image">
+                                        <img src="{% static 'images/product-placeholder.jpg' %}" alt="منتج 1" class="product-img">
+                                    </div>
+                                </td>
+                                <td class="name-column">
+                                    <div class="product-name">
+                                        <h4>هاتف ذكي سامسونج جالاكسي</h4>
+                                        <p class="product-description">هاتف ذكي بمواصفات عالية وكاميرا متطورة</p>
+                                    </div>
+                                </td>
+                                <td class="code-column">
+                                    <span class="product-code">SAMS001</span>
+                                </td>
+                                <td class="price-column">
+                                    <span class="product-price">1,299 ريال</span>
+                                </td>
+                                <td class="stock-column">
+                                    <span class="stock-count">25</span>
+                                </td>
+                                <td class="status-column">
+                                    <span class="status-badge status-active">نشط</span>
+                                </td>
+                                <td class="actions-column">
+                                    <div class="dropdown">
+                                        <button type="button" class="dropdown-toggle" data-toggle="dropdown">
+                                            <i class="fas fa-ellipsis-v"></i>
+                                        </button>
+                                        <div class="dropdown-menu">
+                                            <a href="#" class="dropdown-item">
+                                                <i class="fas fa-eye"></i>
+                                                عرض
+                                            </a>
+                                            <a href="#" class="dropdown-item">
+                                                <i class="fas fa-edit"></i>
+                                                تعديل
+                                            </a>
+                                            <a href="#" class="dropdown-item">
+                                                <i class="fas fa-copy"></i>
+                                                نسخ
+                                            </a>
+                                            <div class="dropdown-divider"></div>
+                                            <a href="#" class="dropdown-item text-danger">
+                                                <i class="fas fa-trash"></i>
+                                                حذف
+                                            </a>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        
+                        {% empty %}
+                            <tr>
+                                <td colspan="8" class="empty-state">
+                                    <div class="empty-state-content">
+                                        <img src="{% static 'images/placeholders/empty.jpg' %}" alt="لا يوجد منتجات">
+                                        <p class="empty-state-text">لا يوجد منتجات</p>
+                                    </div>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </form>
+        </div>
+    </section>
+
+    <!-- JavaScript Files -->
+    <script src="{% static 'js/selectable_rows.js' %}"></script>
+    <script>
+        // Filter Toggle Functionality
+        document.getElementById('filterToggleBtn').addEventListener('click', function() {
+            const filtersContainer = document.getElementById('filtersContainer');
+            const toggleArrow = this.querySelector('.toggle-arrow');
+            
+            if (filtersContainer.style.display === 'none') {
+                filtersContainer.style.display = 'block';
+                toggleArrow.style.transform = 'rotate(180deg)';
+            } else {
+                filtersContainer.style.display = 'none';
+                toggleArrow.style.transform = 'rotate(0deg)';
+            }
+        });
+    </script>
+
+{% endblock %}

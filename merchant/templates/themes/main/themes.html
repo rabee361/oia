@@ -1,0 +1,221 @@
+{% extends 'layout/base.html' %}
+{% load static %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/main.css' %}">
+<link rel="stylesheet" href="{% static 'css/themes-slider.css' %}">
+
+    <!-- Breadcrumb Navigation -->
+    <nav class="breadcrumb">
+        <a href="#" class="breadcrumb-item">الرئيسية</a>
+        <span class="breadcrumb-separator">
+            <i class="fas fa-chevron-right"></i>
+        </span>
+        <a href="{% url 'themes' %}" class="breadcrumb-item active">الثيمات المتوفرة</a>
+    </nav>
+
+    {% if themes %}
+        <!-- Section: Popular Themes -->
+        <section class="config-section">
+            <div class="section-title">
+                <h2> الثيمات المميزة</h2>
+            </div>
+            
+            <div class="themes-slider-container">
+                <div class="themes-slider" id="popularThemes">
+                    {% for theme in themes %}
+                        <div class="theme-card">
+                            <div class="theme-image">
+                                <img src="{{ theme.image.url }}" alt="{{ theme.title }}">
+                                <div class="theme-overlay">
+                                    <span class="theme-price">{{ theme.price }} ر.س</span>
+                                </div>+
+                            </div>
+                            <div class="theme-content">
+                                <h3 class="theme-title">{{ theme.title }}</h3>
+                                <p class="theme-description">{{ theme.description }}</p>
+                                <div class="card-theme-actions">
+                                    <a href="{% url 'theme' theme.slug %}" class="btn-theme-show">
+                                        <i class="fas fa-eye"></i>
+                                        معاينة
+                                    </a>
+                                    <a class="btn-theme-buy">
+                                        <i class="fas fa-shopping-cart"></i>
+                                        شراء
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    {% empty %}
+                        <div class="col-lg-4 col-md-6 col-sm-12">
+                            <div class="theme-item">
+                                <div class="theme-item-img">
+                                    <img src="{% static 'img/theme-1.png' %}" alt="">
+                                </div>
+                                <div class="theme-item-info">
+                                    <h3 class="theme-item-title"></h3>
+                                </div>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </section>
+    {% endif %}
+
+        
+    {% if popular_themes %}
+        <!-- Section: Most Downloaded Themes -->
+        <section class="config-section">
+            <div class="section-title">
+                <h2> الثيمات الأكثر تحميلاً</h2>
+            </div>
+            
+            <div class="themes-slider-container">
+                <div class="themes-slider" id="popularDownloads">
+                    {% for theme in popular_themes %}
+                        <div class="theme-card">
+                            <div class="theme-image">
+                                <img src="{{ theme.image.url }}" alt="{{ theme.title }}">
+                                <div class="theme-overlay">
+                                    <span class="theme-price">{{ theme.price }} ر.س</span>
+                                </div>
+                            </div>
+                            <div class="theme-content">
+                                <h3 class="theme-title">{{ theme.title }}</h3>
+                                <p class="theme-description">{{ theme.description }}</p>
+                                <div class="card-theme-actions">
+                                    <a href="{% url 'theme' theme.slug %}" class="btn-theme-show">
+                                        <i class="fas fa-eye"></i>
+                                        معاينة
+                                    </a>
+                                    <a class="btn-theme-buy">
+                                        <i class="fas fa-shopping-cart"></i>
+                                        شراء
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    {% empty %}
+                        <div class="col-lg-4 col-md-6 col-sm-12">
+                            <div class="theme-item">
+                                <div class="theme-item-img">
+                                    <img src="{% static 'img/theme-1.png' %}" alt="">
+                                </div>
+                                <div class="theme-item-info">
+                                    <h3 class="theme-item-title"></h3>
+                                </div>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+            </div>
+        </section>
+    {% endif %}
+    
+    {% if new_themes %}
+        <!-- Section: Most Downloaded Themes -->
+        <section class="config-section">
+            <div class="section-title">
+                <h2> الثيمات الجديدة </h2>
+            </div>
+            
+            <div class="themes-slider-container">
+                <div class="themes-slider" id="popularDownloads">
+                    {% for theme in new_themes %}
+                        <div class="theme-card">
+                            <div class="theme-image">
+                                <img src="{{ theme.image.url }}" alt="{{ theme.title }}">
+                                <div class="theme-overlay">
+                                    <span class="theme-price">{{ theme.price }} ر.س</span>
+                                </div>
+                            </div>
+                            <div class="theme-content">
+                                <h3 class="theme-title">{{ theme.title }}</h3>
+                                <p class="theme-description">{{ theme.description }}</p>
+                                <div class="card-theme-actions">
+                                    <a href="{% url 'theme' theme.slug %}" class="btn-theme-show">
+                                        <i class="fas fa-eye"></i>
+                                        معاينة
+                                    </a>
+                                    <button class="btn-theme-buy">
+                                        <i class="fas fa-shopping-cart"></i>
+                                        شراء
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    {% empty %}
+                        <div class="col-lg-4 col-md-6 col-sm-12">
+                            <div class="theme-item">
+                                <div class="theme-item-img">
+                                    <img src="{% static 'img/theme-1.png' %}" alt="">
+                                </div>
+                                <div class="theme-item-info">
+                                    <h3 class="theme-item-title"></h3>
+                                </div>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+            </div>
+        </section>
+    {% endif %}
+
+    {% if free_themes %}
+        <!-- Section: Most Downloaded Themes -->
+        <section class="config-section">
+            <div class="section-title">
+                <h2> الثيمات المجانية </h2>
+            </div>
+            
+            <div class="themes-slider-container">
+                <div class="themes-slider" id="popularDownloads">
+                    {% for theme in free_themes %}
+                        <div class="theme-card">
+                            <div class="theme-image">
+                                <img src="{{ theme.image.url }}" alt="{{ theme.title }}">
+                                <div class="theme-overlay">
+                                    <span class="theme-price">{{ theme.price }} ر.س</span>
+                                </div>
+                            </div>
+                            <div class="theme-content">
+                                <h3 class="theme-title">{{ theme.title }}</h3>
+                                <p class="theme-description">{{ theme.description }}</p>
+                                <div class="card-theme-actions">
+                                    <a href="{% url 'theme' theme.slug %}" class="btn-theme-show">
+                                        <i class="fas fa-eye"></i>
+                                        معاينة
+                                    </a>
+                                    <button class="btn-theme-buy">
+                                        <i class="fas fa-shopping-cart"></i>
+                                        شراء
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    {% empty %}
+                        <div class="col-lg-4 col-md-6 col-sm-12">
+                            <div class="theme-item">
+                                <div class="theme-item-img">
+                                    <img src="{% static 'img/theme-1.png' %}" alt="">
+                                </div>
+                                <div class="theme-item-info">
+                                    <h3 class="theme-item-title"></h3>
+                                </div>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </section>
+    {% endif %}
+
+    <!-- JavaScript Files -->
+    <script src="{% static 'js/theme-slider.js' %}"></script>
+
+{% endblock %}
+
+

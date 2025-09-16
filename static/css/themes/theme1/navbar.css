@@ -1,0 +1,476 @@
+/* 🧭 Navbar Styles */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: var(--navbar-height);
+  background-color: var(--navbar-background);
+  border-bottom: 1px solid var(--border-light);
+  z-index: var(--z-navbar);
+  transition: all var(--transition-normal);
+}
+
+.navbar-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 100%;
+  max-width: var(--container-max-width);
+  margin: 0 auto;
+  padding: 0 var(--spacing-md);
+}
+
+/* 🏷️ Logo */
+.navbar-logo {
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-bold);
+  color: var(--text-primary);
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+.navbar-logo:hover {
+  color: var(--accent-orange);
+}
+
+/* 🔗 Navigation Links */
+.navbar-nav {
+  display: none;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  gap: var(--spacing-xl);
+}
+
+.navbar-nav-item {
+  position: relative;
+}
+
+.navbar-nav-link {
+  display: block;
+  padding: var(--spacing-sm) 0;
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-medium);
+  color: var(--text-primary);
+  text-decoration: none;
+  transition: color var(--transition-fast);
+  position: relative;
+}
+
+.navbar-nav-link:hover {
+  color: var(--accent-orange);
+}
+
+.navbar-nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: var(--accent-orange);
+  transition: width var(--transition-normal);
+}
+
+.navbar-nav-link:hover::after {
+  width: 100%;
+}
+
+/* 🎯 Action Icons */
+.navbar-actions {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+}
+
+/* 🔘 Action Buttons */
+.navbar-action-btn {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  background-color: transparent;
+  border: none;
+  border-radius: var(--border-radius-md);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  color: var(--text-primary);
+}
+
+.navbar-action-btn:hover {
+  background-color: var(--background-light);
+  color: var(--accent-orange);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px var(--shadow-light);
+}
+
+.navbar-action-btn svg {
+  width: 20px;
+  height: 20px;
+  transition: all var(--transition-fast);
+}
+
+/* 🌐 Language Toggle Button Specific Styles */
+.language-toggle-btn {
+  position: relative;
+  overflow: hidden;
+  background-color: transparent;
+  border: none;
+}
+
+.language-toggle-btn:hover {
+  background-color: var(--background-light);
+  color: var(--accent-orange);
+  border-color: transparent;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px var(--shadow-light);
+}
+
+.language-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  transition: all var(--transition-normal);
+  opacity: 1;
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-bold);
+  letter-spacing: 0.5px;
+}
+
+/* Language states similar to theme toggle */
+.language-toggle-btn[data-lang="en"] .language-text.ar-text {
+  opacity: 0;
+  transform: translate(-50%, -50%) rotate(180deg);
+}
+
+.language-toggle-btn[data-lang="en"] .language-text.en-text {
+  opacity: 1;
+  transform: translate(-50%, -50%) rotate(0deg);
+}
+
+.language-toggle-btn[data-lang="ar"] .language-text.en-text {
+  opacity: 0;
+  transform: translate(-50%, -50%) rotate(-180deg);
+}
+
+.language-toggle-btn[data-lang="ar"] .language-text.ar-text {
+  opacity: 1;
+  transform: translate(-50%, -50%) rotate(0deg);
+}
+
+/* Language toggle hover animation */
+.language-toggle-btn:hover .language-text {
+  transform: translate(-50%, -50%) scale(1.1) rotate(15deg);
+}
+
+.language-toggle-btn[data-lang="ar"]:hover .language-text.en-text {
+  transform: translate(-50%, -50%) scale(1.1) rotate(-165deg);
+}
+
+.language-toggle-btn[data-lang="ar"]:hover .language-text.ar-text {
+  transform: translate(-50%, -50%) scale(1.1) rotate(15deg);
+}
+
+/* ❤️ Wishlist Heart Animation */
+.navbar-action-btn svg path[d*="20.84"] {
+  fill: none;
+  transition: all var(--transition-fast);
+}
+
+.navbar-action-btn:hover svg path[d*="20.84"] {
+  fill: #ef4444;
+  stroke: #ef4444;
+  transform: scale(1.1);
+}
+
+/* Wishlist Active State */
+.navbar-action-btn.wishlist-active svg path[d*="20.84"] {
+  fill: #ef4444;
+  stroke: #ef4444;
+  animation: heartbeat 1.5s ease-in-out infinite;
+}
+
+
+/* 🔔 Badge for Cart */
+.navbar-badge {
+  position: absolute;
+  top: 1px;
+  right: 1px;
+  min-width: 18px;
+  height: 18px;
+  background-color: var(--accent-orange);
+  color: var(--primary-white);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-semibold);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 var(--spacing-xs);
+}
+
+/* 🍔 Mobile Menu Toggle */
+.navbar-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  background-color: var(--button-background);
+  border: none;
+  cursor: pointer;
+  border-radius: var(--border-radius-md);
+}
+
+.navbar-toggle:hover {
+  background-color: var(--button-hover);
+}
+
+
+.navbar-toggle-icon {
+  width: 24px;
+  height: 24px;
+  position: relative;
+}
+
+.navbar-toggle-icon span {
+  display: block;
+  width: 100%;
+  height: 2px;
+  background-color: var(--text-primary);
+  margin: 4px 0;
+  transition: all var(--transition-normal);
+  transform-origin: center;
+}
+
+/* 📱 Mobile Menu */
+.navbar-mobile-menu {
+  position: fixed;
+  top: var(--navbar-height);
+  left: 0;
+  right: 0;
+  background-color: black;
+  border-bottom: 1px solid var(--border-light);
+  transform: translateY(-100%);
+  opacity: 0;
+  visibility: hidden;
+  transition: all var(--transition-normal);
+  z-index: var(--z-dropdown);
+}
+
+.navbar-mobile-menu.active {
+  transform: translateY(0);
+  opacity: 1;
+  visibility: visible;
+}
+
+.navbar-mobile-nav {
+  list-style: none;
+  margin: 0;
+  padding: var(--spacing-md);
+  background-color: var(--navbar-background); /* Ensure background matches navbar */
+}
+
+.navbar-mobile-nav-item {
+  border-bottom: 1px solid var(--border-light);
+  padding: var(--spacing-sm) 0; /* Add padding for better spacing */
+}
+
+.navbar-mobile-nav-item:last-child {
+  border-bottom: none;
+}
+
+.navbar-mobile-nav-link {
+  display: block;
+  padding: var(--spacing-md) 0;
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-medium);
+  color: var(--text-primary);
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+.navbar-mobile-nav-link:hover {
+  color: var(--accent-orange);
+  background-color: var(--background-light); /* Add hover background for better UX */
+}
+
+/* 📱 Responsive Styles */
+@media (min-width: 768px) {
+  .navbar-container {
+    padding: 0 var(--spacing-lg);
+  }
+
+  .navbar-nav {
+    display: flex;
+  }
+
+  .navbar-toggle {
+    display: none;
+  }
+
+  .navbar-mobile-menu {
+    display: none;
+  }
+
+  .navbar-action-btn {
+    width: 44px;
+    height: 44px;
+  }
+
+  .navbar-action-btn svg {
+    width: 22px;
+    height: 22px;
+  }
+}
+
+@media (max-width: 767px) {
+  .navbar-action-btn {
+    width: 36px;
+    height: 36px;
+  }
+
+  .navbar-action-btn svg {
+    width: 18px;
+    height: 18px;
+  }
+
+  .language-toggle-btn {
+    font-size: 10px;
+  }
+  
+  .navbar-actions {
+    gap: var(--spacing-sm);
+  }
+}
+
+@media (max-width: 480px) {
+  .navbar-action-btn {
+    width: 32px;
+    height: 32px;
+  }
+
+  .navbar-action-btn svg {
+    width: 16px;
+    height: 16px;
+  }
+
+  .language-toggle-btn {
+    font-size: 9px;
+  }
+  
+  .navbar-actions {
+    gap: var(--spacing-xs);
+  }
+}
+
+@media (min-width: 992px) {
+  .navbar-nav {
+    gap: var(--spacing-2xl);
+  }
+
+  .navbar-nav-link {
+    font-size: var(--font-size-lg);
+  }
+}
+
+/* 🎨 Navbar Scroll Effect */
+.navbar.scrolled {
+  box-shadow: 0 2px 20px var(--shadow-light);
+  backdrop-filter: blur(10px);
+}
+
+/* 🔍 Search Overlay (Optional Enhancement) */
+.search-overlay {
+  position: fixed;
+  top: var(--navbar-height);
+  left: 0;
+  right: 0;
+  background-color: var(--navbar-background);
+  border-bottom: 1px solid var(--border-light);
+  padding: var(--spacing-lg);
+  transform: translateY(-100%);
+  opacity: 0;
+  visibility: hidden;
+  transition: all var(--transition-normal);
+  z-index: var(--z-dropdown);
+}
+
+.search-overlay.active {
+  transform: translateY(0);
+  opacity: 1;
+  visibility: visible;
+}
+
+.search-input:focus {
+  border-color: var(--accent-orange);
+}
+
+/* 🌙 Theme Toggle Button */
+.theme-toggle-btn {
+  position: relative;
+  overflow: hidden;
+}
+
+.theme-icon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  transition: all var(--transition-normal);
+  opacity: 1;
+}
+
+.light-icon {
+  opacity: 1;
+  transform: translate(-50%, -50%) rotate(0deg);
+}
+
+.dark-icon {
+  opacity: 0;
+  transform: translate(-50%, -50%) rotate(180deg);
+}
+
+/* Dark theme active state */
+[data-theme="dark"] .light-icon {
+  opacity: 0;
+  transform: translate(-50%, -50%) rotate(-180deg);
+}
+
+[data-theme="dark"] .dark-icon {
+  opacity: 1;
+  transform: translate(-50%, -50%) rotate(0deg);
+}
+
+/* Theme toggle animation */
+.theme-toggle-btn:hover .theme-icon {
+  transform: translate(-50%, -50%) scale(1.1) rotate(15deg);
+}
+
+[data-theme="dark"] .theme-toggle-btn:hover .light-icon {
+  transform: translate(-50%, -50%) scale(1.1) rotate(-165deg);
+}
+
+[data-theme="dark"] .theme-toggle-btn:hover .dark-icon {
+  transform: translate(-50%, -50%) scale(1.1) rotate(15deg);
+}
+
+
+/* 🔍 Search Overlay (Optional Enhancement) */
+.search-input {
+  background-color: var(--input-background);
+  border: 1px solid var(--input-border);
+}
+
+.search-input:focus {
+  border-color: var(--input-focus);
+  box-shadow: 0 0 0 3px rgba(255, 107, 53, 0.1);
+}
+
+.search-input::placeholder {
+  color: var(--text-muted);
+}

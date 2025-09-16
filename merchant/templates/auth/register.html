@@ -1,0 +1,110 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>إنشاء متجر جديد - متجر</title>
+    <link rel="stylesheet" href="{% static 'css/auth.css' %}">
+</head>
+<body>
+    <div class="auth-container">
+
+            <!-- Registration Form -->
+            <form method="post" class="cards-container" id="registration-form">
+                {% csrf_token %}
+                <!-- Cards Container -->
+                <!-- Card 1: Store Name -->
+                <div class="register-card" data-card="1">
+                    <div class="card-header">
+                        <h1 class="card-title">أدخل بياناتك لإنشاء متجرك الخاص</h1>
+                        <div class="card-counter">1/4</div>
+                    </div>
+
+                    <div class="card-content">
+                        <div class="input-group">
+                            <label class="auth-label">اسم المتجر</label>
+                            {{ form.store_name }}
+                        </div>
+
+                        <button type="button" class="auth-button next-btn" disabled>
+                            المتابعة
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Card 2: Store Category -->
+                <div class="register-card" data-card="2">
+                    <div class="card-header">
+                        <h1 class="card-title">أدخل بياناتك لإنشاء متجرك الخاص</h1>
+                        <div class="card-counter">2/4</div>
+                    </div>
+
+                    <div class="card-content">
+                        <div class="input-group">
+                            <label class="auth-label">مجال النشاط التجاري</label>
+                            <div class="custom-select">
+                                {{ form.business_type }}
+                            </div>
+                        </div>
+
+                        <button type="button" class="auth-button next-btn" disabled>
+                            المتابعة
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Card 3: Store Type -->
+                <div class="register-card" data-card="3">
+                    <div class="card-header">
+                        <h1 class="card-title">أدخل بياناتك لإنشاء متجرك الخاص</h1>
+                        <div class="card-counter">3/4</div>
+                    </div>
+
+                    <div class="card-content">
+                        <div class="input-group">
+                            <label class="auth-label">نوع النشاط التجاري</label>
+                            <div class="custom-select">
+                                {{ form.store_type }}
+                            </div>
+                        </div>
+
+                        <button type="button" class="auth-button next-btn" disabled>
+                            المتابعة
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Card 4: Terms and Conditions -->
+                <div class="register-card" data-card="4">
+                    <div class="card-header">
+                        <h1 class="card-title">أدخل بياناتك لإنشاء متجرك الخاص</h1>
+                        <div class="card-counter">4/4</div>
+                    </div>
+
+                    <div class="card-content">
+                        <div class="terms-content">
+                            <p class="terms-text">
+                                السماح بالوصول إلى الموقع الجغرافي لتسهيل خدمات التوصيل والعثور على العملاء وتحديد نطاق الخدمة
+                            </p>
+
+                            <div class="checkbox-group">
+                                <label class="custom-checkbox">
+                                    {{ form.share_location }}
+                                    <span class="checkmark"></span>
+                                    <span class="checkbox-text">السماح بالوصول إلى الموقع الجغرافي</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="auth-button submit-btn">
+                            إنشاء المتجر
+                        </button>
+                    </div>
+                </div>
+            </form>
+    </div>
+
+    <script src="{% static 'js/cards_animation.js' %}"></script>
+</body>
+</html>

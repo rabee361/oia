@@ -1,0 +1,108 @@
+{% extends "themes/theme2/base.html" %}
+
+{% block content %}
+
+    <!-- Products Section -->
+    <section class="products-section">
+        <h2 class="section-title">Our Products</h2>
+        
+        <!-- Search Container -->
+        <div class="search-container">
+            <div class="search-wrapper">
+                <span class="search-icon">🔍</span>
+                <input type="text" class="search-input" placeholder="Search products..." id="productSearch">
+            </div>
+        </div>
+        <div class="products-grid">
+            <!-- Product 1 -->
+            <div class="product-card">
+                <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=300&h=200&fit=crop" alt="Premium Headphones">
+                <div class="product-info">
+                    <h3>Premium Headphones</h3>
+                    <p>High-quality sound with noise cancellation</p>
+                    <span class="price">$129.99</span>
+                </div>
+            </div>
+            
+            <!-- Product 2 -->
+            <div class="product-card">
+                <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=300&h=200&fit=crop" alt="Smart Watch">
+                <div class="product-info">
+                    <h3>Smart Watch</h3>
+                    <p>Track your fitness and stay connected</p>
+                    <span class="price">$199.99</span>
+                </div>
+            </div>
+            
+            <!-- Product 3 -->
+            <div class="product-card">
+                <img src="https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?w=300&h=200&fit=crop" alt="Wireless Speaker">
+                <div class="product-info">
+                    <h3>Wireless Speaker</h3>
+                    <p>Portable speaker with 360° sound</p>
+                    <span class="price">$89.99</span>
+                </div>
+            </div>
+            
+            <!-- Product 4 -->
+            <div class="product-card">
+                <img src="https://images.unsplash.com/photo-1590658268037-6bf12165a8df?w=300&h=200&fit=crop" alt="Bluetooth Earbuds">
+                <div class="product-info">
+                    <h3>Bluetooth Earbuds</h3>
+                    <p>True wireless earbuds with charging case</p>
+                    <span class="price">$79.99</span>
+                </div>
+            </div>
+            
+            <!-- Product 5 -->
+            <div class="product-card">
+                <img src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=300&h=200&fit=crop" alt="Smartphone">
+                <div class="product-info">
+                    <h3>Smartphone</h3>
+                    <p>Latest model with advanced features</p>
+                    <span class="price">$699.99</span>
+                </div>
+            </div>
+            
+            <!-- Product 6 -->
+            <div class="product-card">
+                <img src="https://images.unsplash.com/photo-1496181133206-80ce9b88a853?w=300&h=200&fit=crop" alt="Laptop">
+                <div class="product-info">
+                    <h3>Laptop</h3>
+                    <p>Powerful laptop for work and gaming</p>
+                    <span class="price">$1299.99</span>
+                </div>
+            </div>
+            
+            <!-- Product 7 -->
+            <div class="product-card">
+                <img src="https://images.unsplash.com/photo-1544244015-0df4b3ffc6b0?w=300&h=200&fit=crop" alt="Tablet">
+                <div class="product-info">
+                    <h3>Tablet</h3>
+                    <p>Lightweight tablet with HD display</p>
+                    <span class="price">$399.99</span>
+                </div>
+            </div>
+            
+            <!-- Product 8 -->
+            <div class="product-card">
+                <img src="https://images.unsplash.com/photo-1606983340126-99ab4feaa64a?w=300&h=200&fit=crop" alt="Digital Camera">
+                <div class="product-info">
+                    <h3>Camera</h3>
+                    <p>Digital camera with 4K video</p>
+                    <span class="price">$599.99</span>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Pagination -->
+        <div class="pagination">
+            <a href="#" class="page-link active">1</a>
+            <a href="#" class="page-link">2</a>
+            <a href="#" class="page-link">3</a>
+            <a href="#" class="page-link">Next &raquo;</a>
+        </div>
+    </section>
+
+{% endblock %}
+

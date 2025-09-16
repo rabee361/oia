@@ -1,0 +1,48 @@
+{% load static %}
+{% load i18n %}
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <script>
+        // Check for saved theme preference
+        const currentTheme = localStorage.getItem('theme') || 'light';
+        document.documentElement.setAttribute('data-theme', currentTheme);
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="{% static 'js/collapse-nav.js' %}"></script>
+    <script src="{% static 'js/theme-toggle.js' %}"></script>
+    <script src="{% static 'js/collapsible-containers.js' %}"></script>
+    <script src="{% static 'js/image-slider.js' %}"></script>
+    <script src="{% static 'js/warehouse-form.js' %}"></script>
+    <script src="{% static 'js/product-form.js' %}"></script>
+    <script src="{% static 'js/banner.js' %}"></script>
+    <link rel="stylesheet" href="{% static 'css/sidebar_navbar.css' %}">
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+    <link rel="stylesheet" href="{% static 'css/analytics.css' %}">
+    <script rel="script" src="{% static 'js/toggle_sidebar.js' %}"></script>
+    <script src="{% static 'js/language-switcher.js' %}"></script>
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">    
+    <title>{% trans "Dashboard" %}</title>
+</head>
+<body class="container-body">
+    {% csrf_token %}
+
+    <!-- Add Overlay -->
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+    {%  include 'layout/navbar.html' %}
+
+    {%  include 'layout/sidebar.html' %}
+
+    <main class="main-content">
+        {% include 'layout/banner.html' %}
+        {% block content %}
+        {% endblock %}
+        {% include 'layout/footer.html' %}
+    </main>
+
+    <script src="https://unpkg.com/htmx.org@1.9.10"></script>
+</body>
+</html>

@@ -1,0 +1,398 @@
+@import "./variables.css";
+
+
+.top-navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 50px;
+    color: var(--text-sidebar);
+    z-index: 1100;
+    background-color: var(--bg-primary);
+}
+
+.navbar-container {
+    height: 100%;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.navbar-container::-webkit-scrollbar {
+    display: none;
+}
+
+.navbar-items {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 100%;
+    padding: 0 20px;
+    min-width: max-content;
+}
+
+.navbar-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    order: 1;
+}
+
+.navbar-logo img {
+    width: 35px;
+    height: 35px;
+    border-radius: 8px;
+    object-fit: cover;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+.navbar-logo span {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--text-sidebar);
+}
+
+.navbar-controls {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    order: 3;
+}
+
+.user-avatar {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+.user-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.avatar-circle {
+    width: 100%;
+    height: 100%;
+    background-color: var(--accent-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: 600;
+    font-size: 14px;
+}
+
+/* Sidebar Styles */
+.sidebar {
+    width: 250px;
+    background: var(--bg-sidebar);
+    color: var(--text-sidebar);
+    height: 100vh;
+    position: fixed;
+    right: 0;
+    top: 0;
+    overflow-y: auto;
+    box-shadow: -1px 0 10px rgba(0, 0, 0, 0.1);
+    z-index: 1002;
+    padding-top: 60px;
+    transition: background 0.3s ease;
+}
+
+[dir="ltr"] .sidebar {
+    left: 0;
+    right: auto;
+}
+
+/* 🙈 Hide scrollbar for WebKit browsers (Chrome, Safari, Edge) */
+.sidebar::-webkit-scrollbar {
+    display: none;
+}
+
+.sidebar-nav {
+    padding: 20px 0;
+    font-size: 14px;
+}
+
+.nav-item {
+    margin-bottom: 5px;
+    color: var(--text-sidebar);
+}
+
+.nav-item a {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+}
+
+.nav-header {
+    padding: 12px 20px;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    justify-content: space-between;
+    cursor: pointer;
+    direction: rtl;
+}
+
+
+.nav-header:hover {
+    background-color: var(--hover-bg);
+}
+
+.nav-header i:not(.arrow) {
+    margin-left: 10px;
+    font-size: 19px;
+    width: 20px;
+    text-align: center;
+    transition: transform 0.3s ease, background-color 0.8s ease;
+    color: var(--text-sidebar);
+}
+
+.nav-header span {
+    font-weight: 600;
+    font-size: 15px;
+    color: var(--text-sidebar);
+}
+
+.nav-header .icon-text-group {
+    display: flex;
+    align-items: center;
+    flex-direction: row-reverse;
+}
+
+.nav-header .arrow {
+    transition: transform 0.3s ease-in-out;
+}
+
+.nav-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-in-out;
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+.nav-item.active .nav-content {
+    max-height: 1000px;
+    transition: max-height 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.nav-item.active .arrow {
+    transform: rotate(180deg);
+}
+
+.nav-content .sub-item {
+    padding: 10px 20px 10px 50px;
+    color: var(--text-sidebar);
+    text-decoration: none;
+    text-align: right;
+    font-size: 14px;
+    display: block;
+}
+
+.sub-item.active:hover,.sub-item.active  {
+    background-color: var(--accent-color);
+}
+
+.sub-item:hover {
+    background-color: var(--hover-bg);
+}
+
+.nav-item:not(.collapsible) .nav-header:hover,
+.nav-item a:hover .nav-header {
+    background-color: var(--hover-bg);
+}
+
+.nav-item:not(.collapsible) .nav-header.active,
+.nav-item a .nav-header.active {
+    background-color: var(--accent-color);
+    color: white;
+}
+/* Dashboard Layout Styles */
+.dashboard-container {
+    margin-top: 60px;
+}
+
+.main-content {
+    margin-right: 250px;
+    margin-top: 30px;
+    padding: 10px 20px; 
+    min-height: calc(100vh - 60px);
+    background-color: var(--bg-primary);
+    transition: margin-right 0.3s ease-in-out, background-color 0.3s ease;
+}
+
+[dir="ltr"] .main-content {
+    margin-left: 250px;
+    margin-right: 0;
+}
+
+/* Theme Toggle and Hamburger Menu Styles - Now integrated in navbar */
+.theme-toggle {
+    width: 35px;
+    height: 35px;
+    border: none;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.2);
+    color: var(--text-sidebar);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+}
+
+.theme-toggle:hover {
+    background-color: rgba(255, 255, 255, 0.3);
+    transform: scale(1.1);
+}
+
+/* Language Switcher Button */
+.language-toggle {
+    width: 35px;
+    height: 35px;
+    border: none;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.2);
+    color: var(--text-sidebar);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.language-toggle:hover {
+    background-color: rgba(255, 255, 255, 0.3);
+    transform: scale(1.1);
+}
+
+
+.hamburger-menu {
+    width: 35px;
+    height: 35px;
+    border: none;
+    border-radius: 8px;
+    background-color: rgba(255, 255, 255, 0.2);
+    color: var(--text-sidebar);
+    cursor: pointer;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+}
+
+.hamburger-menu:hover {
+    background-color: rgba(255, 255, 255, 0.3);
+    transform: scale(1.1);
+}
+
+
+
+
+
+@media (max-width: 768px) {
+    .top-navbar {
+        z-index: 1001;
+    }
+
+    .navbar-items {
+        padding: 0 10px;
+    }
+
+    .navbar-logo img {
+        width: 30px;
+        height: 30px;
+    }
+
+    .navbar-logo span {
+        font-size: 14px;
+    }
+
+    .user-avatar {
+        width: 30px;
+        height: 30px;
+    }
+
+    .avatar-circle {
+        font-size: 12px;
+    }
+
+    .theme-toggle,
+    .language-toggle {
+        width: 30px;
+        height: 30px;
+        font-size: 11px;
+    }
+
+    .hamburger-menu {
+        /* Show on mobile screens */
+        display: flex;
+        width: 30px;
+        height: 30px;
+    }
+
+    .sidebar {
+        transform: translateX(100%);
+        transition: transform 0.3s ease-in-out, background-color 0.3s ease;
+        z-index: 1003;
+        top: 0;
+        height: 100vh;
+        padding-top: 60px;
+    }
+
+    .sidebar.active {
+        transform: translateX(0);
+    }
+    
+    [dir="ltr"] .sidebar {
+        transform: translateX(-100%);
+    }
+    
+    [dir="ltr"] .sidebar.active {
+        transform: translateX(0);
+    }
+
+    .sidebar-overlay {
+        display: none;
+        z-index: 1001;
+    }
+
+    .sidebar-overlay.active {
+        display: block;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        background-color: rgba(0, 0, 0, 0.5);
+        z-index: 1001;
+    }
+
+    .main-content {
+        margin-right: 0;
+        transition: margin-right 0.3s ease-in-out;
+        width: 100%;
+        padding: 15px;
+        box-sizing: border-box;
+        min-height: calc(100vh - 60px);
+    }
+
+    [dir="ltr"] .main-content {
+        margin-left: 0;
+        margin-right: auto;
+    }
+
+    .navbar-controls {
+        gap: 5px;
+    }
+}

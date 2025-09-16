@@ -1,0 +1,238 @@
+{% extends 'layout/base.html' %}
+{% load static %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/main.css' %}">
+
+    <!-- Breadcrumb Navigation -->
+    <nav class="breadcrumb">
+        <a href="{% url 'configuration' %}" class="breadcrumb-item">الرئيسية</a>
+        <span class="breadcrumb-separator">
+            <i class="fas fa-chevron-right"></i>
+        </span>
+        <span class="breadcrumb-item active">إعدادات الحساب</span>
+    </nav>
+
+    <!-- Section 1: المعلومات الشخصية -->
+    <!-- <section class="config-section">
+        <h2 class="section-title">المعلومات الشخصية</h2>
+        <div class="form-container">
+            <form class="account-form">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="firstName" class="form-label">الاسم الأول</label>
+                        <input type="text" id="firstName" name="firstName" class="form-input" placeholder="أدخل الاسم الأول">
+                    </div>
+                    <div class="form-group">
+                        <label for="lastName" class="form-label">اسم العائلة</label>
+                        <input type="text" id="lastName" name="lastName" class="form-input" placeholder="أدخل اسم العائلة">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="email" class="form-label">البريد الإلكتروني</label>
+                        <input type="email" id="email" name="email" class="form-input" placeholder="أدخل البريد الإلكتروني">
+                    </div>
+                    <div class="form-group">
+                        <label for="phone" class="form-label">رقم الهاتف</label>
+                        <input type="tel" id="phone" name="phone" class="form-input" placeholder="أدخل رقم الهاتف">
+                    </div>
+                </div>
+
+                <div class="form-group full-width">
+                    <label for="address" class="form-label">العنوان</label>
+                    <textarea id="address" name="address" class="form-textarea" rows="3" placeholder="أدخل العنوان الكامل"></textarea>
+                </div>
+            </form>
+        </div>
+    </section> -->
+
+    <!-- Section 2: معلومات الحساب -->
+    <section class="config-section">
+        <div class="section-title">
+            <h2>معلومات الحساب</h2>
+        </div>
+        <div class="form-container">
+            <form class="account-form">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="username" class="form-label">اسم المستخدم</label>
+                        <input type="text" id="username" name="username" class="form-input" placeholder="أدخل اسم المستخدم">
+                    </div>
+                    <div class="form-group">
+                        <label for="accountType" class="form-label">نوع الحساب</label>
+                        <select id="accountType" name="accountType" class="form-select">
+                            <option value="">اختر نوع الحساب</option>
+                            <option value="merchant">تاجر</option>
+                            <option value="admin">مدير</option>
+                            <option value="user">مستخدم</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group full-width">
+                    <label for="bio" class="form-label">نبذة شخصية</label>
+                    <textarea id="bio" name="bio" class="form-textarea" rows="4" placeholder="اكتب نبذة مختصرة عنك"></textarea>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <!-- Section 3: إعدادات الأمان -->
+    <section class="config-section">
+        <div class="section-title">
+            <h2>إعدادات الأمان</h2>
+        </div>
+        <div class="form-container">
+            <form class="account-form">
+                <div class="form-group security-setting">
+                    <div class="setting-info">
+                        <label class="form-label">التحقق بخطوتين</label>
+                        <p class="setting-description">تفعيل التحقق بخطوتين لحماية إضافية لحسابك</p>
+                    </div>
+                    <div class="toggle-switch">
+                        <input type="checkbox" id="twoFactorAuth" name="twoFactorAuth" class="toggle-input">
+                        <label for="twoFactorAuth" class="toggle-label">
+                            <span class="toggle-slider"></span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- <div class="form-group security-setting">
+                    <div class="setting-info">
+                        <label class="form-label">إشعارات تسجيل الدخول</label>
+                        <p class="setting-description">تلقي إشعار عند تسجيل الدخول من جهاز جديد</p>
+                    </div>
+                    <div class="toggle-switch">
+                        <input type="checkbox" id="loginNotifications" name="loginNotifications" class="toggle-input">
+                        <label for="loginNotifications" class="toggle-label">
+                            <span class="toggle-slider"></span>
+                        </label>
+                    </div>
+                </div> -->
+            </form>
+        </div>
+    </section>
+
+    <!-- Section 4: تفضيلات الإشعارات -->
+    <!-- <section class="config-section">
+        <h2 class="section-title">تفضيلات الإشعارات</h2>
+        <div class="form-container">
+            <form class="account-form">
+                <div class="form-group">
+                    <label class="form-label">طريقة استلام الإشعارات</label>
+                    <div class="radio-group">
+                        <div class="radio-option">
+                            <input type="radio" id="emailNotif" name="notificationMethod" value="email" class="radio-input">
+                            <label for="emailNotif" class="radio-label">
+                                <span class="radio-custom"></span>
+                                البريد الإلكتروني
+                            </label>
+                        </div>
+                        <div class="radio-option">
+                            <input type="radio" id="smsNotif" name="notificationMethod" value="sms" class="radio-input">
+                            <label for="smsNotif" class="radio-label">
+                                <span class="radio-custom"></span>
+                                رسائل نصية
+                            </label>
+                        </div>
+                        <div class="radio-option">
+                            <input type="radio" id="bothNotif" name="notificationMethod" value="both" class="radio-input">
+                            <label for="bothNotif" class="radio-label">
+                                <span class="radio-custom"></span>
+                                كلاهما
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group security-setting">
+                    <div class="setting-info">
+                        <label class="form-label">إشعارات الطلبات الجديدة</label>
+                        <p class="setting-description">تلقي إشعار عند وصول طلب جديد</p>
+                    </div>
+                    <div class="toggle-switch">
+                        <input type="checkbox" id="orderNotifications" name="orderNotifications" class="toggle-input" checked>
+                        <label for="orderNotifications" class="toggle-label">
+                            <span class="toggle-slider"></span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="form-group security-setting">
+                    <div class="setting-info">
+                        <label class="form-label">إشعارات التسويق</label>
+                        <p class="setting-description">تلقي عروض وأخبار تسويقية</p>
+                    </div>
+                    <div class="toggle-switch">
+                        <input type="checkbox" id="marketingNotifications" name="marketingNotifications" class="toggle-input">
+                        <label for="marketingNotifications" class="toggle-label">
+                            <span class="toggle-slider"></span>
+                        </label>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </section> -->
+
+    <!-- Section 5: إعدادات اللغة والمنطقة -->
+    <!-- <section class="config-section">
+        <h2 class="section-title">إعدادات اللغة والمنطقة</h2>
+        <div class="form-container">
+            <form class="account-form">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="language" class="form-label">اللغة المفضلة</label>
+                        <select id="language" name="language" class="form-select">
+                            <option value="ar">العربية</option>
+                            <option value="en">English</option>
+                            <option value="fr">Français</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="timezone" class="form-label">المنطقة الزمنية</label>
+                        <select id="timezone" name="timezone" class="form-select">
+                            <option value="Asia/Riyadh">الرياض (GMT+3)</option>
+                            <option value="Asia/Dubai">دبي (GMT+4)</option>
+                            <option value="Africa/Cairo">القاهرة (GMT+2)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="currency" class="form-label">العملة المفضلة</label>
+                        <select id="currency" name="currency" class="form-select">
+                            <option value="SAR">ريال سعودي (SAR)</option>
+                            <option value="AED">درهم إماراتي (AED)</option>
+                            <option value="EGP">جنيه مصري (EGP)</option>
+                            <option value="USD">دولار أمريكي (USD)</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="dateFormat" class="form-label">تنسيق التاريخ</label>
+                        <select id="dateFormat" name="dateFormat" class="form-select">
+                            <option value="dd/mm/yyyy">يوم/شهر/سنة</option>
+                            <option value="mm/dd/yyyy">شهر/يوم/سنة</option>
+                            <option value="yyyy-mm-dd">سنة-شهر-يوم</option>
+                        </select>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </section> -->
+
+    <!-- Save Button -->
+    <div class="form-actions">
+        <button type="submit" class="btn-primary">
+            <i class="fas fa-save"></i>
+            حفظ التغييرات
+        </button>
+        <button type="button" class="btn-secondary">
+            <i class="fas fa-times"></i>
+            إلغاء
+        </button>
+    </div>
+
+{% endblock %}

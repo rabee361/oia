@@ -1,0 +1,284 @@
+/* 🎨 Color Picker Styles */
+.color-picker-card {
+    background-color: var(--bg-light);
+    border-radius: 15px;
+    padding: 25px;
+    border: 1px solid var(--border-light);
+    transition: all 0.3s ease;
+    text-align: center;
+}
+
+.color-picker-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    border-color: var(--primary-purple);
+}
+
+.color-picker-card h3 {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--text-dark);
+    margin-bottom: 8px;
+}
+
+.color-picker-card p {
+    font-size: 14px;
+    color: var(--text-muted);
+    margin-bottom: 20px;
+    line-height: 1.4;
+}
+
+/* Color Picker Container */
+.color-picker-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+/* Custom Color Input */
+.color-input {
+    width: 80px;
+    height: 80px;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+    outline: none;
+    background-color: none;
+    padding: 0;
+}
+
+.color-input:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+}
+
+.color-input:focus {
+    transform: scale(1.1);
+    box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.3);
+}
+
+/* Color Display */
+.color-display {
+    background-color: white;
+    border: 2px solid var(--border-light);
+    border-radius: 8px;
+    padding: 8px 16px;
+    font-family: 'Courier New', monospace;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-dark);
+    min-width: 100px;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.color-display:hover {
+    border-color: var(--primary-purple);
+    background-color: var(--bg-light);
+}
+
+/* Color Palette Presets */
+.color-presets {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 15px;
+    flex-wrap: wrap;
+}
+
+.preset-color {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    cursor: pointer;
+    border: 2px solid transparent;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.preset-color:hover {
+    transform: scale(1.2);
+    border-color: white;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.preset-color.active {
+    border-color: white;
+    box-shadow: 0 0 0 3px var(--primary-purple);
+}
+
+/* Color Harmony Suggestions */
+.color-harmony {
+    margin-top: 20px;
+    padding: 15px;
+    background-color: white;
+    border-radius: 10px;
+    border: 1px solid var(--border-light);
+}
+
+.harmony-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-dark);
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.harmony-colors {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+}
+
+.harmony-color {
+    width: 25px;
+    height: 25px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.harmony-color:hover {
+    transform: scale(1.1);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Color Animation Effects */
+@keyframes colorPulse {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+}
+
+.color-input.updating {
+    animation: colorPulse 0.6s ease-in-out;
+}
+
+/* Accessibility Features */
+.color-picker-card[data-contrast="low"] {
+    border: 2px solid #ff6b6b;
+}
+
+.color-picker-card[data-contrast="low"]::after {
+    content: "⚠️ تباين منخفض";
+    position: absolute;
+    top: -10px;
+    right: 10px;
+    background-color: #ff6b6b;
+    color: white;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+    .color-picker-card {
+        padding: 20px 15px;
+    }
+
+    .color-input {
+        width: 60px;
+        height: 60px;
+    }
+
+    .color-display {
+        font-size: 12px;
+        padding: 6px 12px;
+        min-width: 80px;
+    }
+
+    .preset-color {
+        width: 25px;
+        height: 25px;
+    }
+
+    .harmony-color {
+        width: 20px;
+        height: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .color-picker-container {
+        gap: 12px;
+    }
+
+    .color-presets {
+        gap: 8px;
+    }
+
+    .harmony-colors {
+        gap: 6px;
+    }
+}
+
+/* Dark Mode Support */
+@media (prefers-color-scheme: dark) {
+    .color-display {
+        background-color: var(--bg-dark);
+        color: var(--text-light);
+        border-color: var(--border-dark);
+    }
+
+    .color-harmony {
+        background-color: var(--bg-dark);
+        border-color: var(--border-dark);
+    }
+
+    .harmony-title {
+        color: var(--text-light);
+    }
+}
+
+/* Color Validation Indicators */
+.color-validation {
+    margin-top: 10px;
+    font-size: 12px;
+    text-align: center;
+}
+
+.validation-good {
+    color: #10b981;
+}
+
+.validation-warning {
+    color: #f59e0b;
+}
+
+.validation-error {
+    color: #ef4444;
+}
+
+/* Loading State */
+.color-picker-card.loading {
+    opacity: 0.7;
+    pointer-events: none;
+}
+
+.color-picker-card.loading::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 20px;
+    height: 20px;
+    margin: -10px 0 0 -10px;
+    border: 2px solid var(--primary-purple);
+    border-top: 2px solid transparent;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}

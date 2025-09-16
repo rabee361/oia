@@ -1,0 +1,71 @@
+:root {
+  /* Info Bar Variables */
+  --info-bar-height: 35px;
+  --info-bar-bg: #2c3e50;
+  --info-bar-text: #ffffff;
+  --info-bar-link-hover: var(--primary-yellow);
+  
+  /* Navbar Variables */
+  --navbar-height: 80px;
+  --navbar-bg-color: #ffffff;
+  --navbar-text-color: #333333;
+  --navbar-link-hover: var(--primary-yellow);
+  --navbar-border-color: #f5f5f5;
+  --navbar-hamburger-color: #333333;
+  --navbar-breakpoint: 768px;
+  --navbar-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  
+  /* Yellow and White Color Palette */
+  --primary-yellow: #ffd700;
+  --secondary-yellow: #ffeb3b;
+  --light-yellow: #fff8e1;
+  --dark-yellow: #ff8f00;
+  --accent-yellow: #ffc107;
+  
+  --primary-white: #ffffff;
+  --off-white: #fafafa;
+  --light-gray: #f5f5f5;
+  --medium-gray: #e0e0e0;
+  --dark-gray: #757575;
+  --text-dark: #333333;
+  --text-light: #666666;
+  
+  /* Component Colors */
+  --navbar-cart-count-bg: var(--primary-yellow);
+  --navbar-cart-count-color: var(--text-dark);
+  --sidebar-bg: var(--primary-white);
+  --sidebar-overlay: rgba(0, 0, 0, 0.5);
+  --sidebar-width: 280px;
+  --search-bg: var(--light-gray);
+  --search-border: var(--medium-gray);
+  --button-hover: var(--light-yellow);
+  
+  /* Dropdown Variables */
+  --dropdown-bg: var(--primary-white);
+  --dropdown-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+  --dropdown-border: var(--medium-gray);
+  --dropdown-item-hover: var(--light-yellow);
+  --dropdown-width: 240px;
+  
+  /* Badge Variables */
+  --badge-new-bg: #4CAF50;
+  --badge-hot-bg: #FF5722;
+  --badge-sale-bg: #F44336;
+  
+  /* Transitions */
+  --transition-fast: 0.2s ease;
+  --transition-smooth: 0.3s ease;
+  --transition-slow: 0.4s ease;
+  
+  /* Shadows */
+  --shadow-light: 0 2px 4px rgba(0, 0, 0, 0.1);
+  --shadow-medium: 0 4px 8px rgba(0, 0, 0, 0.15);
+  --shadow-heavy: 0 8px 16px rgba(0, 0, 0, 0.2);
+  
+  /* Z-index Variables */
+  --z-info-bar: 1002;
+  --z-navbar: 1001;
+  --z-dropdown: 1003;
+  --z-sidebar: 1004;
+  --z-overlay: 1003;
+}

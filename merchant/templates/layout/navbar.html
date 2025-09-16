@@ -1,0 +1,43 @@
+{% load static %}
+    
+<!-- Top Navigation Bar -->
+<nav class="top-navbar" aria-label="Main navigation">
+    <div class="navbar-container">
+        <div class="navbar-items">
+            <!-- Logo -->
+            <div class="navbar-logo">
+                <span>Old Store</span>
+            </div>
+
+            <!-- Controls -->
+            <div class="navbar-controls">
+                <!-- User Avatar -->
+                <div class="user-avatar">
+                    <img src="{% static 'images/oia.jpg' %}" alt="User Avatar">
+                    {% if request.user.image %}
+                    <img src="{% static 'images/oia.jpg' %}" alt="User Avatar">
+                    {% else %}
+                        <div class="avatar-circle">
+                            {{ "rabee"|first|upper }}
+                        </div>
+                    {% endif %}
+                </div>
+
+                <!-- Theme Toggle Button -->
+                <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
+                    <i class="fas fa-moon"></i>
+                </button>
+
+                <!-- Language Switcher Button -->
+                <button class="language-toggle" id="languageToggle" aria-label="Switch language">
+                    <span id="currentLang">{{ LANGUAGE_CODE|upper }}</span>
+                </button>
+
+                <!-- Hamburger Menu Button -->
+                <button id="hamburgerMenu" class="hamburger-menu" aria-label="Toggle sidebar">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+</nav>

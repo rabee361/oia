@@ -1,0 +1,107 @@
+version: '3.9'
+
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: >
+      sh -c "python manage.py makemigrations && python manage.py migrate && python manage.py collectstatic --no-input && daphne -b 0.0.0.0 -p 8000 store.asgi:application"
+    container_name: oia_store_web_1
+    volumes:
+      - .:/home/app
+      - static_volume:/home/app/static
+      - media_volume:/home/app/media
+    expose:
+      - 8000
+    restart: always
+    env_file:
+      - ./store/.env
+    environment:
+      DJANGO_SETTINGS_MODULE: store.settings 
+      DB_ENGINE: django.db.backends.postgresql
+      DB_HOST: db
+      DB_PORT: 5432
+      DB_PASSWORD: postgres
+      DB_USER: postgres
+      DB_NAME: postgres
+    depends_on:
+      - db
+    networks:
+      - oia_store_network
+    logging:
+      options:
+        max-size: 50m
+    deploy:
+      resources:
+        limits:
+          cpus: '1'
+          memory: 1G
+        reservations:
+          cpus: '0.5'
+          memory: 512M
+
+ 
+  db:
+    image: postgres:15
+    container_name: oia_store_db_1
+    env_file:
+      - ./store/.env
+    environment:
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_USER: postgres
+      POSTGRES_DB: postgres
+    restart: always
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+    ports:
+      - 5432:5432
+    expose:
+      - "5432"
+    networks:
+        - oia_store_network
+    deploy:
+      resources:
+        limits:
+          cpus: '2'
+          memory: 2G
+        reservations:
+          cpus: '1'
+          memory: 1G
+
+  nginx:
+    image: nginx
+    build: ./nginx
+    env_file:
+      - ./store/.env
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - static_volume:/home/app/static
+      - media_volume:/home/app/media
+    depends_on:
+      - web
+    restart: always
+    networks:
+      - oia_store_network
+    logging:
+      options:
+        max-size: 50m
+    deploy:
+      resources:
+        limits:
+          cpus: '0.5'
+          memory: 512M
+        reservations:
+          cpus: '0.2'
+          memory: 256M
+
+networks:
+  oia_store_network:
+    driver: bridge
+
+volumes:
+  postgres_data:
+  media_volume:
+  static_volume:

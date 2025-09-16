@@ -1,0 +1,57 @@
+{% extends 'layout/base.html' %}
+{% load i18n %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/analytics.css' %}">
+
+{% block content %}
+
+
+<nav class="breadcrumb">
+    <a href="#" class="breadcrumb-item">الرئيسية</a>
+    <span class="breadcrumb-separator">
+        <i class="fas fa-chevron-right"></i>
+    </span>
+    <span class="breadcrumb-item active">إعدادات الحساب</span>
+</nav>
+
+    <section class="config-section">
+        <div class="section-title">
+            <h2>معلومات الحساب</h2>
+        </div>
+        <div class="analytics-container">
+            <div class="reports-slider">
+                <ul class="reports-nav">
+                    <li><a href="javascript:void(0)" hx-get="{% url 'sales-report' %}" class="report-link active" hx-target="#reportContent">المبيعات</a></li>
+                    <li><a href="javascript:void(0)" hx-get="{% url 'orders-report' %}" class="report-link" hx-target="#reportContent">الطلبات</a></li>
+                    <li><a href="javascript:void(0)" hx-get="{% url 'products-report' %}" class="report-link" hx-target="#reportContent">المنتجات</a></li>
+                    <li><a href="javascript:void(0)" hx-get="{% url 'customers-report' %}" class="report-link" hx-target="#reportContent">العملاء</a></li>
+                    <li><a href="javascript:void(0)" hx-get="{% url 'coupons-report' %}" class="report-link" hx-target="#reportContent">الكوبونات</a></li>
+                    <li><a href="javascript:void(0)" hx-get="{% url 'payment-report' %}" class="report-link" hx-target="#reportContent">الدفع</a></li>
+                    <li><a href="javascript:void(0)" hx-get="{% url 'shipping-report' %}" class="report-link" hx-target="#reportContent">الشحن</a></li>
+                    <li><a href="javascript:void(0)" hx-get="{% url 'stock-report' %}" class="report-link" hx-target="#reportContent">المخزون</a></li>
+                </ul>
+            </div>
+        
+            <div id="reportContent" class="report-content">
+                <!-- Content will be loaded here via HTMX -->
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Add active class to clicked report link
+        document.addEventListener('DOMContentLoaded', function() {
+            const reportLinks = document.querySelectorAll('.report-link');
+            
+            reportLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    // Remove active class from all links
+                    reportLinks.forEach(l => l.classList.remove('active'));
+                    // Add active class to clicked link
+                    this.classList.add('active');
+                });
+            });
+        });
+    </script>
+
+{% endblock %}

@@ -1,0 +1,108 @@
+<!-- Navigation Bar -->
+<nav class="navbar">
+    <div class="nav-brand">
+        <a href="/" class="brand-link">StoreName</a>
+    </div>
+    
+    <!-- Main Navigation Links -->
+    <div class="nav-menu">
+        <ul class="nav-links">
+            <li><a href="/" class="nav-link active">Home</a></li>
+            <li><a href="{% url 'theme-products' theme.slug %}" class="nav-link">Products</a></li>
+            <li><a href="/categories" class="nav-link">Categories</a></li>
+            <li><a href="/about" class="nav-link">About</a></li>
+            <li><a href="/contact" class="nav-link">Contact</a></li>
+        </ul>
+    </div>
+    
+    <!-- Right Side Items -->
+    <div class="nav-items">
+        <!-- Search Icon -->
+        <button class="nav-action-btn search-btn" id="search-toggle">
+            <i class="fas fa-search"></i>
+        </button>
+        
+        <!-- Language Switcher -->
+        <div class="language-switcher">
+            <button class="nav-action-btn language-btn" id="language-toggle">
+                <i class="fas fa-globe"></i>
+                <span class="current-lang">EN</span>
+                <i class="fas fa-chevron-down"></i>
+            </button>
+            <div class="language-dropdown" id="language-dropdown">
+                <a href="#" class="language-option" data-lang="en">
+                    <span class="flag-icon">🇺🇸</span>
+                    <span>English</span>
+                </a>
+                <a href="#" class="language-option" data-lang="ar">
+                    <span class="flag-icon">🇸🇦</span>
+                    <span>العربية</span>
+                </a>
+            </div>
+        </div>
+        
+        <!-- Wishlist -->
+        <a href="{% url 'wishlist' theme.slug %}" class="nav-action-btn wishlist-btn">
+            <i class="fas fa-heart"></i>
+            <span class="navbar-badge wishlist-badge">2</span>
+        </a>
+        
+        <!-- Shopping Cart -->
+        <a href="{% url 'cart' theme.slug %}" class="nav-action-btn cart-btn">
+            <i class="fas fa-shopping-cart"></i>
+            <span class="navbar-badge cart-badge">4</span>
+        </a>
+        
+        <!-- Theme Toggle -->
+        <button id="theme-toggle" class="nav-action-btn theme-toggle-btn">
+            <span class="theme-icon">🌙</span>
+        </button>
+        
+        <!-- Mobile Menu Toggle -->
+        <button class="nav-action-btn mobile-menu-toggle" id="mobile-menu-toggle">
+            <i class="fas fa-bars"></i>
+        </button>
+    </div>
+    
+    <!-- Mobile Menu Overlay -->
+    <div class="mobile-menu-overlay" id="mobile-menu-overlay">
+        <div class="mobile-menu">
+            <div class="mobile-menu-header">
+                <span class="mobile-brand">StoreName</span>
+                <button class="mobile-close-btn" id="mobile-close">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="mobile-nav-links">
+                <a href="/" class="mobile-nav-link">Home</a>
+                <a href="/products" class="mobile-nav-link">Products</a>
+                <a href="/categories" class="mobile-nav-link">Categories</a>
+                <a href="/about" class="mobile-nav-link">About</a>
+                <a href="/contact" class="mobile-nav-link">Contact</a>
+                <a href="/cart" class="mobile-nav-link">
+                    <i class="fas fa-shopping-cart"></i>
+                    Cart (4)
+                </a>
+                <a href="/wishlist" class="mobile-nav-link">
+                    <i class="fas fa-heart"></i>
+                    Wishlist (2)
+                </a>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Search Overlay -->
+    <div class="search-overlay" id="search-overlay">
+        <div class="search-container-nav">
+            <div class="search-wrapper-nav">
+                <input type="text" class="search-input-nav" placeholder="Search products..." id="search-input-nav">
+                <button class="search-btn-nav" id="search-submit">
+                    <i class="fas fa-search"></i>
+                </button>
+                <button class="search-close-btn" id="search-close">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+</nav>

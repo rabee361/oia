@@ -1,0 +1,175 @@
+/* Theme4 CSS Variables */
+:root {
+    /* Primary Colors - Yellow and White Based */
+    --theme4-primary-yellow: #ffd700;
+    --theme4-primary-yellow-dark: #e6c200;
+    --theme4-primary-yellow-light: #ffed4a;
+    --theme4-primary-white: #ffffff;
+    --theme4-primary-black: #1a1a1a;
+    --theme4-primary-gray: #6b7280;
+    
+    /* Background Colors */
+    --theme4-bg-primary: #ffffff;
+    --theme4-bg-secondary: #f9fafb;
+    --theme4-bg-dark: #1f2937;
+    --theme4-bg-overlay: rgba(0, 0, 0, 0.5);
+    --theme4-bg-glass: rgba(255, 255, 255, 0.95);
+    
+    /* Text Colors */
+    --theme4-text-primary: #1f2937;
+    --theme4-text-secondary: #6b7280;
+    --theme4-text-light: #9ca3af;
+    --theme4-text-white: #ffffff;
+    --theme4-text-yellow: #ffd700;
+    
+    /* Border Colors */
+    --theme4-border-light: #e5e7eb;
+    --theme4-border-medium: #d1d5db;
+    --theme4-border-dark: #9ca3af;
+    --theme4-border-yellow: #ffd700;
+    
+    /* Navbar Specific Variables */
+    --theme4-navbar-height: 70px;
+    --theme4-navbar-bg: var(--theme4-bg-glass);
+    --theme4-navbar-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+    --theme4-navbar-border-radius: 15px;
+    --theme4-navbar-margin: 20px;
+    
+    /* Navbar Brand */
+    --theme4-brand-font-size: 1.5rem;
+    --theme4-brand-font-weight: 700;
+    --theme4-brand-color: var(--theme4-text-primary);
+    --theme4-logo-size: 40px;
+    
+    /* Navigation Links */
+    --theme4-nav-link-color: var(--theme4-text-primary);
+    --theme4-nav-link-hover-color: var(--theme4-primary-yellow);
+    --theme4-nav-link-active-color: var(--theme4-primary-yellow);
+    --theme4-nav-link-font-weight: 500;
+    --theme4-nav-link-padding: 8px 16px;
+    --theme4-nav-link-border-radius: 8px;
+    
+    /* Search Bar */
+    --theme4-search-bg: #f3f4f6;
+    --theme4-search-border: var(--theme4-border-light);
+    --theme4-search-focus-border: var(--theme4-primary-yellow);
+    --theme4-search-button-bg: var(--theme4-primary-yellow);
+    --theme4-search-button-hover-bg: var(--theme4-primary-yellow-dark);
+    --theme4-search-height: 40px;
+    --theme4-search-border-radius: 20px;
+    
+    /* Control Buttons */
+    --theme4-control-btn-size: 40px;
+    --theme4-control-btn-bg: transparent;
+    --theme4-control-btn-hover-bg: #f3f4f6;
+    --theme4-control-btn-color: var(--theme4-text-primary);
+    --theme4-control-btn-border-radius: 10px;
+    
+    /* Badge */
+    --theme4-badge-bg: #ef4444;
+    --theme4-badge-color: var(--theme4-text-white);
+    --theme4-badge-size: 18px;
+    --theme4-badge-font-size: 0.75rem;
+    
+    /* User Menu */
+    --theme4-user-avatar-size: 40px;
+    --theme4-dropdown-bg: var(--theme4-bg-primary);
+    --theme4-dropdown-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+    --theme4-dropdown-border-radius: 12px;
+    --theme4-dropdown-item-hover-bg: #f3f4f6;
+    
+    /* Hamburger Menu */
+    --theme4-hamburger-line-height: 2px;
+    --theme4-hamburger-line-width: 20px;
+    --theme4-hamburger-line-bg: var(--theme4-text-primary);
+    --theme4-hamburger-spacing: 4px;
+    
+    /* Mobile Sidebar */
+    --theme4-sidebar-width: 280px;
+    --theme4-sidebar-bg: var(--theme4-bg-primary);
+    --theme4-sidebar-shadow: -5px 0 25px rgba(0, 0, 0, 0.15);
+    --theme4-sidebar-item-padding: 12px 20px;
+    --theme4-sidebar-item-hover-bg: #f9fafb;
+    --theme4-sidebar-header-height: 80px;
+    
+    /* Animation Variables */
+    --theme4-transition-fast: 0.2s ease;
+    --theme4-transition-medium: 0.3s ease;
+    --theme4-transition-slow: 0.5s ease;
+    
+    /* Z-index Variables */
+    --theme4-z-navbar: 1000;
+    --theme4-z-dropdown: 1010;
+    --theme4-z-sidebar: 1020;
+    --theme4-z-overlay: 1015;
+    
+    /* Spacing Variables */
+    --theme4-spacing-xs: 4px;
+    --theme4-spacing-sm: 8px;
+    --theme4-spacing-md: 12px;
+    --theme4-spacing-lg: 16px;
+    --theme4-spacing-xl: 20px;
+    --theme4-spacing-2xl: 24px;
+    --theme4-spacing-3xl: 32px;
+    
+    /* Typography */
+    --theme4-font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    --theme4-font-size-xs: 0.75rem;
+    --theme4-font-size-sm: 0.875rem;
+    --theme4-font-size-base: 1rem;
+    --theme4-font-size-lg: 1.125rem;
+    --theme4-font-size-xl: 1.25rem;
+    --theme4-font-size-2xl: 1.5rem;
+    
+    /* Border Radius */
+    --theme4-radius-sm: 6px;
+    --theme4-radius-md: 8px;
+    --theme4-radius-lg: 12px;
+    --theme4-radius-xl: 16px;
+    --theme4-radius-2xl: 20px;
+    --theme4-radius-full: 50%;
+}
+
+/* Dark Mode Variables */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --theme4-bg-primary: #111827;
+        --theme4-bg-secondary: #1f2937;
+        --theme4-bg-dark: #374151;
+        --theme4-bg-glass: rgba(17, 24, 39, 0.95);
+        
+        --theme4-text-primary: #f9fafb;
+        --theme4-text-secondary: #d1d5db;
+        --theme4-text-light: #9ca3af;
+        
+        --theme4-border-light: #374151;
+        --theme4-border-medium: #4b5563;
+        --theme4-border-dark: #6b7280;
+        
+        --theme4-navbar-bg: var(--theme4-bg-glass);
+        --theme4-search-bg: #374151;
+        --theme4-control-btn-hover-bg: #374151;
+        --theme4-dropdown-bg: #1f2937;
+        --theme4-dropdown-item-hover-bg: #374151;
+        --theme4-sidebar-bg: #111827;
+        --theme4-sidebar-item-hover-bg: #1f2937;
+    }
+}
+
+/* High Contrast Mode */
+@media (prefers-contrast: high) {
+    :root {
+        --theme4-navbar-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
+        --theme4-border-light: #000000;
+        --theme4-text-secondary: #000000;
+    }
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+    :root {
+        --theme4-transition-fast: 0s;
+        --theme4-transition-medium: 0s;
+        --theme4-transition-slow: 0s;
+    }
+}
