@@ -12,12 +12,12 @@ body {
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   line-height: 1.6;
   color: var(--text-dark);
-  padding-top: calc(var(--info-bar-height) + var(--middle-section-height) + var(--navbar-height));
+  padding-top: 40px;
 }
 
 @media (max-width: 768px) {
   body {
-    padding-top: calc(var(--info-bar-height) + var(--middle-section-height));
+    padding-top: 30px;
   }
 }
 
@@ -142,14 +142,8 @@ body {
 /* ===== MIDDLE SECTION (LOGO, SEARCH, ACTIONS) ===== */
 
 .middle-section {
-  position: fixed;
-  top: var(--info-bar-height);
-  left: 0;
-  right: 0;
   height: var(--middle-section-height);
   background-color: var(--middle-section-bg);
-  border-bottom: 1px solid var(--middle-section-border);
-  box-shadow: var(--navbar-shadow);
   z-index: var(--z-navbar);
 }
 
@@ -279,10 +273,11 @@ body {
 .navbar {
   position: fixed;
   top: calc(var(--info-bar-height) + var(--middle-section-height));
-  left: 0;
-  right: 0;
+  left: 60px;
+  right: 60px;
   height: var(--navbar-height);
   background-color: var(--navbar-bg-color);
+  border-radius: 10px;
   z-index: var(--z-navbar);
   transition: all var(--transition-smooth);
 }
@@ -334,7 +329,7 @@ body {
 @media (max-width: 768px) {
   .navbar-brand {
     order: 2;
-    justify-content: center;
+    justify-content: left;
     flex: 1;
   }
 }
@@ -967,7 +962,7 @@ body {
   
   .navbar-brand {
     order: 2;
-    justify-content: center;
+    justify-content: left;
     flex: 1;
   }
   

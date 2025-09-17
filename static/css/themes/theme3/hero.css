@@ -5,6 +5,7 @@
   position: relative;
   width: 100%;
   height: 60vh;
+  margin-top: 100px;
   min-height: 400px;
   overflow: hidden;
 }
@@ -111,10 +112,11 @@
 }
 
 /* Responsive Hero Styles */
-@media (max-width: var(--navbar-breakpoint)) {
+@media (max-width: 768px) {
   .hero-section {
     height: 50vh;
     min-height: 350px;
+    margin-top: 10px;
   }
   
   .hero-container {
@@ -152,6 +154,7 @@
   .hero-section {
     height: 45vh;
     min-height: 300px;
+    margin-top: 10px;
   }
   
   .hero-title {
