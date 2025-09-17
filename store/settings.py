@@ -143,7 +143,7 @@ USE_TZ = True
 # Add these translation settings
 LANGUAGES = [
     ('en', 'English'),
-    ('ar', 'Arabic'),  # Since I see RTL in your templates
+    ('ar', 'Arabic'),
 ]
 
 LOCALE_PATHS = [
@@ -187,5 +187,5 @@ CELERY_BROKER_URL = 'redis://localhost:6379/0'
 CELERY_RESULT_BACKEND = 'redis://localhost:6379/0'
 
 SESSION_COOKIE_SECURITY = True
-SESSION_COOKIE_HTTPONLY  = True
+# SESSION_COOKIE_HTTPONLY  = True
 SESSION_COOKIE_AGE = 3600
