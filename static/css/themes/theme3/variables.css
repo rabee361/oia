@@ -1,50 +1,59 @@
 :root {
   /* Info Bar Variables */
-  --info-bar-height: 35px;
-  --info-bar-bg: #2c3e50;
+  --info-bar-height: 40px;
+  --info-bar-bg: #1e4a73;
   --info-bar-text: #ffffff;
-  --info-bar-link-hover: var(--primary-yellow);
+  --info-bar-link-hover: var(--primary-blue);
+  
+  /* Middle Section Variables */
+  --middle-section-height: 85px;
+  --middle-section-bg: #ffffff;
+  --middle-section-border: #e0e6ed;
   
   /* Navbar Variables */
-  --navbar-height: 80px;
-  --navbar-bg-color: #ffffff;
-  --navbar-text-color: #333333;
-  --navbar-link-hover: var(--primary-yellow);
-  --navbar-border-color: #f5f5f5;
-  --navbar-hamburger-color: #333333;
+  --navbar-height: 60px;
+  --navbar-bg-color: #2b5a87;
+  --navbar-text-color: #ffffff;
+  --navbar-link-hover: var(--light-blue);
+  --navbar-border-color: #e0e6ed;
+  --navbar-hamburger-color: #2b5a87;
   --navbar-breakpoint: 768px;
-  --navbar-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  --navbar-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  --navbar-max-width: 1440px;
+  --navbar-spacing: 1.5rem;
   
-  /* Yellow and White Color Palette */
-  --primary-yellow: #ffd700;
-  --secondary-yellow: #ffeb3b;
-  --light-yellow: #fff8e1;
-  --dark-yellow: #ff8f00;
-  --accent-yellow: #ffc107;
+  /* Blue Color Palette */
+  --primary-blue: #2b5a87;
+  --secondary-blue: #1e4a73;
+  --light-blue: #e8f2ff;
+  --dark-blue: #1a3a5c;
+  --accent-blue: #3498db;
   
   --primary-white: #ffffff;
   --off-white: #fafafa;
-  --light-gray: #f5f5f5;
-  --medium-gray: #e0e0e0;
-  --dark-gray: #757575;
-  --text-dark: #333333;
-  --text-light: #666666;
+  --light-gray: #f8f9fa;
+  --medium-gray: #dee2e6;
+  --dark-gray: #6c757d;
+  --text-dark: #2c3e50;
+  --text-light: #5a6c7d;
   
   /* Component Colors */
-  --navbar-cart-count-bg: var(--primary-yellow);
-  --navbar-cart-count-color: var(--text-dark);
+  --navbar-cart-count-bg: #ff6b35;
+  --navbar-cart-count-color: var(--primary-white);
   --sidebar-bg: var(--primary-white);
   --sidebar-overlay: rgba(0, 0, 0, 0.5);
-  --sidebar-width: 280px;
-  --search-bg: var(--light-gray);
-  --search-border: var(--medium-gray);
-  --button-hover: var(--light-yellow);
+  --sidebar-width: 300px;
+  --search-bg: #f8f9fa;
+  --search-border: #e0e6ed;
+  --button-hover: var(--light-blue);
+  --search-button-bg: var(--primary-blue);
+  --search-button-hover: var(--dark-blue);
   
   /* Dropdown Variables */
   --dropdown-bg: var(--primary-white);
   --dropdown-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
   --dropdown-border: var(--medium-gray);
-  --dropdown-item-hover: var(--light-yellow);
+  --dropdown-item-hover: var(--light-blue);
   --dropdown-width: 240px;
   
   /* Badge Variables */
