@@ -52,6 +52,9 @@ class Merchant(models.Model):
     store_type = models.CharField(max_length=100, choices=StoreTypes)
     share_location = models.BooleanField(default=False)
 
+    def __str__(self):
+        return self.user.username
+
 class Customer(models.Model):
     merchant = models.ForeignKey(Merchant, on_delete=models.CASCADE)
     user = models.OneToOneField(CustomUser, on_delete=models.CASCADE)

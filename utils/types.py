@@ -7,6 +7,10 @@ class UserType(models.TextChoices):
     MERCHANT = 'merchant'
     ADMIN = 'admin'
 
+class CampaignEnds(models.TextChoices):
+    FIVE_HUNDRED_SALE = '500 sale'
+    TWO_HUNDRED_SALE = '200 sale'
+
 class CodeTypes(models.TextChoices):
     SIGNUP = 'SIGNUP'
     RESET_PASSWORD = 'RESET_PASSWORD'
@@ -51,3 +55,23 @@ class DiscountTypes(models.TextChoices):
     PERCENT = 'percent'
     FIXED = 'fixed'
     FREE_SHIPPING = 'free_shipping'
+
+class ClientSelection(models.TextChoices):
+    ALL_CLIENTS = 'ALL_CLIENTS'
+    IMPORTED_CLIENTS = 'IMPORTED_CLIENTS'
+    CLEINTS_PAST_30_DAYS = 'CLEINTS_PAST_30_DAYS'
+
+class PackageTypes(models.TextChoices):
+    TOTAL = 'TOTAL'
+    DISCOUNT = 'DISCOUNT'
+    FREE = 'FREE'
+
+class StatusTypes(models.TextChoices):
+    PERCENT = 'percent'
+    FIXED = 'fixed'
+    FREE_SHIPPING = 'free_shipping'
+
+class AutoDiscountType(models.TextChoices):
+    ACTIVE = 'active'
+    FINISHED = 'finished'
+    SCHEDULED = 'scheduled'

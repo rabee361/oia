@@ -12,22 +12,13 @@ body {
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   line-height: 1.6;
   color: var(--text-dark);
-  padding-top: 40px;
 }
 
-@media (max-width: 768px) {
-  body {
-    padding-top: 30px;
-  }
-}
 
 /* ===== INFO BAR STYLES ===== */
 
 .info-bar {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
+
   height: var(--info-bar-height);
   background-color: var(--info-bar-bg);
   color: var(--info-bar-text);

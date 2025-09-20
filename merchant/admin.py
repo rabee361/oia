@@ -177,9 +177,9 @@ class OrderAdmin(admin.ModelAdmin):
         return super().get_queryset(request).select_related('merchant', 'merchant__user', 'customer', 'customer__user')
 
 
-@admin.register(AutoDiscount)
-class AutoDiscountAdmin(admin.ModelAdmin):
-    list_display = ['id', 'discount_type', 'percent', 'condition', 'from_date', 'to_date', 'limit']
-    search_fields = ['discount_type', 'condition']
-    list_filter = ['discount_type', 'condition', 'from_date', 'to_date']
-    ordering = ['-from_date', 'discount_type']
+# @admin.register(AutoDiscount)
+# class AutoDiscountAdmin(admin.ModelAdmin):
+#     list_display = ['id', 'discount_type', 'percent', 'condition', 'from_date', 'to_date', 'limit']
+#     search_fields = ['discount_type', 'condition']
+#     list_filter = ['discount_type', 'condition', 'from_date', 'to_date']
+#     ordering = ['-from_date', 'discount_type']

@@ -38,6 +38,9 @@ class ProductCategory(models.Model):
     image = models.ImageField(upload_to='products/categories' , null=True, blank=True)
     slug = models.CharField(max_length=50, null=True, blank=True)
 
+    def __str__(self):
+        return self.en_name
+
 class Product(models.Model):
     merchant = models.ForeignKey(Merchant, on_delete=models.CASCADE)
     image1 = models.ImageField(upload_to='images/merchant/products', null=True, blank=True)
@@ -67,6 +70,9 @@ class Product(models.Model):
     current_quantity = models.IntegerField()
     isActive = models.BooleanField(default=True)
     isDeleted = models.BooleanField(default=False)
+
+    def __str__(self):
+        return self.en_name
 
 class ProductFilter(models.Model):
     ar_name  = models.CharField(max_length=255)
@@ -168,9 +174,35 @@ class Order(models.Model):
     updatedAt = models.DateTimeField(auto_now=True)
 
 class AutoDiscount(models.Model):
+    merchant = models.ForeignKey(Merchant, on_delete=models.CASCADE)
     discount_type = models.CharField(max_length=100, choices=DiscountTypes.choices)
-    percent = models.IntegerField(validators=[MinValueValidator(0), MaxValueValidator(100)])
-    condition = models.CharField(max_length=100, choices=DiscountTypes.choices)
+    name = models.CharField(max_length=255)
+    status = models.CharField(max_length=100, choices=StatusTypes.choices)
     from_date = models.DateTimeField()
     to_date = models.DateTimeField()
-    limit = models.IntegerField(validators=[MinValueValidator(0)])
+    stop_at = models.CharField(max_length=100, choices=CampaignEnds.choices)
+
+class SalePackage(models.Model):
+    merchant = models.ForeignKey(Merchant, on_delete=models.CASCADE)
+    ar_name = models.CharField(max_length=255)
+    en_name = models.CharField(max_length=255)
+    percent = models.IntegerField(validators=[MinValueValidator(0), MaxValueValidator(100)])
+    ar_description = models.TextField()
+    en_description = models.TextField()
+    start_date = models.DateField()
+    end_date = models.DateField()
+    package_type = models.CharField(max_length=100, choices=PackageTypes.choices)
+
+
+class SaleCampaign(models.Model):
+    merchant = models.ForeignKey(Merchant, on_delete=models.CASCADE)
+    name = models.CharField(max_length=255)
+    from_date = models.DateField(null=True, blank=True)
+    from_time = models.TimeField(null=True, blank=True)
+    purpose = models.CharField(max_length=100)
+    notify_through = models.CharField(max_length=100)
+    client_selection = models.CharField(max_length=100, choices=ClientSelection.choices)
+    campaign_timezone = models.CharField(max_length=100)
+    msg = models.TextField()
+    msg_time = models.TimeField(null=True, blank=True)
+    msg_date = models.DateField(null=True, blank=True)

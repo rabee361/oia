@@ -23,120 +23,113 @@
                 إضافة منتج
             </a>
         </div>
+
         <!-- Search and Filter Container -->
         <div class="table-controls">
-            <!-- Stats Container -->
-            <div class="stats-container">
-                <ul class="stats-list">
-                    <li class="stats-item">
-                        <a href="#" class="stats-link active">الكل (200)</a>
-                    </li>
-                    <li class="stats-item">
-                        <a href="#" class="stats-link">نشط (150)</a>
-                    </li>
-                    <li class="stats-item">
-                        <a href="#" class="stats-link">غير نشط (25)</a>
-                    </li>
-                    <li class="stats-item">
-                        <a href="#" class="stats-link">نفذ المخزون (25)</a>
-                    </li>
-                </ul>
-            </div>
-            
-            <!-- Search Bar -->
-            <div class="search-container">
-                <div class="search-bar">
-                    <input type="text" class="search-input" placeholder="ابحث عن اسم المنتج أو رمز المنتج...">
-                    <button type="button" class="search-btn">
-                        <i class="fas fa-search"></i>
-                        بحث
+            <form method="get">
+                <!-- Stats Container -->
+                <div class="stats-container">
+                    <ul class="stats-list">
+                        <li class="stats-item">
+                            <a href="#" class="stats-link active">  الكل ({{ 90 }})</a>
+                        </li>
+                        <li class="stats-item">
+                            <a href="#" class="stats-link"> المنتجات الرقمية ({{ 90 }})</a>
+                        </li>
+                        <li class="stats-item">
+                            <a href="#" class="stats-link">  المنتجات العادية ({{ 90 }})</a>
+                        </li>
+                    </ul>
+                </div>
+                
+                <!-- Search Bar -->
+                <div class="search-container">
+                    <div class="search-bar">
+                        <input type="text" class="search-input" placeholder="ابحث عن اسم المنتج أو رمز المنتج..." name="name" value="{{ request.GET.name }}">
+                        <button type="submit" class="search-btn">
+                            <i class="fas fa-search"></i>
+                            بحث
+                        </button>
+                    </div>
+                    <button type="button" class="filter-toggle-btn" id="filterToggleBtn">
+                        <i class="fas fa-filter"></i>
+                        تصفية المنتجات
+                        <i class="fas fa-chevron-down toggle-arrow"></i>
                     </button>
                 </div>
-                <button type="button" class="filter-toggle-btn" id="filterToggleBtn">
-                    <i class="fas fa-filter"></i>
-                    تصفية المنتجات
-                    <i class="fas fa-chevron-down toggle-arrow"></i>
-                </button>
-            </div>
-
-            <!-- Filters Container (Initially Hidden) -->
-            <div class="filters-container" id="filtersContainer" style="display: none;">
-                <div class="filters-grid">
-                    <div class="filter-group">
-                        <label for="categoryFilter" class="filter-label">الفئة</label>
-                        <select id="categoryFilter" name="category" class="filter-select">
-                            <option value="">جميع الفئات</option>
-                            <option value="electronics">إلكترونيات</option>
-                            <option value="clothing">ملابس</option>
-                            <option value="books">كتب</option>
-                            <option value="home">منزل وحديقة</option>
-                        </select>
+    
+                <!-- Filters Container (Initially Hidden) -->
+                <div class="filters-container" id="filtersContainer" style="display: none;">
+                    <div class="filters-grid">
+                        <div class="filter-group">
+                            <label for="categoryFilter" class="filter-label">تصنيف المنتج</label>
+                            <select id="categoryFilter" name="category" class="filter-select">
+                                <option value="">الكل</option>
+                                {% for category in categories %}
+                                <option value="{{ category.id }}" {% if request.GET.category == category.id|stringformat:"s" %}selected{% endif %}> {{ category.ar_name }} </option>
+                                {% endfor %}
+                            </select>
+                        </div>
+    
+                        <div class="filter-group">
+                            <label for="statusFilter" class="filter-label">حالة نشر المنتج</label>
+                            <select id="statusFilter" name="status" class="filter-select">
+                                <option value=""></option>
+                                <option value="active" {% if request.GET.status == "active" %}selected{% endif %}>منشور</option>
+                                <option value="inactive" {% if request.GET.status == "inactive" %}selected{% endif %}>مخفي</option>
+                            </select>
+                        </div>
+<!--     
+                        <div class="filter-group">
+                            <label for="warehouseFilter" class="filter-label">المخزن</label>
+                            <select id="warehouseFilter" name="warehouse" class="filter-select">
+                                <option value="">الكل </option>
+                                <option value="secondary">المخزن الثانوي</option>
+                                <option value="branch1">فرع 1</option>
+                            </select>
+                        </div> -->
+    
+                        <div class="filter-group">
+                            <label for="priceFilter" class="filter-label">نطاق السعر</label>
+                            <select id="priceFilter" name="price_range" class="filter-select">
+                                <option value="">جميع الأسعار</option>
+                                <option value="0-50" {% if request.GET.price_range == "0-50" %}selected{% endif %}>0 - 50 ريال</option>
+                                <option value="50-100" {% if request.GET.price_range == "50-100" %}selected{% endif %}>50 - 100 ريال</option>
+                                <option value="100-500" {% if request.GET.price_range == "100-500" %}selected{% endif %}>100 - 500 ريال</option>
+                                <option value="500+" {% if request.GET.price_range == "500+" %}selected{% endif %}>أكثر من 500 ريال</option>
+                            </select>
+                        </div>
+    
+                        <div class="filter-group">
+                            <label for="stockFilter" class="filter-label">حالة الخصم للمنتج</label>
+                            <select id="stockFilter" name="sale_status" class="filter-select">
+                                <option value="">الكل</option>
+                                <option value="sale" {% if request.GET.sale_status == "sale" %}selected{% endif %}>منتج مخفض</option>
+                                <option value="no_sale" {% if request.GET.sale_status == "no_sale" %}selected{% endif %}>منتج غير مخفض</option>
+                            </select>
+                        </div>
+    
+                        <div class="filter-group">
+                            <label for="brandFilter" class="filter-label">توافر المنتج</label>
+                            <select id="brandFilter" name="brand" class="filter-select">
+                                <option value="samsung">متوفر</option>
+                                <option value="apple">غير متوفر</option>
+                            </select>
+                        </div>
                     </div>
-
-                    <div class="filter-group">
-                        <label for="statusFilter" class="filter-label">الحالة</label>
-                        <select id="statusFilter" name="status" class="filter-select">
-                            <option value="">جميع الحالات</option>
-                            <option value="active">نشط</option>
-                            <option value="inactive">غير نشط</option>
-                            <option value="out_of_stock">نفد المخزون</option>
-                        </select>
-                    </div>
-
-                    <div class="filter-group">
-                        <label for="warehouseFilter" class="filter-label">المستودع</label>
-                        <select id="warehouseFilter" name="warehouse" class="filter-select">
-                            <option value="">جميع المستودعات</option>
-                            <option value="main">المستودع الرئيسي</option>
-                            <option value="secondary">المستودع الثانوي</option>
-                            <option value="branch1">فرع 1</option>
-                        </select>
-                    </div>
-
-                    <div class="filter-group">
-                        <label for="priceFilter" class="filter-label">نطاق السعر</label>
-                        <select id="priceFilter" name="price_range" class="filter-select">
-                            <option value="">جميع الأسعار</option>
-                            <option value="0-50">0 - 50 ريال</option>
-                            <option value="50-100">50 - 100 ريال</option>
-                            <option value="100-500">100 - 500 ريال</option>
-                            <option value="500+">أكثر من 500 ريال</option>
-                        </select>
-                    </div>
-
-                    <div class="filter-group">
-                        <label for="stockFilter" class="filter-label">حالة المخزون</label>
-                        <select id="stockFilter" name="stock_status" class="filter-select">
-                            <option value="">جميع المخزون</option>
-                            <option value="in_stock">متوفر</option>
-                            <option value="low_stock">مخزون منخفض</option>
-                            <option value="out_of_stock">نفد المخزون</option>
-                        </select>
-                    </div>
-
-                    <div class="filter-group">
-                        <label for="brandFilter" class="filter-label">العلامة التجارية</label>
-                        <select id="brandFilter" name="brand" class="filter-select">
-                            <option value="">جميع العلامات</option>
-                            <option value="samsung">سامسونج</option>
-                            <option value="apple">آبل</option>
-                            <option value="nike">نايك</option>
-                            <option value="adidas">أديداس</option>
-                        </select>
+    
+                    <div class="filter-actions">
+                        <button type="submit" class="btn-filter-apply">
+                            <i class="fas fa-check"></i>
+                            تطبيق الفلاتر
+                        </button>
+                        <button type="button" class="btn-filter-reset" onclick="resetFilters()">
+                            <i class="fas fa-undo"></i>
+                            إعادة تعيين
+                        </button>
                     </div>
                 </div>
-
-                <div class="filter-actions">
-                    <button type="button" class="btn-filter-apply">
-                        <i class="fas fa-check"></i>
-                        تطبيق الفلاتر
-                    </button>
-                    <button type="button" class="btn-filter-reset">
-                        <i class="fas fa-undo"></i>
-                        إعادة تعيين
-                    </button>
-                </div>
-            </div>
+            </form>
         </div>
 
         <!-- Products Table -->
@@ -191,21 +184,25 @@
                                 </td>
                                 <td class="name-column">
                                     <div class="product-name">
-                                        <h4>هاتف ذكي سامسونج جالاكسي</h4>
-                                        <p class="product-description">هاتف ذكي بمواصفات عالية وكاميرا متطورة</p>
+                                        <h4>{{ product.ar_name }}</h4>
+                                        <!-- <p class="product-description">هاتف ذكي بمواصفات عالية وكاميرا متطورة</p> -->
                                     </div>
                                 </td>
                                 <td class="code-column">
-                                    <span class="product-code">SAMS001</span>
+                                    <span class="product-code">{{ product.code }}</span>
                                 </td>
                                 <td class="price-column">
-                                    <span class="product-price">1,299 ريال</span>
+                                    <span class="product-price">{{ product.cost }} {{ product.cost_currency }}</span>
                                 </td>
                                 <td class="stock-column">
-                                    <span class="stock-count">25</span>
+                                    <span class="stock-count">{{ product.current_quantity }} </span>
                                 </td>
                                 <td class="status-column">
+                                    {% if product.isActive %}
                                     <span class="status-badge status-active">نشط</span>
+                                    {% else %}
+                                    <span class="status-badge status-inactive">نشط غير</span>
+                                    {% endif %}
                                 </td>
                                 <td class="actions-column">
                                     <div class="dropdown">
@@ -214,21 +211,21 @@
                                         </button>
                                         <div class="dropdown-menu">
                                             <a href="#" class="dropdown-item">
-                                                <i class="fas fa-eye"></i>
-                                                عرض
-                                            </a>
-                                            <a href="#" class="dropdown-item">
                                                 <i class="fas fa-edit"></i>
                                                 تعديل
                                             </a>
                                             <a href="#" class="dropdown-item">
-                                                <i class="fas fa-copy"></i>
-                                                نسخ
+                                                <i class="fas fa-eye"></i>
+                                                تكرار
                                             </a>
-                                            <div class="dropdown-divider"></div>
                                             <a href="#" class="dropdown-item text-danger">
                                                 <i class="fas fa-trash"></i>
                                                 حذف
+                                            </a>
+                                            <div class="dropdown-divider"></div>
+                                            <a href="#" class="dropdown-item">
+                                                <i class="fas fa-copy"></i>
+                                                المنتجات المشابهة
                                             </a>
                                         </div>
                                     </div>
@@ -267,6 +264,22 @@
                 toggleArrow.style.transform = 'rotate(0deg)';
             }
         });
+        
+        // Reset filters function
+        function resetFilters() {
+            // Reset all select elements
+            document.getElementById('categoryFilter').value = '';
+            document.getElementById('statusFilter').value = '';
+            document.getElementById('priceFilter').value = '';
+            document.getElementById('stockFilter').value = '';
+            document.getElementById('brandFilter').value = '';
+            
+            // Reset search input
+            document.querySelector('input[name="q"]').value = '';
+            
+            // Submit the form to apply the reset
+            document.querySelector('form[method="get"]').submit();
+        }
     </script>
 
 {% endblock %}

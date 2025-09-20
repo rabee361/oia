@@ -25,24 +25,6 @@
         </div>
         <!-- Search and Filter Container -->
         <div class="table-controls">
-            <!-- Stats Container -->
-            <div class="stats-container">
-                <ul class="stats-list">
-                    <li class="stats-item">
-                        <a href="#" class="stats-link active">الكل (200)</a>
-                    </li>
-                    <li class="stats-item">
-                        <a href="#" class="stats-link">مفعل (150)</a>
-                    </li>
-                    <li class="stats-item">
-                        <a href="#" class="stats-link"> معطل (25)</a>
-                    </li>
-                    <li class="stats-item">
-                        <a href="#" class="stats-link"> منتهي (25)</a>
-                    </li>
-                </ul>
-            </div>
-            
             <!-- Search Bar -->
             <div class="search-container">
                 <div class="search-bar">
@@ -90,69 +72,29 @@
                             <th class="checkbox-column">
                                 <input type="checkbox" id="selectAll" class="table-checkbox">
                             </th>
-                            <th class="code-column">اسم الباقة</th>
-                            <th class="code-column">المنتجات المشمولة</th>
-                            <th class="code-column">قيمة الخصم</th>
-                            <th class="price-column">عدد مرات الاستخدام</th>
+                            <th class="price-column">الاسم</th>
+                            <th class="price-column">نوع الحزمة</th>
                             <th class="code-column">تاريخ البدء</th>
                             <th class="code-column">تاريخ الانتهاء</th>
-                            <th class="actions-column">حالة التفعيل</th>
+                            <th class="actions-column">الحالة</th>
                         </tr>
                     </thead>
                     <tbody>
-                        {% for package in packages %}
+                        {% for package in sale_packages %}
                             <tr class="table-row">
                                 <td class="checkbox-column">
                                     <input type="checkbox" name="selected_packages[]" value="1" class="row-checkbox">
                                 </td>
                                 <td class="code-column">
-                                    <div class="product-image">
-                                        <img src="{% static 'images/product-placeholder.jpg' %}" alt="باقة 1" class="product-img">
-                                    </div>
-                                </td>
-                                <td class="name-column">
                                     <div class="product-name">
-                                        <h4>باقة العائلة</h4>
-                                        <p class="product-description">مجموعة منتجات مناسبة للعائلات</p>
+                                        <h4>{{ package.ar_name }}</h4>
                                     </div>
                                 </td>
                                 <td class="code-column">
-                                    <span class="product-code">FAMILY25</span>
-                                </td>
-                                <td class="price-column">
-                                    <span class="product-price">25%</span>
-                                </td>
-                                <td class="stock-column">
-                                    <span class="stock-count">75</span>
+                                    <span class="product-code">{{ package.package_type }}</span>
                                 </td>
                                 <td class="status-column">
-                                    <span class="status-badge status-active">نشط</span>
-                                </td>
-                                <td class="actions-column">
-                                    <div class="dropdown">
-                                        <button type="button" class="dropdown-toggle" data-toggle="dropdown">
-                                            <i class="fas fa-ellipsis-v"></i>
-                                        </button>
-                                        <div class="dropdown-menu">
-                                            <a href="#" class="dropdown-item">
-                                                <i class="fas fa-eye"></i>
-                                                عرض
-                                            </a>
-                                            <a href="#" class="dropdown-item">
-                                                <i class="fas fa-edit"></i>
-                                                تعديل
-                                            </a>
-                                            <a href="#" class="dropdown-item">
-                                                <i class="fas fa-copy"></i>
-                                                نسخ
-                                            </a>
-                                            <div class="dropdown-divider"></div>
-                                            <a href="#" class="dropdown-item text-danger">
-                                                <i class="fas fa-trash"></i>
-                                                حذف
-                                            </a>
-                                        </div>
-                                    </div>
+                                    <span class="status-badge status-active">{{ package.status }}</span>
                                 </td>
                             </tr>
                         

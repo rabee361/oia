@@ -6,6 +6,7 @@ from django.urls import reverse
 from django.views.generic import TemplateView, ListView
 from django.views import View
 from django.contrib.auth import login, logout
+from ..filters import *
 from django.contrib import messages
 from utils.views import CustomListView
 from ..forms import *
@@ -19,6 +20,8 @@ User = get_user_model()
 import json
 from datetime import timedelta
 from django.utils import timezone
+from django.db.models import  Q
+
 
 
 
@@ -172,10 +175,36 @@ class WarehouseFormView(TemplateView):
 class AccountView(TemplateView):
     template_name = "config/main/account.html"
 
-class ProductsView(CustomListView):
+class ProductsView(View):
     model = Product
     context_object_name = 'products'
+    filter_class = CustomProductFilter
     template_name = "products/products.html"
+
+    def get(self, request):
+        # Get base queryset for merchant's products
+        queryset = Product.objects.filter(merchant=request.tenant, isDeleted=False)
+        
+        # Apply filters using CustomProductFilter
+        product_filter = self.filter_class(request.GET, queryset=queryset)
+        filtered_products = product_filter.qs
+        
+        # Get categories for the dropdown
+        categories = ProductCategory.objects.filter(merchant=request.tenant)
+        
+        context = {
+            'products': filtered_products,
+            'categories': categories,
+            'filter': product_filter,
+        }
+        
+        return render(request, self.template_name, context)
+
+
+
+
+
+
 
 class CustomersView(CustomListView):
     model = Customer
@@ -551,7 +580,9 @@ class StoreWebsite(View):
 
 
 
-class AutoDiscountsView(TemplateView):
+class AutoDiscountsView(CustomListView):
+    model = AutoDiscount
+    context_object_name = 'auto_discounts'
     template_name = "sales/auto_discount/auto_dsicounts.html"
 
 class AddAutoDiscountView(TemplateView):
@@ -592,7 +623,9 @@ class CouponsFormView(TemplateView):
 
 
 
-class SalesPackagesView(TemplateView):
+class SalesPackagesView(CustomListView):
+    model = SalePackage
+    context_object_name = 'sale_packages'
     template_name = "sales/sales_packages/sales_packages.html"
 
 class AddSalesPackageView(TemplateView):
@@ -603,7 +636,9 @@ class SalesPackageFormView(TemplateView):
 
 
 
-class SalesCampaignsView(TemplateView):
+class SalesCampaignsView(CustomListView):
+    model = SaleCampaign
+    context_object_name = 'sale_campaigns'
     template_name = "sales/sales_campaign/sales_campaign.html"
 
 class AddSalesCampaignView(TemplateView):

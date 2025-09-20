@@ -90,9 +90,9 @@
                             <th class="checkbox-column">
                                 <input type="checkbox" id="selectAll" class="table-checkbox">
                             </th>
-                            <th class="code-column">اسم الحملة</th>
-                            <th class="code-column">طريقة التطبيق</th>
-                            <th class="code-column">قيمة الخصم</th>
+                            <th class="name-column">اسم الحملة</th>
+                            <th class="code-column">الغرض</th>
+                            <th class="price-column">نوع العميل</th>
                             <th class="price-column">عدد مرات الاستخدام</th>
                             <th class="code-column">تاريخ البدء</th>
                             <th class="code-column">تاريخ الانتهاء</th>
@@ -100,27 +100,21 @@
                         </tr>
                     </thead>
                     <tbody>
-                        {% for campaign in campaigns %}
+                        {% for campaign in sale_campaigns %}
                             <tr class="table-row">
                                 <td class="checkbox-column">
                                     <input type="checkbox" name="selected_campaigns[]" value="1" class="row-checkbox">
                                 </td>
-                                <td class="code-column">
-                                    <div class="product-image">
-                                        <img src="{% static 'images/product-placeholder.jpg' %}" alt="حملة 1" class="product-img">
-                                    </div>
-                                </td>
                                 <td class="name-column">
                                     <div class="product-name">
-                                        <h4>حملة عطلة الصيف</h4>
-                                        <p class="product-description">حملة تسويقية لعطلة الصيف</p>
+                                        <h4>{{ campaign.name }}</h4>
                                     </div>
                                 </td>
                                 <td class="code-column">
-                                    <span class="product-code">SUMMER20</span>
+                                    <span class="product-code">{{ campaign.purpose }}</span>
                                 </td>
                                 <td class="price-column">
-                                    <span class="product-price">20%</span>
+                                    <span class="product-price">{{ campaign.get_client_selection_display }}</span>
                                 </td>
                                 <td class="stock-column">
                                     <span class="stock-count">150</span>
