@@ -10,7 +10,7 @@ services:
     container_name: oia_store_web_1
     volumes:
       - .:/home/app
-      - static_volume:/home/app/static
+      - static_volume:/home/app/staticfiles
       - media_volume:/home/app/media
     expose:
       - 8000
@@ -78,7 +78,7 @@ services:
       - "80:80"
       - "443:443"
     volumes:
-      - static_volume:/home/app/static
+      - static_volume:/home/app/staticfiles
       - media_volume:/home/app/media
       - certbot_www:/var/www/certbot
       - certbot_etc:/etc/letsencrypt
