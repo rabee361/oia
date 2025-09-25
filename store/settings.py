@@ -30,6 +30,8 @@ DEBUG = True
 
 ALLOWED_HOSTS = [  
     '147.93.72.21', 
+    'oiastores.com', 
+    'www.oiastores.com', 
     '127.0.0.1', 
 ]
  
