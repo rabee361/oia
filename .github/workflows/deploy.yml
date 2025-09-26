@@ -20,7 +20,7 @@ jobs:
           debug: true  # Enable debug mode to get more information
           script: | 
             cd /home/store/Oia-Store 
-            git add . 
+            git add .  
             git stash
             git fetch origin
             git rebase origin
