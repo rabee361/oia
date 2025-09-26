@@ -29,9 +29,11 @@ SECRET_KEY = env('SECRET_KEY')
 DEBUG = True
 
 ALLOWED_HOSTS = [  
-    '147.93.72.21', 
+    '*.oiastores.com',
+    'oiastores.*.com',
     'oiastores.com', 
     'www.oiastores.com', 
+    '147.93.72.21', 
     '127.0.0.1', 
 ]
  
