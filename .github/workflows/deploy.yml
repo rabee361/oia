@@ -19,7 +19,7 @@ jobs:
           port: ${{ secrets.PORT }} 
           debug: true  # Enable debug mode to get more information
           script: | 
-            cd /home/store/Oia-Store 
+            cd /home/store/oia 
             git add .  
             git stash
             git fetch origin

@@ -1,0 +1,298 @@
+{% load static %}
+
+    <!-- Info Bar -->
+    <div class="info-bar">
+        <div class="info-container">
+            <div class="info-left">
+                <span class="info-text">FREE Express Shipping On Orders $99+</span>
+            </div>
+            <div class="info-right">
+                <!-- Currency Dropdown -->
+                <div class="info-dropdown">
+                    <button class="info-btn" onclick="toggleDropdown('currency-dropdown')">
+                        <span>USD</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="dropdown-menu" id="currency-dropdown">
+                        <a href="#" class="dropdown-item">USD</a>
+                        <a href="#" class="dropdown-item">EUR</a>
+                        <a href="#" class="dropdown-item">GBP</a>
+                    </div>
+                </div>
+                
+                <!-- Language Dropdown -->
+                <div class="info-dropdown">
+                    <button class="info-btn" onclick="toggleDropdown('language-dropdown')">
+                        <span>ENG</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="dropdown-menu" id="language-dropdown">
+                        <a href="#" class="dropdown-item">English</a>
+                        <a href="#" class="dropdown-item">Spanish</a>
+                        <a href="#" class="dropdown-item">French</a>
+                    </div>
+                </div>
+                
+                <!-- Store Locator -->
+                <a href="#" class="info-link">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span>Our Stores</span>
+                </a>
+                
+                <!-- Track Order -->
+                <a href="#" class="info-link">
+                    <i class="fas fa-truck"></i>
+                    <span>Track Your Order</span>
+                </a>
+                
+                <!-- Help -->
+                <a href="#" class="info-link">
+                    <i class="fas fa-question-circle"></i>
+                    <span>Help</span>
+                </a>
+                
+                <!-- Wishlist -->
+                <a href="#" class="info-link">
+                    <i class="fas fa-heart"></i>
+                    <span>Wishlist</span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Middle Section (Logo, Search, User Actions) -->
+    <div class="middle-section">
+        <div class="middle-container">
+            <!-- Hamburger Menu (Mobile Only) -->
+            <button class="hamburger" onclick="toggleSidebar()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <!-- Brand/Logo -->
+            <div class="navbar-brand">
+                <img src="https://images.unsplash.com/photo-1599305445671-ac291c95aaa9?w=50&h=50&fit=crop" alt="Logo" class="logo">
+                <a href="#" class="store-name">PORTO</a>
+            </div>
+
+            <!-- Search Section (Desktop Only) -->
+            <div class="search-section">
+                <div class="search-container">
+                    <input type="text" class="search-input" placeholder="Search...">
+                    <button class="search-button">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- User Actions -->
+            <div class="navbar-actions">
+                <!-- Auth Links (Desktop Only) -->
+                <div class="auth-links">
+                    <a href="#" class="auth-link">
+                        <i class="fas fa-user"></i>
+                        <span>Welcome</span>
+                    </a>
+                    <span class="auth-separator">|</span>
+                    <a href="#" class="auth-link">Sign In / Register</a>
+                </div>
+
+                <!-- Cart Button -->
+                <a href="#" class="cart-btn">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-total desktop-only">$0.00</span>
+                    <span class="item-count">0</span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Navigation (Desktop Only) -->
+    <nav class="navbar desktop-only">
+        <div class="navbar-container">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <button class="nav-btn">
+                        <i class="fas fa-th"></i>
+                        <span>All Departments</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">Products</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">Features</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">Blog</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link nav-highlight">Best Offers Here</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Mobile Sidebar -->
+    <div class="sidebar-overlay" onclick="toggleSidebar()"></div>
+    <div class="mobile-sidebar">
+        <!-- Sidebar Header -->
+        <div class="sidebar-header">
+            <div class="sidebar-logo">
+                <img src="https://images.unsplash.com/photo-1599305445671-ac291c95aaa9?w=40&h=40&fit=crop" alt="Logo" style="height: 30px;">
+                <span>PORTO</span>
+            </div>
+            <button class="sidebar-close" onclick="toggleSidebar()">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Search -->
+        <div style="padding: 1rem; border-bottom: 1px solid #e0e6ed;">
+            <div class="search-container">
+                <input type="text" class="search-input" placeholder="Search products..." style="border-radius: 8px;">
+                <button class="search-button" style="border-radius: 8px; margin-left: 0; width: 100%; margin-top: 0.5rem;">
+                    <i class="fas fa-search"></i>
+                    <span style="margin-left: 0.5rem;">Search</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Sidebar Navigation -->
+        <nav class="sidebar-nav">
+            <ul class="sidebar-menu">
+                <li class="menu-item has-submenu">
+                    <button class="menu-link submenu-toggle" onclick="toggleSubmenu(this)">
+                        <div style="display: flex; align-items: center; gap: 0.5rem;">
+                            <i class="fas fa-th"></i>
+                            <span>Main Menu</span>
+                        </div>
+                        <i class="fas fa-chevron-down submenu-arrow"></i>
+                    </button>
+                    <ul class="submenu">
+                        <li><a href="#" class="submenu-link">All Categories</a></li>
+                        <li><a href="#" class="submenu-link">Electronics</a></li>
+                        <li><a href="#" class="submenu-link">Fashion</a></li>
+                        <li><a href="#" class="submenu-link">Home & Garden</a></li>
+                    </ul>
+                </li>
+                
+                <li class="menu-item has-submenu">
+                    <button class="menu-link submenu-toggle" onclick="toggleSubmenu(this)">
+                        <div style="display: flex; align-items: center; gap: 0.5rem;">
+                            <i class="fas fa-cube"></i>
+                            <span>Products</span>
+                        </div>
+                        <i class="fas fa-chevron-down submenu-arrow"></i>
+                    </button>
+                    <ul class="submenu">
+                        <li><a href="#" class="submenu-link">New Arrivals</a></li>
+                        <li><a href="#" class="submenu-link">Best Sellers</a></li>
+                        <li><a href="#" class="submenu-link">Sale Items</a></li>
+                    </ul>
+                </li>
+                
+                <li class="menu-item">
+                    <a href="#" class="menu-link">
+                        <i class="fas fa-star"></i>
+                        <span>Features</span>
+                    </a>
+                </li>
+                
+                <li class="menu-item">
+                    <a href="#" class="menu-link">
+                        <i class="fas fa-blog"></i>
+                        <span>Blog</span>
+                    </a>
+                </li>
+                
+            </ul>
+        </nav>
+
+        <!-- Sidebar Footer -->
+        <div class="sidebar-footer">
+            <div class="user-info">
+                <div class="user-avatar">
+                    <i class="fas fa-user"></i>
+                </div>
+                <div class="user-details">
+                    <span class="user-name">Welcome Guest</span>
+                    <span class="user-email">Sign in for exclusive offers</span>
+                </div>
+            </div>
+            <div style="margin-top: 1rem; display: flex; gap: 0.5rem;">
+                <a href="#" style="flex: 1; text-align: center; padding: 0.5rem; background: var(--primary-blue); color: white; text-decoration: none; border-radius: 6px; font-size: 0.9rem;">Sign In</a>
+                <a href="#" style="flex: 1; text-align: center; padding: 0.5rem; border: 1px solid var(--primary-blue); color: var(--primary-blue); text-decoration: none; border-radius: 6px; font-size: 0.9rem;">Register</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function toggleSidebar() {
+            const sidebar = document.querySelector('.mobile-sidebar');
+            const overlay = document.querySelector('.sidebar-overlay');
+            const hamburger = document.querySelector('.hamburger');
+            
+            sidebar.classList.toggle('active');
+            overlay.classList.toggle('active');
+            hamburger.classList.toggle('active');
+        }
+
+        function toggleSubmenu(button) {
+            const menuItem = button.closest('.menu-item');
+            const isActive = menuItem.classList.contains('active');
+            
+            // Close all other submenus
+            document.querySelectorAll('.menu-item.active').forEach(item => {
+                if (item !== menuItem) {
+                    item.classList.remove('active');
+                    item.querySelector('.submenu-toggle').setAttribute('aria-expanded', 'false');
+                }
+            });
+            
+            // Toggle current submenu
+            menuItem.classList.toggle('active');
+            button.setAttribute('aria-expanded', !isActive);
+        }
+
+        function toggleDropdown(dropdownId) {
+            const dropdown = document.getElementById(dropdownId);
+            const isActive = dropdown.classList.contains('active');
+            
+            // Close all other dropdowns
+            document.querySelectorAll('.dropdown-menu.active').forEach(menu => {
+                if (menu !== dropdown) {
+                    menu.classList.remove('active');
+                }
+            });
+            
+            // Toggle current dropdown
+            dropdown.classList.toggle('active');
+        }
+
+        // Close dropdowns when clicking outside
+        document.addEventListener('click', function(event) {
+            if (!event.target.closest('.info-dropdown')) {
+                document.querySelectorAll('.dropdown-menu.active').forEach(menu => {
+                    menu.classList.remove('active');
+                });
+            }
+        });
+
+        // Close sidebar when pressing Escape
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                const sidebar = document.querySelector('.mobile-sidebar');
+                const overlay = document.querySelector('.sidebar-overlay');
+                const hamburger = document.querySelector('.hamburger');
+                
+                if (sidebar.classList.contains('active')) {
+                    sidebar.classList.remove('active');
+                    overlay.classList.remove('active');
+                    hamburger.classList.remove('active');
+                }
+            }
+        });
+    </script>

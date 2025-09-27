@@ -1,0 +1,367 @@
+{% extends "themes/theme3/base.html" %}
+
+{% block content %}
+<div class="product-page">
+    <!-- Product Details Section -->
+    <div class="product-details-section">
+        <div class="product-details-container">
+            <!-- Product Images Carousel -->
+            <div class="product-images">
+                <div class="main-image-container">
+                    <img id="mainProductImage" src="{{ product.image.url }}" alt="{{ product.name }}" class="main-product-image">
+                    <div class="image-zoom-overlay">
+                        <i class="fas fa-search-plus"></i>
+                    </div>
+                </div>
+                
+                <!-- Thumbnail Images -->
+                <div class="thumbnail-container">
+                    <div class="thumbnail-track">
+                        <div class="thumbnail-item active" data-image="{{ product.image.url }}">
+                            <img src="{{ product.image.url }}" alt="{{ product.name }}">
+                        </div>
+                        {% if product.image1 %}
+                        <div class="thumbnail-item" data-image="{{ product.image1.url }}">
+                            <img src="{{ product.image1.url }}" alt="{{ product.name }}">
+                        </div>
+                        {% endif %}
+                        {% if product.image2 %}
+                        <div class="thumbnail-item" data-image="{{ product.image2.url }}">
+                            <img src="{{ product.image2.url }}" alt="{{ product.name }}">
+                        </div>
+                        {% endif %}
+                        {% if product.image3 %}
+                        <div class="thumbnail-item" data-image="{{ product.image3.url }}">
+                            <img src="{{ product.image3.url }}" alt="{{ product.name }}">
+                        </div>
+                        {% endif %}
+                        {% if product.image4 %}
+                        <div class="thumbnail-item" data-image="{{ product.image4.url }}">
+                            <img src="{{ product.image4.url }}" alt="{{ product.name }}">
+                        </div>
+                        {% endif %}
+                    </div>
+                    <div class="thumbnail-nav">
+                        <button class="thumbnail-nav-btn prev" id="prevThumbnail">
+                            <i class="fas fa-chevron-left"></i>
+                        </button>
+                        <button class="thumbnail-nav-btn next" id="nextThumbnail">
+                            <i class="fas fa-chevron-right"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product Information -->
+            <div class="product-info">
+                <!-- Product Title & Category -->
+                <div class="product-header">
+                    <div class="product-category">{{ product.category.name }}</div>
+                    <h1 class="product-title">{{ product.name }}</h1>
+                </div>
+
+                <!-- Product Rating -->
+                <div class="product-rating">
+                    <div class="stars">
+                        <span class="star filled">★</span>
+                        <span class="star filled">★</span>
+                        <span class="star filled">★</span>
+                        <span class="star filled">★</span>
+                        <span class="star">★</span>
+                    </div>
+                    <span class="rating-text">(4.0) - 127 reviews</span>
+                </div>
+
+                <!-- Product Price -->
+                <div class="product-pricing">
+                    {% if product.sale_price %}
+                        <span class="current-price">${{ product.sale_price }}</span>
+                        <span class="original-price">${{ product.price }}</span>
+                        <span class="discount-badge">-{{ product.discount_percentage }}%</span>
+                    {% else %}
+                        <span class="current-price">${{ product.price }}</span>
+                    {% endif %}
+                </div>
+
+                <!-- Product Description -->
+                <div class="product-description">
+                    <p>{{ product.description|default:"High-quality product with excellent features and outstanding performance. Perfect for everyday use with premium materials and modern design." }}</p>
+                </div>
+
+                <!-- Product Options -->
+                {% if product.productoption_set.all %}
+                <div class="product-options">
+                    {% for option in product.productoption_set.all %}
+                    <div class="option-group">
+                        <label class="option-label">{{ option.name }}:</label>
+                        <div class="option-values">
+
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+                {% endif %}
+
+                <!-- Quantity & Add to Cart -->
+                <div class="product-actions">
+                    <div class="quantity-selector">
+                        <label for="quantity">Quantity:</label>
+                        <div class="quantity-controls">
+                            <button class="quantity-btn minus" data-action="decrease">-</button>
+                            <input type="number" id="quantity" name="quantity" value="1" min="1" max="{{ product.stock }}">
+                            <button class="quantity-btn plus" data-action="increase">+</button>
+                        </div>
+                    </div>
+                    
+                    <div class="action-buttons">
+                        <button class="add-to-cart-btn primary">
+                            <i class="fas fa-shopping-cart"></i>
+                            Add to Cart
+                        </button>
+                        <button class="wishlist-btn">
+                            <i class="far fa-heart"></i>
+                        </button>
+                        <button class="share-btn">
+                            <i class="fas fa-share-alt"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Product Features -->
+                <div class="product-features">
+                    <div class="feature-item">
+                        <i class="fas fa-truck"></i>
+                        <span>Free shipping over $50</span>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-undo"></i>
+                        <span>30-day return policy</span>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-shield-alt"></i>
+                        <span>2-year warranty</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Product Tabs Section -->
+    <div class="product-tabs-section">
+        <div class="product-tabs-container">
+            <div class="tab-nav">
+                <button class="tab-btn active" data-tab="description">Description</button>
+                <button class="tab-btn" data-tab="specifications">Specifications</button>
+                <button class="tab-btn" data-tab="reviews">Reviews (127)</button>
+                <button class="tab-btn" data-tab="shipping">Shipping & Returns</button>
+            </div>
+            
+            <div class="tab-content">
+                <div class="tab-pane active" id="description">
+                    <h3>Product Description</h3>
+                    <p>{{ product.description|default:"Experience the perfect blend of style and functionality with this exceptional product. Crafted with attention to detail and designed for modern living, this item offers outstanding value and performance." }}</p>
+                    <ul>
+                        <li>Premium quality materials</li>
+                        <li>Modern and sleek design</li>
+                        <li>Easy to use and maintain</li>
+                        <li>Perfect for everyday use</li>
+                    </ul>
+                </div>
+                
+                <div class="tab-pane" id="specifications">
+                    <h3>Technical Specifications</h3>
+                    <table class="specs-table">
+                        <tr>
+                            <td>Brand</td>
+                            <td>{{ product.brand|default:"Premium Brand" }}</td>
+                        </tr>
+                        <tr>
+                            <td>Model</td>
+                            <td>{{ product.model|default:"Latest Model" }}</td>
+                        </tr>
+                        <tr>
+                            <td>Weight</td>
+                            <td>{{ product.weight|default:"1.2 kg" }}</td>
+                        </tr>
+                        <tr>
+                            <td>Dimensions</td>
+                            <td>{{ product.dimensions|default:"25 x 15 x 10 cm" }}</td>
+                        </tr>
+                    </table>
+                </div>
+                
+                <div class="tab-pane" id="reviews">
+                    <h3>Customer Reviews</h3>
+                    <div class="reviews-summary">
+                        <div class="rating-overview">
+                            <div class="avg-rating">4.0</div>
+                            <div class="stars-large">
+                                <span class="star filled">★</span>
+                                <span class="star filled">★</span>
+                                <span class="star filled">★</span>
+                                <span class="star filled">★</span>
+                                <span class="star">★</span>
+                            </div>
+                            <div class="total-reviews">Based on 127 reviews</div>
+                        </div>
+                    </div>
+                    
+                    <div class="review-item">
+                        <div class="review-header">
+                            <div class="reviewer-name">Sarah M.</div>
+                            <div class="review-rating">
+                                <span class="star filled">★</span>
+                                <span class="star filled">★</span>
+                                <span class="star filled">★</span>
+                                <span class="star filled">★</span>
+                                <span class="star filled">★</span>
+                            </div>
+                            <div class="review-date">March 15, 2024</div>
+                        </div>
+                        <div class="review-content">
+                            <p>Excellent product! Quality exceeded my expectations. Fast delivery and great customer service.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="tab-pane" id="shipping">
+                    <h3>Shipping & Returns</h3>
+                    <div class="shipping-info">
+                        <h4>Shipping Options</h4>
+                        <ul>
+                            <li>Standard Shipping (5-7 business days) - Free over $50</li>
+                            <li>Express Shipping (2-3 business days) - $9.99</li>
+                            <li>Next Day Delivery - $19.99</li>
+                        </ul>
+                        
+                        <h4>Return Policy</h4>
+                        <ul>
+                            <li>30-day return window</li>
+                            <li>Items must be in original condition</li>
+                            <li>Free return shipping for defective items</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Related Products Section -->
+    <div class="related-products-section">
+        <div class="related-products-container">
+            <div class="section-header">
+                <h2 class="section-title">Related Products</h2>
+                <p class="section-subtitle">You might also like these items</p>
+            </div>
+            
+            <div class="related-products-grid">
+                <!-- Related Product 1 -->
+                <div class="related-product-card">
+                    <div class="related-product-image">
+                        <img src="/static/images/product-placeholder.jpg" alt="Related Product 1">
+                        <div class="quick-view-btn">
+                            <i class="fas fa-eye"></i>
+                        </div>
+                    </div>
+                    <div class="related-product-info">
+                        <h3 class="related-product-title">Similar Product Name</h3>
+                        <div class="related-product-rating">
+                            <span class="star filled">★</span>
+                            <span class="star filled">★</span>
+                            <span class="star filled">★</span>
+                            <span class="star filled">★</span>
+                            <span class="star">★</span>
+                        </div>
+                        <div class="related-product-price">
+                            <span class="current-price">$39.99</span>
+                            <span class="original-price">$49.99</span>
+                        </div>
+                        <button class="related-add-to-cart-btn">
+                            Add to Cart
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Related Product 2 -->
+                <div class="related-product-card">
+                    <div class="related-product-image">
+                        <img src="/static/images/product-placeholder.jpg" alt="Related Product 2">
+                        <div class="quick-view-btn">
+                            <i class="fas fa-eye"></i>
+                        </div>
+                    </div>
+                    <div class="related-product-info">
+                        <h3 class="related-product-title">Another Great Product</h3>
+                        <div class="related-product-rating">
+                            <span class="star filled">★</span>
+                            <span class="star filled">★</span>
+                            <span class="star filled">★</span>
+                            <span class="star filled">★</span>
+                            <span class="star filled">★</span>
+                        </div>
+                        <div class="related-product-price">
+                            <span class="current-price">$29.99</span>
+                        </div>
+                        <button class="related-add-to-cart-btn">
+                            Add to Cart
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Related Product 3 -->
+                <div class="related-product-card">
+                    <div class="related-product-image">
+                        <img src="/static/images/product-placeholder.jpg" alt="Related Product 3">
+                        <div class="quick-view-btn">
+                            <i class="fas fa-eye"></i>
+                        </div>
+                    </div>
+                    <div class="related-product-info">
+                        <h3 class="related-product-title">Premium Quality Item</h3>
+                        <div class="related-product-rating">
+                            <span class="star filled">★</span>
+                            <span class="star filled">★</span>
+                            <span class="star filled">★</span>
+                            <span class="star filled">★</span>
+                            <span class="star">★</span>
+                        </div>
+                        <div class="related-product-price">
+                            <span class="current-price">$59.99</span>
+                            <span class="original-price">$79.99</span>
+                        </div>
+                        <button class="related-add-to-cart-btn">
+                            Add to Cart
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Related Product 4 -->
+                <div class="related-product-card">
+                    <div class="related-product-image">
+                        <img src="/static/images/product-placeholder.jpg" alt="Related Product 4">
+                        <div class="quick-view-btn">
+                            <i class="fas fa-eye"></i>
+                        </div>
+                    </div>
+                    <div class="related-product-info">
+                        <h3 class="related-product-title">Best Seller Product</h3>
+                        <div class="related-product-rating">
+                            <span class="star filled">★</span>
+                            <span class="star filled">★</span>
+                            <span class="star filled">★</span>
+                            <span class="star filled">★</span>
+                            <span class="star filled">★</span>
+                        </div>
+                        <div class="related-product-price">
+                            <span class="current-price">$45.99</span>
+                        </div>
+                        <button class="related-add-to-cart-btn">
+                            Add to Cart
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

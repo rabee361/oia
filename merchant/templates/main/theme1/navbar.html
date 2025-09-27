@@ -1,29 +1,20 @@
-    
+{% load static %}
     <!-- 🧭 Navigation Bar -->
     <nav class="navbar" id="navbar">
         <div class="navbar-container">
             <!-- 🏷️ Logo -->
-            <a href="#" class="navbar-logo">ecomus</a>
+            <a href="{% url 'theme' theme.slug %}" class="navbar-logo">ecomus</a>
 
             <!-- 🔗 Desktop Navigation -->
             <ul class="navbar-nav">
                 <li class="navbar-nav-item">
-                    <a href="#" class="navbar-nav-link">Home</a>
+                    <a href="{% url 'theme' theme.slug %}" class="navbar-nav-link">Home</a>
                 </li>
                 <li class="navbar-nav-item">
                     <a href="#" class="navbar-nav-link">Shop</a>
                 </li>
                 <li class="navbar-nav-item">
-                    <a href="#" class="navbar-nav-link">Products</a>
-                </li>
-                <li class="navbar-nav-item">
-                    <a href="#" class="navbar-nav-link">Pages</a>
-                </li>
-                <li class="navbar-nav-item">
-                    <a href="#" class="navbar-nav-link">Blog</a>
-                </li>
-                <li class="navbar-nav-item">
-                    <a href="$" class="navbar-nav-link">Buy Now</a>
+                    <a href="{% url 'theme-products' theme.slug %}" class="navbar-nav-link">Products</a>
                 </li>
             </ul>
 
@@ -31,23 +22,42 @@
             <div class="navbar-actions">
                 <!-- 🔍 Search -->
                 <button class="navbar-action-btn" id="searchToggle" aria-label="Search">
-                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m21 21-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="11" cy="11" r="8"/>
+                        <path d="m21 21-4.35-4.35"/>
                     </svg>
                 </button>
 
-                <!-- 🔔 Notifications -->
-                <button class="navbar-action-btn" aria-label="Notifications">
-                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-5 5v-5zM10.5 3.5a6 6 0 0 1 6 6v2l1.5 3H3l1.5-3v-2a6 6 0 0 1 6-6z"></path>
-                    </svg>
-                </button>
 
                 <!-- 🛒 Cart -->
                 <button class="navbar-action-btn" aria-label="Shopping Cart">
-                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17M17 13v4a2 2 0 01-2 2H9a2 2 0 01-2-2v-4m8 0V9a2 2 0 00-2-2H9a2 2 0 00-2 2v4.01"></path>
-                    </svg>
+                    <a href="{% url 'cart' theme.slug %}">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="8" cy="21" r="1"/>
+                            <circle cx="19" cy="21" r="1"/>
+                            <path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57L23 6H6"/>
+                        </svg>
+                        <span class="navbar-badge">2</span>
+                    </a>
+                </button>
+
+
+                <!-- ❤️ Wishlist -->
+                <button class="navbar-action-btn" aria-label="Wishlist">
+                    <a href="{% url 'wishlist' theme.slug %}">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+                        </svg>
+                        <span class="navbar-badge">2</span>
+                    </a>
+                </button>
+
+                <!-- 🌐 Language Toggle -->
+                <button class="navbar-action-btn language-toggle-btn" id="languageToggle" aria-label="Toggle Language" data-lang="en">
+                    <!-- 🇺🇸 English Text -->
+                    <span class="language-text en-text">EN</span>
+                    <!-- 🇸🇦 Arabic Text -->
+                    <span class="language-text ar-text">AR</span>
                 </button>
 
                 <!-- 🌙 Theme Toggle -->
@@ -77,22 +87,13 @@
         <div class="navbar-mobile-menu" id="mobileMenu">
             <ul class="navbar-mobile-nav">
                 <li class="navbar-mobile-nav-item">
-                    <a href="#" class="navbar-mobile-nav-link">Home</a>
+                    <a href="{% url 'theme' theme.slug %}" class="navbar-mobile-nav-link">Home</a>
                 </li>
                 <li class="navbar-mobile-nav-item">
                     <a href="#" class="navbar-mobile-nav-link">Shop</a>
                 </li>
                 <li class="navbar-mobile-nav-item">
-                    <a href="#" class="navbar-mobile-nav-link">Products</a>
-                </li>
-                <li class="navbar-mobile-nav-item">
-                    <a href="#" class="navbar-mobile-nav-link">Pages</a>
-                </li>
-                <li class="navbar-mobile-nav-item">
-                    <a href="#" class="navbar-mobile-nav-link">Blog</a>
-                </li>
-                <li class="navbar-mobile-nav-item">
-                    <a href="#" class="navbar-mobile-nav-link">Buy Now</a>
+                    <a href="{% url 'theme-products' theme.slug %}" class="navbar-mobile-nav-link">Products</a>
                 </li>
             </ul>
         </div>

@@ -160,6 +160,7 @@ mainPatterns = [
 
 
 urlpatterns = [
+    path("", include(mainPatterns)),
     path("dashboard/", views.DashboardView.as_view(), name="merchant-dasboard"),
     path("auth/", include(authPatterns)),
     path("theme/", include(themePatterns)),
@@ -169,5 +170,4 @@ urlpatterns = [
     path("analytics/", include(analyticsPatterns)),
     path("config/", include(configPattern)),
     path("products/", include(storePatterns)),
-    path("<slug:slug>", include(mainPatterns)),
 ]

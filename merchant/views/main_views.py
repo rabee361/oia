@@ -25,7 +25,7 @@ class MainView(View):
     def get(self, request):
         domain = request.get_host()
         slug = domain.split('.')[0]
-        if slug == 'localhost' or 'oiastores':
+        if slug == 'localhost' or slug =='oiastores':
             slug = 'store'
         store = get_object_or_404(Store, domain=slug)
         theme = Theme.objects.get(id=store.theme.theme.id)

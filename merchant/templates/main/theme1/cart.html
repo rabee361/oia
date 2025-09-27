@@ -1,0 +1,342 @@
+{% extends 'themes/theme1/base.html' %}
+{% load static %}
+
+{% block title %}Shopping Cart{% endblock %}
+
+
+{% block content %}
+<div class="container">
+
+    <div class="cart-page">
+        <!-- 🛒 Cart Header -->
+        <div class="cart-header">
+            <h1 class="cart-title">
+                <i class="fas fa-shopping-cart"></i>
+                Your Shopping Cart
+            </h1>
+            <p class="cart-subtitle">Review your items before checkout</p>
+        </div>
+
+        <div class="cart-content">
+            <!-- 🛍️ Cart Items Section -->
+            <div class="cart-items-section">
+                <div class="cart-items-header">
+                    <h2 class="section-title">Cart Items (3)</h2>
+                    <button class="clear-cart-btn" onclick="clearCart()">
+                        <i class="fas fa-trash"></i> Clear Cart
+                    </button>
+                </div>
+
+                <div class="cart-items-container">
+                    <!-- Sample Cart Item 1 -->
+                    <div class="cart-item" data-product-id="1">
+                        <!-- Product Image -->
+                        <div class="item-image">
+                            <img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=300&h=400&fit=crop" 
+                                 alt="Wireless Headphones"
+                                 loading="lazy">
+                        </div>
+
+                        <!-- Product Details -->
+                        <div class="item-details">
+                            <h3 class="item-name">Wireless Bluetooth Headphones</h3>
+                            <p class="item-description">High-quality wireless headphones with noise cancellation</p>
+                            
+                            <div class="item-attributes">
+                                <span class="item-attribute">
+                                    <strong>Color:</strong> Black
+                                </span>
+                                <span class="item-attribute">
+                                    <strong>Size:</strong> One Size
+                                </span>
+                            </div>
+
+                            <div class="item-stock">
+                                <span class="stock-available">
+                                    <i class="fas fa-check-circle"></i> In Stock (15 available)
+                                </span>
+                            </div>
+                        </div>
+
+                        <!-- Quantity Controls -->
+                        <div class="item-quantity">
+                            <label class="quantity-label">Quantity:</label>
+                            <div class="quantity-controls">
+                                <button class="quantity-btn" onclick="updateQuantity(1, 'decrease')">
+                                    <i class="fas fa-minus"></i>
+                                </button>
+                                <input type="number" 
+                                       class="quantity-input" 
+                                       value="2" 
+                                       min="1" 
+                                       max="15"
+                                       data-product-id="1">
+                                <button class="quantity-btn" onclick="updateQuantity(1, 'increase')">
+                                    <i class="fas fa-plus"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Price & Actions -->
+                        <div class="item-price-actions">
+                            <div class="item-price">
+                                <span class="current-price">$79.99</span>
+                            </div>
+                            <div class="item-actions">
+                                <button class="action-btn save-later" onclick="saveForLater(1)">
+                                    <i class="far fa-heart"></i> Save for Later
+                                </button>
+                                <button class="action-btn remove-item" onclick="removeFromCart(1)">
+                                    <i class="fas fa-trash"></i> Remove
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Sample Cart Item 2 -->
+                    <div class="cart-item" data-product-id="2">
+                        <!-- Product Image -->
+                        <div class="item-image">
+                            <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=300&h=400&fit=crop" 
+                                 alt="Smart Watch"
+                                 loading="lazy">
+                        </div>
+
+                        <!-- Product Details -->
+                        <div class="item-details">
+                            <h3 class="item-name">Smart Fitness Watch</h3>
+                            <p class="item-description">Advanced fitness tracking with heart rate monitor</p>
+                            
+                            <div class="item-attributes">
+                                <span class="item-attribute">
+                                    <strong>Color:</strong> Silver
+                                </span>
+                                <span class="item-attribute">
+                                    <strong>Size:</strong> 42mm
+                                </span>
+                            </div>
+
+                            <div class="item-stock">
+                                <span class="stock-available">
+                                    <i class="fas fa-check-circle"></i> In Stock (8 available)
+                                </span>
+                            </div>
+                        </div>
+
+                        <!-- Quantity Controls -->
+                        <div class="item-quantity">
+                            <label class="quantity-label">Quantity:</label>
+                            <div class="quantity-controls">
+                                <button class="quantity-btn" onclick="updateQuantity(2, 'decrease')">
+                                    <i class="fas fa-minus"></i>
+                                </button>
+                                <input type="number" 
+                                       class="quantity-input" 
+                                       value="1" 
+                                       min="1" 
+                                       max="8"
+                                       data-product-id="2">
+                                <button class="quantity-btn" onclick="updateQuantity(2, 'increase')">
+                                    <i class="fas fa-plus"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Price & Actions -->
+                        <div class="item-price-actions">
+                            <div class="item-price">
+                                <span class="current-price">$249.99</span>
+                            </div>
+                            <div class="item-actions">
+                                <button class="action-btn save-later" onclick="saveForLater(2)">
+                                    <i class="far fa-heart"></i> Save for Later
+                                </button>
+                                <button class="action-btn remove-item" onclick="removeFromCart(2)">
+                                    <i class="fas fa-trash"></i> Remove
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Sample Cart Item 3 -->
+                    <div class="cart-item" data-product-id="3">
+                        <!-- Product Image -->
+                        <div class="item-image">
+                            <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=300&h=400&fit=crop" 
+                                 alt="Running Shoes"
+                                 loading="lazy">
+                        </div>
+
+                        <!-- Product Details -->
+                        <div class="item-details">
+                            <h3 class="item-name">Professional Running Shoes</h3>
+                            <p class="item-description">Lightweight running shoes with advanced cushioning</p>
+                            
+                            <div class="item-attributes">
+                                <span class="item-attribute">
+                                    <strong>Color:</strong> Red
+                                </span>
+                                <span class="item-attribute">
+                                    <strong>Size:</strong> 10.5
+                                </span>
+                            </div>
+
+                            <div class="item-stock">
+                                <!-- <span class="stock-unavailable">
+                                    <i class="fas fa-exclamation-triangle"></i> Low Stock (2 available)
+                                </span> -->
+                                <span class="stock-available">
+                                    <i class="fas fa-check-circle"></i> In Stock (8 available)
+                                </span>
+
+                            </div>
+                        </div>
+
+                        <!-- Quantity Controls -->
+                        <div class="item-quantity">
+                            <label class="quantity-label">Quantity:</label>
+                            <div class="quantity-controls">
+                                <button class="quantity-btn" onclick="updateQuantity(3, 'decrease')">
+                                    <i class="fas fa-minus"></i>
+                                </button>
+                                <input type="number" 
+                                       class="quantity-input" 
+                                       value="1" 
+                                       min="1" 
+                                       max="2"
+                                       data-product-id="3">
+                                <button class="quantity-btn" onclick="updateQuantity(3, 'increase')">
+                                    <i class="fas fa-plus"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Price & Actions -->
+                        <div class="item-price-actions">
+                            <div class="item-price">
+                                <span class="current-price">$129.99</span>
+                            </div>
+                            <div class="item-actions">
+                                <button class="action-btn save-later" onclick="saveForLater(3)">
+                                    <i class="far fa-heart"></i> Save for Later
+                                </button>
+                                <button class="action-btn remove-item" onclick="removeFromCart(3)">
+                                    <i class="fas fa-trash"></i> Remove
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 🔄 Continue Shopping -->
+                <div class="continue-shopping">
+                    <a href="#" class="continue-btn">
+                        <i class="fas fa-arrow-left"></i>
+                        Continue Shopping
+                    </a>
+                </div>
+            </div>
+
+            <!-- 💰 Cart Summary Section -->
+            <div class="cart-summary-section">
+                <div class="summary-card">
+                    <h2 class="summary-title">
+                        <i class="fas fa-calculator"></i>
+                        Order Summary
+                    </h2>
+
+                    <div class="summary-details">
+                        <div class="summary-row">
+                            <span class="summary-label">Subtotal (4 items):</span>
+                            <span class="summary-value" id="subtotal">$459.97</span>
+                        </div>
+                        
+                        <div class="summary-row">
+                            <span class="summary-label">Shipping:</span>
+                            <span class="summary-value" id="shipping">$5.99</span>
+                        </div>
+                        
+                        <div class="summary-row">
+                            <span class="summary-label">Tax:</span>
+                            <span class="summary-value" id="tax">$36.80</span>
+                        </div>
+                        
+                        <div class="summary-divider"></div>
+                        
+                        <div class="summary-row total-row">
+                            <span class="summary-label">Total:</span>
+                            <span class="summary-value total-value" id="total">
+                                $502.76
+                            </span>
+                        </div>
+                    </div>
+
+                    <!-- 🎯 Promo Code Section -->
+                    <div class="promo-section">
+                        <details class="promo-details">
+                            <summary class="promo-toggle">
+                                <i class="fas fa-tag"></i>
+                                Have a promo code?
+                            </summary>
+                            <div class="promo-form">
+                                <div class="promo-input-group">
+                                    <input type="text" 
+                                           class="promo-input" 
+                                           placeholder="Enter promo code"
+                                           id="promoCode">
+                                    <button class="promo-apply-btn" onclick="applyPromoCode()">
+                                        Apply
+                                    </button>
+                                </div>
+                            </div>
+                        </details>
+                    </div>
+
+                    <!-- 🚀 Checkout Button -->
+                    <div class="checkout-section">
+                        <a href="{% url 'checkout' theme.slug %}">
+                            <button class="checkout-btn">
+                            <!-- <button class="checkout-btn" onclick="proceedToCheckout()"> -->
+                                <i class="fas fa-lock"></i>
+                                Proceed to Checkout
+                            </button>
+                        </a>
+                        
+                        <div class="payment-methods">
+                            <span class="payment-label">We accept:</span>
+                            <div class="payment-icons">
+                                <i class="fab fa-cc-visa"></i>
+                                <i class="fab fa-cc-mastercard"></i>
+                                <i class="fab fa-cc-paypal"></i>
+                                <i class="fab fa-cc-apple-pay"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 🛡️ Security Badge -->
+                    <div class="security-badge">
+                        <i class="fas fa-shield-alt"></i>
+                        <div class="security-text">
+                            <span class="security-title">Secure Checkout</span>
+                            <span class="security-subtitle">SSL encrypted transaction</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 📦 Estimated Delivery -->
+                <div class="delivery-info">
+                    <h3 class="delivery-title">
+                        <i class="fas fa-truck"></i>
+                        Estimated Delivery
+                    </h3>
+                    <p class="delivery-date">3-5 business days</p>
+                    <p class="delivery-note">Free shipping on orders over $50</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 🔔 Toast Notifications Container -->
+<div id="toast-container"></div>
+{% endblock %}

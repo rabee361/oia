@@ -1,0 +1,274 @@
+{% extends "themes/theme3/base.html" %}
+
+{% block content %}
+<!-- Checkout Page -->
+<section class="checkout-page">
+  <div class="checkout-container">
+    <!-- Checkout Header -->
+    <div class="checkout-header">
+      <h1 class="checkout-title">Checkout</h1>
+      <p class="checkout-subtitle">Complete your order securely</p>
+    </div>
+
+    <!-- Checkout Content -->
+    <div class="checkout-content">
+      <!-- Checkout Form Section -->
+      <div class="checkout-form-section">
+        <form class="checkout-form" id="checkoutForm">
+          <!-- Contact Information -->
+          <div class="form-section">
+            <h3 class="section-title">Contact Information</h3>
+            <div class="form-group">
+              <label for="email" class="form-label">Email Address *</label>
+              <input type="email" id="email" name="email" class="form-input" required>
+            </div>
+            <div class="form-checkbox-group">
+              <input type="checkbox" id="newsletter" name="newsletter" class="form-checkbox">
+              <label for="newsletter" class="checkbox-label">Email me with news and offers</label>
+            </div>
+          </div>
+
+          <!-- Shipping Address -->
+          <div class="form-section">
+            <h3 class="section-title">Shipping Address</h3>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="firstName" class="form-label">First Name *</label>
+                <input type="text" id="firstName" name="firstName" class="form-input" required>
+              </div>
+              <div class="form-group">
+                <label for="lastName" class="form-label">Last Name *</label>
+                <input type="text" id="lastName" name="lastName" class="form-input" required>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="company" class="form-label">Company (Optional)</label>
+              <input type="text" id="company" name="company" class="form-input">
+            </div>
+            <div class="form-group">
+              <label for="address" class="form-label">Address *</label>
+              <input type="text" id="address" name="address" class="form-input" required>
+            </div>
+            <div class="form-group">
+              <label for="apartment" class="form-label">Apartment, suite, etc. (Optional)</label>
+              <input type="text" id="apartment" name="apartment" class="form-input">
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="city" class="form-label">City *</label>
+                <input type="text" id="city" name="city" class="form-input" required>
+              </div>
+              <div class="form-group">
+                <label for="state" class="form-label">State *</label>
+                <select id="state" name="state" class="form-select" required>
+                  <option value="">Select State</option>
+                  <option value="CA">California</option>
+                  <option value="NY">New York</option>
+                  <option value="TX">Texas</option>
+                  <option value="FL">Florida</option>
+                  <!-- Add more states as needed -->
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="zipCode" class="form-label">ZIP Code *</label>
+                <input type="text" id="zipCode" name="zipCode" class="form-input" required>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="country" class="form-label">Country *</label>
+              <select id="country" name="country" class="form-select" required>
+                <option value="US">United States</option>
+                <option value="CA">Canada</option>
+                <option value="MX">Mexico</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="phone" class="form-label">Phone Number</label>
+              <input type="tel" id="phone" name="phone" class="form-input">
+            </div>
+          </div>
+
+          <!-- Shipping Method -->
+          <div class="form-section">
+            <h3 class="section-title">Shipping Method</h3>
+            <div class="shipping-options">
+              <div class="shipping-option">
+                <input type="radio" id="standard" name="shipping" value="standard" class="shipping-radio" checked>
+                <label for="standard" class="shipping-label">
+                  <div class="shipping-info">
+                    <span class="shipping-name">Standard Shipping</span>
+                    <span class="shipping-time">5-7 business days</span>
+                  </div>
+                  <span class="shipping-price">$5.00</span>
+                </label>
+              </div>
+              <div class="shipping-option">
+                <input type="radio" id="express" name="shipping" value="express" class="shipping-radio">
+                <label for="express" class="shipping-label">
+                  <div class="shipping-info">
+                    <span class="shipping-name">Express Shipping</span>
+                    <span class="shipping-time">2-3 business days</span>
+                  </div>
+                  <span class="shipping-price">$15.00</span>
+                </label>
+              </div>
+              <div class="shipping-option">
+                <input type="radio" id="overnight" name="shipping" value="overnight" class="shipping-radio">
+                <label for="overnight" class="shipping-label">
+                  <div class="shipping-info">
+                    <span class="shipping-name">Overnight Shipping</span>
+                    <span class="shipping-time">1 business day</span>
+                  </div>
+                  <span class="shipping-price">$25.00</span>
+                </label>
+              </div>
+            </div>
+          </div>
+
+          <!-- Payment Information -->
+          <div class="form-section">
+            <h3 class="section-title">Payment Information</h3>
+            <div class="payment-methods">
+              <div class="payment-method">
+                <input type="radio" id="credit-card" name="payment" value="credit-card" class="payment-radio" checked>
+                <label for="credit-card" class="payment-label">
+                  <i class="fas fa-credit-card"></i>
+                  Credit Card
+                </label>
+              </div>
+              <div class="payment-method">
+                <input type="radio" id="paypal" name="payment" value="paypal" class="payment-radio">
+                <label for="paypal" class="payment-label">
+                  <i class="fab fa-paypal"></i>
+                  PayPal
+                </label>
+              </div>
+            </div>
+            
+            <div class="credit-card-form" id="creditCardForm">
+              <div class="form-group">
+                <label for="cardNumber" class="form-label">Card Number *</label>
+                <input type="text" id="cardNumber" name="cardNumber" class="form-input" placeholder="1234 5678 9012 3456" required>
+              </div>
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="expiryDate" class="form-label">Expiry Date *</label>
+                  <input type="text" id="expiryDate" name="expiryDate" class="form-input" placeholder="MM/YY" required>
+                </div>
+                <div class="form-group">
+                  <label for="cvv" class="form-label">CVV *</label>
+                  <input type="text" id="cvv" name="cvv" class="form-input" placeholder="123" required>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="cardName" class="form-label">Name on Card *</label>
+                <input type="text" id="cardName" name="cardName" class="form-input" required>
+              </div>
+            </div>
+          </div>
+
+          <!-- Billing Address -->
+          <div class="form-section">
+            <div class="form-checkbox-group">
+              <input type="checkbox" id="sameAsShipping" name="sameAsShipping" class="form-checkbox" checked>
+              <label for="sameAsShipping" class="checkbox-label">Billing address is the same as shipping address</label>
+            </div>
+          </div>
+        </form>
+      </div>
+
+      <!-- Order Summary Section -->
+      <div class="checkout-summary-section">
+        <div class="order-summary">
+          <h3 class="summary-title">Order Summary</h3>
+          
+          <!-- Order Items -->
+          <div class="order-items">
+            <div class="order-item">
+              <div class="item-image">
+                <img src="https://images.unsplash.com/photo-1581044777550-4cfa60707c03?w=400&h=600&fit=crop" alt="Purple Solo 2 Wireless">
+                <span class="item-quantity">1</span>
+              </div>
+              <div class="item-details">
+                <h4 class="item-name">Purple Solo 2 Wireless</h4>
+                <p class="item-variant">Purple / Standard</p>
+              </div>
+              <div class="item-price">$248.00</div>
+            </div>
+            
+            <div class="order-item">
+              <div class="item-image">
+                <img src="https://images.unsplash.com/photo-1576566588028-4147f3842f27?w=400&h=600&fit=crop" alt="Tablet Red EliteBook">
+                <span class="item-quantity">1</span>
+              </div>
+              <div class="item-details">
+                <h4 class="item-name">Tablet Red EliteBook Revolve 810 G2</h4>
+                <p class="item-variant">256GB / 8GB RAM</p>
+              </div>
+              <div class="item-price">$2,100.00</div>
+            </div>
+            
+            <div class="order-item">
+              <div class="item-image">
+                <img src="https://images.unsplash.com/photo-1576566588028-4147f3842f27?w=400&h=600&fit=crop" alt="Smartphone 6S">
+                <span class="item-quantity">2</span>
+              </div>
+              <div class="item-details">
+                <h4 class="item-name">Smartphone 6S 32GB LTE</h4>
+                <p class="item-variant">Black / 32GB</p>
+              </div>
+              <div class="item-price">$2,200.00</div>
+            </div>
+          </div>
+          
+          <!-- Promo Code -->
+          <div class="promo-section">
+            <div class="promo-input-group">
+              <input type="text" class="promo-input" placeholder="Discount code">
+              <button type="button" class="apply-promo-btn">Apply</button>
+            </div>
+          </div>
+          
+          <!-- Order Totals -->
+          <div class="order-totals">
+            <div class="total-row">
+              <span class="total-label">Subtotal</span>
+              <span class="total-value">$4,548.00</span>
+            </div>
+            <div class="total-row">
+              <span class="total-label">Shipping</span>
+              <span class="total-value shipping-cost">$5.00</span>
+            </div>
+            <div class="total-row">
+              <span class="total-label">Tax</span>
+              <span class="total-value">$363.84</span>
+            </div>
+            <div class="total-row total-final">
+              <span class="total-label">Total</span>
+              <span class="total-value final-total">$4,916.84</span>
+            </div>
+          </div>
+          
+          <!-- Complete Order Button -->
+          <button type="submit" form="checkoutForm" class="complete-order-btn">
+            <i class="fas fa-lock"></i>
+            Complete Order
+          </button>
+          
+          <!-- Security Info -->
+          <div class="security-info">
+            <div class="security-item">
+              <i class="fas fa-shield-alt"></i>
+              <span>Secure 256-bit SSL encryption</span>
+            </div>
+            <div class="security-item">
+              <i class="fas fa-credit-card"></i>
+              <span>Your payment information is protected</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

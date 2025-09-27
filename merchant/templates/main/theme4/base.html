@@ -1,0 +1,25 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'css/themes/theme4/navbar_sidebar.css' %}">
+    <link rel="stylesheet" href="{% static 'css/themes/theme4/main.css' %}">
+    <link rel="stylesheet" href="{% static 'css/themes/theme4/hero.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    {% include "themes/theme4/navbar.html" %}
+    
+    {% block content %}
+    
+    {% endblock %}
+    
+    {% include "themes/theme4/footer.html" %}
+
+</body>
+</html>
+
+<script src="{% static 'js/theme/theme4/main.js' %}"></script>
