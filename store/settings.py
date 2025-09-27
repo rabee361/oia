@@ -34,6 +34,8 @@ ALLOWED_HOSTS = [
     'www.oiastores.com', 
     '147.93.72.21', 
     '127.0.0.1', 
+    'localhost', 
+    '.localhost', 
 ]
  
 

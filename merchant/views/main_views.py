@@ -22,7 +22,15 @@ from django.utils import timezone
 
 
 class MainView(View):
-    def get(self, request, slug):
+    def get(self, request):
+        domain = request.get_host()
+        slug = domain.split('.')[0]
+        if slug == 'localhost' or 'oiastores':
+            slug = 'store'
+        store = get_object_or_404(Store, domain=slug)
+        theme = Theme.objects.get(id=store.theme.theme.id)
+        products = Product.objects.filter(merchant=store.merchant)
+        categories = ProductCategory.objects
         store = get_object_or_404(Store, domain=slug)
         theme = Theme.objects.get(id=store.theme.theme.id)
         products = Product.objects.filter(merchant=store.merchant)
