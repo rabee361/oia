@@ -84,7 +84,6 @@ services:
       - certbot_etc:/etc/letsencrypt
     depends_on:
       - web
-      - certbot
     restart: always
     networks:
       - oia_store_network
@@ -105,7 +104,7 @@ services:
     volumes:
       - certbot_www:/var/www/certbot
       - certbot_etc:/etc/letsencrypt
-    command: certonly --webroot --webroot-path=/var/www/certbot --email your-email@example.com --agree-tos --no-eff-email -d example.com -d www.example.com
+    command: certonly --webroot --webroot-path=/var/www/certbot --email fazaa56153@gmail.com --agree-tos --no-eff-email -d oiastores.com -d www.oiastores.com
 
 networks:
   oia_store_network:
