@@ -1,4 +1,3 @@
-
 from multiprocessing import get_context
 from django.http.response import HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404, HttpResponseRedirect
@@ -7,7 +6,7 @@ from django.views.generic import TemplateView, ListView
 from django.views import View
 from django.contrib.auth import login, logout
 from django.contrib import messages
-from utils.views import CustomListView
+from utils.views import CustomListView, BaseView
 from ..forms import *
 from ..models import *
 from django.db import transaction
@@ -21,7 +20,7 @@ from datetime import timedelta
 from django.utils import timezone
 
 
-class MainView(View):
+class MainView(BaseView):
     def get(self, request):
         domain = request.get_host()
         slug = domain.split('.')[0]

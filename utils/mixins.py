@@ -3,17 +3,19 @@ from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.urls import reverse
 
 
-class CustomLoginRequiredMixin(LoginRequiredMixin):
+
+class MerchantLoginRequiredMixin(LoginRequiredMixin):
     """
-    Custom login required mixin that redirects to the named 'login' URL
+    Custom login required mixin that redirects to the named 'merchant-login' URL
     """
 
     def get_login_url(self):
         """
         Return the URL to redirect to when login is required.
-        Uses reverse('login') to get the login URL dynamically.
+        Uses reverse('merchant-login') to get the login URL dynamically.
         """
-        return reverse('login')
+        return reverse('merchant-login')
+
 
 
 class AdminLoginRequiredMixin(UserPassesTestMixin):
@@ -35,6 +37,6 @@ class AdminLoginRequiredMixin(UserPassesTestMixin):
     def get_login_url(self):
         """
         Return the URL to redirect to when login is required.
-        Uses reverse('login') to get the login URL dynamically.
+        Uses reverse('merchant-login') to get the login URL dynamically.
         """
-        return reverse('login')
+        return reverse('merchant-login')

@@ -5,14 +5,14 @@ from .views import main_views
 # views
 
 authPatterns = [
-    path("login/", views.LoginView.as_view(), name="login"),
+    path("login/", views.LoginView.as_view(), name="merchant-login"),
     path("logout/", views.LogoutView.as_view(), name="merchant-logout"),
-    path("signup/", views.SignUpView.as_view(), name="signup"),
-    path("otp/", views.OtpCodeView.as_view(), name="otp_code"),
-    path("verify/", views.VerifyOtpView.as_view(), name="verify-otp"),
-    path("register/", views.RegisterView.as_view(), name="register"),
-    path("password/change", views.EmailChangePasswordView.as_view(), name="email_change_password"),
-    path("change_password/", views.ChangePasswordView.as_view(), name="change_password"),
+    path("signup/", views.SignUpView.as_view(), name="merchant-signup"),
+    path("otp/", views.OtpCodeView.as_view(), name="merchant-otp-code"),
+    path("verify/", views.VerifyOtpView.as_view(), name="merchant-verify-otp"),
+    path("register/", views.RegisterView.as_view(), name="merchant-register"),
+    path("password/change", views.EmailChangePasswordView.as_view(), name="merchant-email-change-password"),
+    path("change_password/", views.ChangePasswordView.as_view(), name="merchant-change-password"),
 ]
 
 storePatterns = [

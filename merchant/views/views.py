@@ -8,7 +8,7 @@ from django.views import View
 from django.contrib.auth import login, logout
 from ..filters import *
 from django.contrib import messages
-from utils.views import CustomListView
+from utils.views import CustomListView, BaseView
 from ..forms import *
 from ..models import *
 from django.db import transaction
@@ -25,8 +25,10 @@ from django.db.models import  Q
 
 
 
-class DashboardView(TemplateView):
-    template_name = "dashboard.html"
+class DashboardView(BaseView):
+    def get(self, request):
+        return render(request,"dashboard.html")
+
 
 class LoginView(View):
     def get(self, request):
@@ -47,7 +49,7 @@ class LoginView(View):
 class LogoutView(View):
     def get(self, request):
         logout(request.user)
-        return redirect('login')
+        return redirect('merchant-login')
 
 class SignUpView(View):
     def get(self, request):
@@ -86,13 +88,13 @@ class OtpCodeView(View):
             return redirect('verify-otp')
         return render(request, "auth/otp_code.html", {"form":form})
 
-class VerifyOtpView(TemplateView): 
+class VerifyOtpView(View): 
     def get(self, request):
         # Check if user email is in session
         email = request.session.get('signup_email')
         # if not email:
         #     messages.error(request, 'يرجى إعادة المحاولة من البداية')
-        #     return redirect('signup')
+        #     return redirect('merchant-signup')
         form = VerifyOTPForm()
         return render(request, "auth/verify_otp.html", {"form": form, "email": email})
 
@@ -100,31 +102,33 @@ class VerifyOtpView(TemplateView):
         email = request.session.get('signup_email')
         # if not email:
         #     messages.error(request, 'يرجى إعادة المحاولة من البداية')
-        #     return redirect('signup')
+        #     return redirect('merchant-signup')
         form = VerifyOTPForm(request.POST)
         if form.is_valid():
             try:
                 user = form.save(email)
                 if user:
                     messages.success(request, 'تم التحقق من البريد الإلكتروني بنجاح')
-                    return redirect('register')
+                    return redirect('merchant-register')
             except forms.ValidationError as e:
                 form.add_error(None, str(e))
 
         return render(request, "auth/verify_otp.html", {"form": form, "email": email})
 
-class EmailChangePasswordView(TemplateView):
-    template_name = "auth/email_change_password.html"
+class EmailChangePasswordView(View):
+    def get(self, request):
+        return render(request, "auth/email_change_password.html")
 
-class ChangePasswordView(TemplateView):
-    template_name = "auth/change_password.html"
+class ChangePasswordView(View):
+    def get(self, request):
+        return render(request, "auth/change_password.html")
 
 class RegisterView(View):
     def get(self, request):
         # Check if user email exists in session
         email = request.session.get('signup_email')
         # if not email:
-        #     return redirect('signup')
+        #     return redirect('merchant-signup')
         form = RegisterMerchantForm()
         return render(request, "auth/register.html", {"form": form})
 
@@ -132,7 +136,7 @@ class RegisterView(View):
         try:
             email = request.session.get('signup_email')
             if not email:
-                return redirect('signup')
+                return redirect('merchant-signup')
 
             user = User.objects.get(email=email)
             form = RegisterMerchantForm(request.POST)
@@ -144,38 +148,58 @@ class RegisterView(View):
                 return redirect('merchant-dasboard')
             return render(request, "auth/register.html", {"form": form})
         except User.DoesNotExist:
-            return redirect('signup')
+            return redirect('merchant-signup')
 
-class ConfigurationView(TemplateView):
-    template_name = "config/main/configuration.html"
 
-class PlansView(View):
-    def get(slf, request):
+
+
+
+
+
+
+
+
+
+
+
+
+class ConfigurationView(BaseView):
+    def get(self, request):
+        return render(request, "config/main/configuration.html")
+
+class PlansView(BaseView):
+    def get(self, request):
         plans = Plan.objects.all()
         context = {
             'plans': plans
         }
         return render(request, "config/subscription/plans.html", context=context)
 
-class PlanConfigView(TemplateView):
-    template_name = "config/subscription/plans.html"
+class PlanConfigView(BaseView):
+    def get(self, request):
+        return render(request, "config/subscription/plans.html")
 
-class CurrencyView(TemplateView):
-    template_name = "config/main/currencies.html"
+class CurrencyView(BaseView):
+    def get(self, request):
+        return render(request, "config/main/currencies.html")
 
-class WarehousesView(TemplateView):
-    template_name = "config/warehouses/management/warehouse_management.html"
+class WarehousesView(BaseView):
+    def get(self, request):
+        return render(request, "config/warehouses/management/warehouse_management.html")
 
-class AddWarehouseView(TemplateView):
-    template_name = "config/warehouses/management/warehouse_form.html"
+class AddWarehouseView(BaseView):
+    def get(self, request):
+        return render(request, "config/warehouses/management/warehouse_form.html")
 
-class WarehouseFormView(TemplateView):
-    template_name = "config/warehouses/management/warehouse_form.html"
+class WarehouseFormView(BaseView):
+    def get(self, request):
+        return render(request, "config/warehouses/management/warehouse_form.html")
 
-class AccountView(TemplateView):
-    template_name = "config/main/account.html"
+class AccountView(BaseView):
+    def get(self, request):
+        return render(request, "config/main/account.html")
 
-class ProductsView(View):
+class ProductsView(BaseView):
     model = Product
     context_object_name = 'products'
     filter_class = CustomProductFilter
@@ -211,21 +235,24 @@ class CustomersView(CustomListView):
     context_object_name = 'customers'
     template_name = "customers/customers.html"
 
-class CustomerView(TemplateView):
-    template_name = "customers/customer_form.html"
+class CustomerView(BaseView):
+    def get(self, request):
+        return render(request, "customers/customer_form.html")
 
-class DeletedProductsView(View):
+class DeletedProductsView(BaseView):
     def get(self, request):
         products = Product.objects.filter(isDeleted=True)
         return render(request, "products/deleted_products.html", {"products": products})
 
-class AddProductView(TemplateView):
-    template_name = "products/product.html"
+class AddProductView(BaseView):
+    def get(self, request):
+        return render(request, "products/product.html")
 
-class ProductFormView(TemplateView):
-    template_name = "products/product.html"
+class ProductFormView(BaseView):
+    def get(self, request):
+        return render(request, "products/product.html")
     
-class ProductActionView(View):
+class ProductActionView(BaseView):
     def post(self, request):
         selected_ids = json.loads(request.POST.get('selected_ids', '[]'))
         action = request.POST.get('action')
@@ -238,7 +265,7 @@ class CategoryView(ListView):
     context_object_name = 'categories'
     template_name = "products/categories/categories.html"
 
-class AddCategoryView(View):
+class AddCategoryView(BaseView):
     def get(self, request):
         form = CategoryForm()
         context = {
@@ -261,7 +288,7 @@ class AddCategoryView(View):
         }
         return render(request, "products/categories/category_form.html", context)
 
-class CategoryFormView(View):
+class CategoryFormView(BaseView):
     def get(self, request, id=None):
         if id:
             try:
@@ -310,7 +337,7 @@ class CategoryFormView(View):
         }
         return render(request, "products/categories/category_form.html", context)
 
-class CategoryActionView(View):
+class CategoryActionView(BaseView):
     def post(self, request):
         selected_ids = json.loads(request.POST.get('selected_ids', '[]'))
         action = request.POST.get('action')
@@ -322,7 +349,7 @@ class CategoryActionView(View):
 
 
 
-class ProductFiltersActionView(View):
+class ProductFiltersActionView(BaseView):
     def post(self, request):
         selected_ids = json.loads(request.POST.get('selected_ids', '[]'))
         action = request.POST.get('action')
@@ -330,7 +357,7 @@ class ProductFiltersActionView(View):
             ProductFilter.objects.filter(id__in=selected_ids).delete()
         return HttpResponseRedirect(reverse('filters'))
 
-class AddProductFilterView(View):
+class AddProductFilterView(BaseView):
     def get(self, request):
         form = ProductFilterForm()
         context = {
@@ -353,12 +380,12 @@ class AddProductFilterView(View):
         }
         return render(request, "products/filters/filter_form.html", context)
 
-class ProductFiltersView(View):
+class ProductFiltersView(BaseView):
     def get(self, request):
         filters = ProductFilter.objects.all()
         return render(request, 'products/filters/filters.html', {'filters': filters})
 
-class ProductFilterFormView(View):
+class ProductFilterFormView(BaseView):
     def get(self, request, id=None):
         if id:
             try:
@@ -383,7 +410,7 @@ class ProductFilterFormView(View):
 
 
 
-class ProductOptionsActionView(View):
+class ProductOptionsActionView(BaseView):
     def post(self, request):
         selected_ids = json.loads(request.POST.get('selected_ids', '[]'))
         action = request.POST.get('action')
@@ -391,12 +418,12 @@ class ProductOptionsActionView(View):
             ProductOption.objects.filter(id__in=selected_ids).delete()
         return HttpResponseRedirect(reverse('options'))
 
-class ProductOptionsView(View):
+class ProductOptionsView(BaseView):
     def get(self, request):
         options = ProductOption.objects.all()
         return render(request, 'products/options/options.html', {'options': options})
 
-class AddProductOptionView(View):
+class AddProductOptionView(BaseView):
     def get(self, request, id=None):
         if id:
             try:
@@ -418,7 +445,7 @@ class AddProductOptionView(View):
 
         return render(request, "products/options/option_form.html", context)
 
-class ProductOptionFormView(View):
+class ProductOptionFormView(BaseView):
     def get(self, request, id=None):
         if id:
             try:
@@ -441,7 +468,7 @@ class ProductOptionFormView(View):
         return render(request, "products/options/option_form.html", context)
 
 
-class Theme1View(View):
+class Theme1View(BaseView):
     def get(self,request,slug):
         try:
             theme = get_object_or_404(Theme, slug=slug)
@@ -449,7 +476,7 @@ class Theme1View(View):
         except Theme.DoesNotExist:
             return redirect('404')
 
-class ThemesView(View):
+class ThemesView(BaseView):
     def get(self, request):
         themes = Theme.objects.all()
         new_themes = Theme.objects.filter(createdAt__gte=timezone.now() - timedelta(days=7))
@@ -459,112 +486,127 @@ class ThemesView(View):
 
         return render(request, "themes/main/themes.html", context)
 
-class ThemeFormView(TemplateView):
-    template_name = "themes/main/theme_form.html"
+class ThemeFormView(BaseView):
+    def get(self, request):
+        return render(request, "themes/main/theme_form.html")
 
-class ThemInfoView(View):
+class ThemInfoView(BaseView):
     def get(self, request, id):
         theme = Theme.objects.get(id=id)
         return render(request, "themes/main/theme_info.html", {"theme":theme})
 
-class TermsView(TemplateView):
-    template_name = "config/terms/terms.html"
+class TermsView(BaseView):
+    def get(self, request):
+        return render(request, "config/terms/terms.html")
 
-class ConditionsView(TemplateView):
-    template_name = "config/terms/conditions.html"
+class ConditionsView(BaseView):
+    def get(self, request):
+        return render(request, "config/terms/conditions.html")
 
-class PrivacyView(TemplateView):
-    template_name = "config/terms/privacy.html"
+class PrivacyView(BaseView):
+    def get(self, request):
+        return render(request, "config/terms/privacy.html")
 
-class ComplaintsView(TemplateView):
-    template_name = "config/terms/complaints.html"
+class ComplaintsView(BaseView):
+    def get(self, request):
+        return render(request, "config/terms/complaints.html")
 
-class LicenseView(TemplateView):
-    template_name = "config/terms/license.html"
+class LicenseView(BaseView):
+    def get(self, request):
+        return render(request, "config/terms/license.html")
 
-class ReturnPolicyView(TemplateView):
-    template_name = "config/terms/return_policy.html"
+class ReturnPolicyView(BaseView):
+    def get(self, request):
+        return render(request, "config/terms/return_policy.html")
 
+class PaymentView(BaseView):
+    def get(self, request):
+        return render(request, "config/main/payment.html")
 
-class PaymentView(TemplateView):
-    template_name = "config/main/payment.html"
+class ShippingView(BaseView):
+    def get(self, request):
+        return render(request, "config/shipping/shipping.html")
 
+class ShippingConceptView(BaseView):
+    def get(self, request):
+        return render(request, "config/shipping/concept.html")
 
-class ShippingView(TemplateView):
-    template_name = "config/shipping/shipping.html"
+class TaxView(BaseView):
+    def get(self, request):
+        return render(request, "config/advanced/tax.html")
 
-class ShippingConceptView(TemplateView):
-    template_name = "config/shipping/concept.html"
+class TeamAlertsView(BaseView):
+    def get(self, request):
+        return render(request, "config/advanced/team_alerts.html")
 
+class MembersView(BaseView):
+    def get(self, request):
+        return render(request, "config/advanced/members.html")
 
+class QuestionsView(BaseView):
+    def get(self, request):
+        return render(request, "config/advanced/questions/questions.html")
 
-class TaxView(TemplateView):
-    template_name = "config/advanced/tax.html"
+class WorkingHoursView(BaseView):
+    def get(self, request):
+        return render(request, "config/main/working_hours.html")
 
-class TeamAlertsView(TemplateView):
-    template_name = "config/advanced/team_alerts.html"
+class AnalyticsView(BaseView):
+    def get(self, request):
+        return render(request, "analytics/main.html")
 
-class MembersView(TemplateView):
-    template_name = "config/advanced/members.html"
+class ReportsView(BaseView):
+    def get(self, request):
+        return render(request, "analytics/reports/main.html")
 
-class QuestionsView(TemplateView):
-    template_name = "config/advanced/questions/questions.html"
+class ProductReportView(BaseView):
+    def get(self, request):
+        return render(request, "analytics/reports/products.html")
 
+class SalesReportView(BaseView):
+    def get(self, request):
+        return render(request, "analytics/reports/sales.html")
 
+class CustomerReportView(BaseView):
+    def get(self, request):
+        return render(request, "analytics/reports/customers.html")
 
+class ShippingReportView(BaseView):
+    def get(self, request):
+        return render(request, "analytics/reports/shipping.html")
 
-class WorkingHoursView(TemplateView):
-    template_name = "config/main/working_hours.html"
+class PaymentReportView(BaseView):
+    def get(self, request):
+        return render(request, "analytics/reports/payment.html")
 
+class StockReportView(BaseView):
+    def get(self, request):
+        return render(request, "analytics/reports/stock.html")
 
+class CouponReportView(BaseView):
+    def get(self, request):
+        return render(request, "analytics/reports/coupons.html")
 
-
-class AnalyticsView(TemplateView):
-    template_name = "analytics/main.html"
-
-class ReportsView(TemplateView):
-    template_name = "analytics/reports/main.html"
-
-class ProductReportView(TemplateView):
-    template_name = "analytics/reports/products.html"
-
-class SalesReportView(TemplateView):
-    template_name = "analytics/reports/sales.html"
-
-class CustomerReportView(TemplateView):
-    template_name = "analytics/reports/customers.html"
-
-class ShippingReportView(TemplateView):
-    template_name = "analytics/reports/shipping.html"
-
-class PaymentReportView(TemplateView):
-    template_name = "analytics/reports/payment.html"
-
-class StockReportView(TemplateView):
-    template_name = "analytics/reports/stock.html"
-
-class CouponReportView(TemplateView):
-    template_name = "analytics/reports/coupons.html"
-
-class OrderReportView(TemplateView):
-    template_name = "analytics/reports/orders.html"
+class OrderReportView(BaseView):
+    def get(self, request):
+        return render(request, "analytics/reports/orders.html")
 
 class OrdersView(CustomListView):
     context_object_name = 'orders'
     queryset = Order.objects.all()
     template_name = "products/orders/orders.html"
 
-class AbandonedCartsView(View):
+class AbandonedCartsView(BaseView):
     def get(self, request):
         orders = Order.objects.all()
         return render(request, "products/orders/abandoned_carts.html", {"orders":orders})
 
-class OrderView(View):
+class OrderView(BaseView):
     def get(self, request, id):
         order = get_object_or_404(Order, id=id)
         return render(request, "products/orders/order.html", {"order":order})
 
-class StoreWebsite(View):
+class StoreWebsite(BaseView):
     def get(self, request, slug):
         store = get_object_or_404(Store.objects.select_related('theme'), domain=slug)
         theme = store.theme
@@ -585,105 +627,111 @@ class AutoDiscountsView(CustomListView):
     context_object_name = 'auto_discounts'
     template_name = "sales/auto_discount/auto_dsicounts.html"
 
-class AddAutoDiscountView(TemplateView):
-    template_name = "sales/auto_discount/auto_discount_form.html"
+class AddAutoDiscountView(BaseView):
+    def get(self, request):
+        return render(request, "sales/auto_discount/auto_discount_form.html")
 
-class AutoDiscountFormView(TemplateView):
-    template_name = "sales/auto_discount/auto_discount_form.html"
+class AutoDiscountFormView(BaseView):
+    def get(self, request):
+        return render(request, "sales/auto_discount/auto_discount_form.html")
 
+class DiscountsView(BaseView):
+    def get(self, request):
+        return render(request, "sales/discount/discounts.html")
 
-class DiscountsView(TemplateView):
-    template_name = "sales/discount/discounts.html"
+class AddDiscountView(BaseView):
+    def get(self, request):
+        return render(request, "sales/discount/discount_form.html")
 
-class AddDiscountView(TemplateView):
-    template_name = "sales/discount/discount_form.html"
+class DiscountFormView(BaseView):
+    def get(self, request):
+        return render(request, "sales/discount/discount_form.html")
 
-class DiscountFormView(TemplateView):
-    template_name = "sales/discount/discount_form.html"
+class OffersView(BaseView):
+    def get(self, request):
+        return render(request, "sales/offers/offers.html")
 
+class AddOfferView(BaseView):
+    def get(self, request):
+        return render(request, "sales/offers/offer-form.html")
 
-class OffersView(TemplateView):
-    template_name = "sales/offers/offers.html"
+class OfferFormView(BaseView):
+    def get(self, request):
+        return render(request, "sales/offers/offer-form.html")
 
-class AddOfferView(TemplateView):
-    template_name = "sales/offers/offer-form.html"
+class CouponsView(BaseView):
+    def get(self, request):
+        return render(request, "sales/coupon/coupons.html")
 
-class OfferFormView(TemplateView):
-    template_name = "sales/offers/offer-form.html"
+class AddCouponView(BaseView):
+    def get(self, request):
+        return render(request, "sales/coupon/coupon-form.html")
 
-
-class CouponsView(TemplateView):
-    template_name = "sales/coupon/coupons.html"
-
-class AddCouponView(TemplateView):
-    template_name = "sales/coupon/coupon-form.html"
-
-class CouponsFormView(TemplateView):
-    template_name = "sales/coupon/coupon-form.html"
-
-
+class CouponsFormView(BaseView):
+    def get(self, request):
+        return render(request, "sales/coupon/coupon-form.html")
 
 class SalesPackagesView(CustomListView):
     model = SalePackage
     context_object_name = 'sale_packages'
     template_name = "sales/sales_packages/sales_packages.html"
 
-class AddSalesPackageView(TemplateView):
-    template_name = "sales/sales_packages/sales_packages_form.html"
+class AddSalesPackageView(BaseView):
+    def get(self, request):
+        return render(request, "sales/sales_packages/sales_packages_form.html")
 
-class SalesPackageFormView(TemplateView):
-    template_name = "sales/sales_packages/sales_packages_form.html"
-
-
+class SalesPackageFormView(BaseView):
+    def get(self, request):
+        return render(request, "sales/sales_packages/sales_packages_form.html")
 
 class SalesCampaignsView(CustomListView):
     model = SaleCampaign
     context_object_name = 'sale_campaigns'
     template_name = "sales/sales_campaign/sales_campaign.html"
 
-class AddSalesCampaignView(TemplateView):
-    template_name = "sales/sales_campaign/sales_campaign_form.html"
+class AddSalesCampaignView(BaseView):
+    def get(self, request):
+        return render(request, "sales/sales_campaign/sales_campaign_form.html")
 
-class SalesCampaignFormView(TemplateView):
-    template_name = "sales/sales_campaign/sales_campaign_form.html"
+class SalesCampaignFormView(BaseView):
+    def get(self, request):
+        return render(request, "sales/sales_campaign/sales_campaign_form.html")
 
 
 
-
-
-class ThemeProductsView(View):
+class ThemeProductsView(BaseView):
     def get(self ,request, slug):
         theme = get_object_or_404(Theme, slug=slug)
         if theme:
             return render(request, f"themes/{theme.slug}/products.html", {"theme":theme})
 
-class CartView(View):
+class CartView(BaseView):
     def get(self ,request, slug):
         theme = get_object_or_404(Theme, slug=slug)
         if theme:
             return render(request, f"themes/{theme.slug}/cart.html", {"theme":theme})
 
-class WishlistView(View):
+class WishlistView(BaseView):
     def get(self ,request, slug):
         theme = get_object_or_404(Theme, slug=slug)
         if theme:
             return render(request, f"themes/{theme.slug}/wishlist.html", {"theme":theme})
 
-class CheckoutView(View):
+class CheckoutView(BaseView):
     def get(self ,request, slug):
         theme = get_object_or_404(Theme, slug=slug)
         if theme:
             return render(request, f"themes/{theme.slug}/checkout.html", {"theme":theme})
 
 
-class ThemeProductView(View):
+class ThemeProductView(BaseView):
     def get(self ,request, slug, id):
         theme = get_object_or_404(Theme, slug=slug)
         if theme:
             return render(request, f"themes/{theme.slug}/product.html", {"theme":theme})
 
 
-class ThemeCheckoutView(View):
+class ThemeCheckoutView(BaseView):
     def get(self ,request, slug):
         theme = get_object_or_404(Theme, slug)
         if theme:

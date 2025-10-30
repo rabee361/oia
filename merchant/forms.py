@@ -37,13 +37,13 @@ class MerchantLoginForm(forms.Form):
             try:
                 user = User.objects.get(email=email)
             except User.DoesNotExist:
-                raise forms.ValidationError('البريد الإلكتروني غير مسجل في النظام')
+                raise forms.ValidationError('البريد الإلكتروني غير موجود ')
 
             user = authenticate(email=email, password=password)
             if user is None:
                 raise forms.ValidationError('كلمة المرور غير صحيحة')
 
-            if user.user_type not in [UserType.MERCHANT, UserType.ADMIN]:
+            if user.user_type not in [UserType.MERCHANT]:
                 raise forms.ValidationError('هذا الحساب غير مخول للدخول إلى لوحة التحكم')
 
             cleaned_data['user'] = user
@@ -181,13 +181,6 @@ class VerifyOTPForm(forms.Form):
     
 
 class RegisterMerchantForm(forms.ModelForm):
-    share_location = forms.BooleanField(
-        required=False,
-        widget=forms.CheckboxInput(attrs={
-            'class': 'custom-checkbox-input'
-        })
-    )
-
     business_type = forms.ChoiceField(
         choices=[('', 'اختر مجال النشاط')] + list(BusinessTypes.choices),
         widget=forms.Select(attrs={

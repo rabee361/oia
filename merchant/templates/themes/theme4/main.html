@@ -5,152 +5,193 @@
 <main id="main-content">
 
     {% include "themes/theme4/hero.html" %}
-
-    <!-- Products Section -->
-    <section id="products" class="container">
-        <h2 class="text-center mb-5">Featured Products</h2>
-        
-        <div class="product-grid">
-            <!-- Sample Product Cards -->
-            <div class="product-card">
-                <div class="product-image">
-                    <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=300&h=250&fit=crop" alt="Product 1">
-                    <div class="product-badge">New</div>
-                    <div class="product-actions">
-                        <button class="product-action-btn" title="Add to Wishlist">
-                            <i class="fas fa-heart"></i>
-                        </button>
-                        <button class="product-action-btn" title="Quick View">
-                            <i class="fas fa-eye"></i>
+    
+    <!-- Featured Products Section -->
+    <section class="featured-products-section">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-title-wrapper">
+                    <h2 class="section-title">Featured Products</h2>
+                    <p class="section-subtitle">Discover our handpicked selection of premium products</p>
+                </div>
+                <a href="#all-products" class="view-all-btn">View All Products <i class="fas fa-arrow-right"></i></a>
+            </div>
+            
+            <div class="products-grid">
+                <!-- Product Card 1 -->
+                <div class="product-card">
+                    <div class="product-image-container">
+                        <img src="https://images.unsplash.com/photo-1581044777550-4cfa60707c03?w=400&h=600&fit=crop" alt="Premium Headphones" class="product-image">
+                        <div class="product-badge sale-badge">Sale</div>
+                        <div class="product-overlay">
+                            <div class="product-actions">
+                                <button class="action-btn wishlist-btn" title="Add to Wishlist">
+                                    <i class="far fa-heart"></i>
+                                </button>
+                                <button class="action-btn quick-view-btn" title="Quick View">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                                <button class="action-btn compare-btn" title="Compare">
+                                    <i class="fas fa-exchange-alt"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <div class="product-category">Electronics</div>
+                        <h3 class="product-title">Premium Wireless Headphones</h3>
+                        <div class="product-rating">
+                            <div class="stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </div>
+                            <span class="rating-count">(128 reviews)</span>
+                        </div>
+                        <div class="product-price">
+                            <span class="current-price">$89.99</span>
+                            <span class="original-price">$129.99</span>
+                            <span class="discount-percent">31% OFF</span>
+                        </div>
+                        <button class="add-to-cart-btn">
+                            <i class="fas fa-shopping-cart"></i>
+                            Add to Cart
                         </button>
                     </div>
                 </div>
-                <div class="product-info">
-                    <h3 class="product-title">Wireless Headphones</h3>
-                    <p class="product-description">Premium quality wireless headphones with noise cancellation</p>
-                    <div class="product-price">
-                        <span class="price-current">$129.99</span>
-                        <span class="price-original">$159.99</span>
-                    </div>
-                    <div class="product-rating">
-                        <div class="stars">
-                            <i class="fas fa-star star"></i>
-                            <i class="fas fa-star star"></i>
-                            <i class="fas fa-star star"></i>
-                            <i class="fas fa-star star"></i>
-                            <i class="fas fa-star star empty"></i>
+                
+                <!-- Product Card 2 -->
+                <div class="product-card">
+                    <div class="product-image-container">
+                        <img src="https://images.unsplash.com/photo-1534415988097-f08f09e374ce?w=400&h=600&fit=crop" alt="Smart Watch" class="product-image">
+                        <div class="product-badge new-badge">New</div>
+                        <div class="product-overlay">
+                            <div class="product-actions">
+                                <button class="action-btn wishlist-btn" title="Add to Wishlist">
+                                    <i class="far fa-heart"></i>
+                                </button>
+                                <button class="action-btn quick-view-btn" title="Quick View">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                                <button class="action-btn compare-btn" title="Compare">
+                                    <i class="fas fa-exchange-alt"></i>
+                                </button>
+                            </div>
                         </div>
-                        <span class="rating-count">(24 reviews)</span>
                     </div>
-                    <button class="btn btn-primary w-100">Add to Cart</button>
+                    <div class="product-info">
+                        <div class="product-category">Wearables</div>
+                        <h3 class="product-title">Smart Fitness Watch Pro</h3>
+                        <div class="product-rating">
+                            <div class="stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <span class="rating-count">(95 reviews)</span>
+                        </div>
+                        <div class="product-price">
+                            <span class="current-price">$199.99</span>
+                        </div>
+                        <button class="add-to-cart-btn">
+                            <i class="fas fa-shopping-cart"></i>
+                            Add to Cart
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Product Card 3 -->
+                <div class="product-card">
+                    <div class="product-image-container">
+                        <img src="https://images.unsplash.com/photo-1518791841217-8f162f1e1131?w=400&h=600&fit=crop" alt="Laptop" class="product-image">
+                        <div class="product-badge hot-badge">Hot</div>
+                        <div class="product-overlay">
+                            <div class="product-actions">
+                                <button class="action-btn wishlist-btn" title="Add to Wishlist">
+                                    <i class="far fa-heart"></i>
+                                </button>
+                                <button class="action-btn quick-view-btn" title="Quick View">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                                <button class="action-btn compare-btn" title="Compare">
+                                    <i class="fas fa-exchange-alt"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <div class="product-category">Computers</div>
+                        <h3 class="product-title">Ultra-Thin Gaming Laptop</h3>
+                        <div class="product-rating">
+                            <div class="stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="far fa-star"></i>
+                            </div>
+                            <span class="rating-count">(67 reviews)</span>
+                        </div>
+                        <div class="product-price">
+                            <span class="current-price">$899.99</span>
+                            <span class="original-price">$1,199.99</span>
+                            <span class="discount-percent">25% OFF</span>
+                        </div>
+                        <button class="add-to-cart-btn">
+                            <i class="fas fa-shopping-cart"></i>
+                            Add to Cart
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Product Card 4 -->
+                <div class="product-card">
+                    <div class="product-image-container">
+                        <img src="https://images.unsplash.com/photo-1581044777550-4cfa60707c03?w=400&h=600&fit=crop" alt="Smartphone" class="product-image">
+                        <div class="product-badge trending-badge">Trending</div>
+                        <div class="product-overlay">
+                            <div class="product-actions">
+                                <button class="action-btn wishlist-btn" title="Add to Wishlist">
+                                    <i class="far fa-heart"></i>
+                                </button>
+                                <button class="action-btn quick-view-btn" title="Quick View">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                                <button class="action-btn compare-btn" title="Compare">
+                                    <i class="fas fa-exchange-alt"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <div class="product-category">Mobile</div>
+                        <h3 class="product-title">Latest Smartphone 5G</h3>
+                        <div class="product-rating">
+                            <div class="stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </div>
+                            <span class="rating-count">(203 reviews)</span>
+                        </div>
+                        <div class="product-price">
+                            <span class="current-price">$649.99</span>
+                        </div>
+                        <button class="add-to-cart-btn">
+                            <i class="fas fa-shopping-cart"></i>
+                            Add to Cart
+                        </button>
+                    </div>
                 </div>
             </div>
-
-            <div class="product-card">
-                <div class="product-image">
-                    <img src="https://images.unsplash.com/photo-1546868871-7041f2a55e12?w=300&h=250&fit=crop" alt="Product 2">
-                    <div class="product-badge" style="background-color: #28a745;">Sale</div>
-                    <div class="product-actions">
-                        <button class="product-action-btn" title="Add to Wishlist">
-                            <i class="fas fa-heart"></i>
-                        </button>
-                        <button class="product-action-btn" title="Quick View">
-                            <i class="fas fa-eye"></i>
-                        </button>
-                    </div>
-                </div>
-                <div class="product-info">
-                    <h3 class="product-title">Smart Watch</h3>
-                    <p class="product-description">Feature-rich smartwatch with health monitoring</p>
-                    <div class="product-price">
-                        <span class="price-current">$199.99</span>
-                        <span class="price-original">$249.99</span>
-                    </div>
-                    <div class="product-rating">
-                        <div class="stars">
-                            <i class="fas fa-star star"></i>
-                            <i class="fas fa-star star"></i>
-                            <i class="fas fa-star star"></i>
-                            <i class="fas fa-star star"></i>
-                            <i class="fas fa-star star"></i>
-                        </div>
-                        <span class="rating-count">(89 reviews)</span>
-                    </div>
-                    <button class="btn btn-primary w-100">Add to Cart</button>
-                </div>
-            </div>
-
-            <div class="product-card">
-                <div class="product-image">
-                    <img src="https://images.unsplash.com/photo-1572635196237-14b3f281503f?w=300&h=250&fit=crop" alt="Product 3">
-                    <div class="product-actions">
-                        <button class="product-action-btn" title="Add to Wishlist">
-                            <i class="fas fa-heart"></i>
-                        </button>
-                        <button class="product-action-btn" title="Quick View">
-                            <i class="fas fa-eye"></i>
-                        </button>
-                    </div>
-                </div>
-                <div class="product-info">
-                    <h3 class="product-title">Sunglasses</h3>
-                    <p class="product-description">Stylish sunglasses with UV protection</p>
-                    <div class="product-price">
-                        <span class="price-current">$89.99</span>
-                    </div>
-                    <div class="product-rating">
-                        <div class="stars">
-                            <i class="fas fa-star star"></i>
-                            <i class="fas fa-star star"></i>
-                            <i class="fas fa-star star"></i>
-                            <i class="fas fa-star star"></i>
-                            <i class="fas fa-star star empty"></i>
-                        </div>
-                        <span class="rating-count">(42 reviews)</span>
-                    </div>
-                    <button class="btn btn-primary w-100">Add to Cart</button>
-                </div>
-            </div>
-
-            <div class="product-card">
-                <div class="product-image">
-                    <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=300&h=250&fit=crop" alt="Product 4">
-                    <div class="product-badge" style="background-color: #dc3545;">Hot</div>
-                    <div class="product-actions">
-                        <button class="product-action-btn" title="Add to Wishlist">
-                            <i class="fas fa-heart"></i>
-                        </button>
-                        <button class="product-action-btn" title="Quick View">
-                            <i class="fas fa-eye"></i>
-                        </button>
-                    </div>
-                </div>
-                <div class="product-info">
-                    <h3 class="product-title">Sneakers</h3>
-                    <p class="product-description">Comfortable running sneakers for everyday wear</p>
-                    <div class="product-price">
-                        <span class="price-current">$149.99</span>
-                        <span class="price-original">$179.99</span>
-                    </div>
-                    <div class="product-rating">
-                        <div class="stars">
-                            <i class="fas fa-star star"></i>
-                            <i class="fas fa-star star"></i>
-                            <i class="fas fa-star star"></i>
-                            <i class="fas fa-star star"></i>
-                            <i class="fas fa-star star"></i>
-                        </div>
-                        <span class="rating-count">(156 reviews)</span>
-                    </div>
-                    <button class="btn btn-primary w-100">Add to Cart</button>
-                </div>
-            </div>
-        </div>
-
-        <!-- More sections can be added here -->
-        <div class="text-center mt-5">
-            <a href="#" class="btn btn-outline btn-lg">View All Products</a>
         </div>
     </section>
+
 </main>
 {% endblock %}
